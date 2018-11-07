@@ -10,4 +10,14 @@ It's primary design aspects will include the following:
   * An active inventory of all movies with necessary and supplemental information. 
   
 ## Relation and Data Interactions
-**[Relation
+**[Relation (column 1, column 2, ..., column 'n') : Data Interactions]**
+
+  * MovieGenre (MovieGenreID, MovieGenreName) : SELECT
+    UniqueKey (MovieGenreName)
+  * Movie (MovieID, MovieTitle, MovieGenre, ReleaseDate, Duration, MovieParentalRatings) : SELECT, INSERT, DELETE
+  * Inventory (InventoryID, MovieID, RentalID) : INSERT, SELECT, UPDATE, DELETE
+    UniqueKey (InventoryID, RentalID)
+  * Rental (RentalID, AccountID, InventoryID, DateRented, DueDate) : INSERT, SELECT, DELETE
+    UniqueKey (AccountID, InverntoryID)
+  * Account (AccountID, FirstName, LastName, Phone, Email) : SELECT, INSERT, UPDATE, DELETE
+    UniqueKey (Phone, Email)
