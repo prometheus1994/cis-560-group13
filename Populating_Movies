@@ -1,0 +1,60 @@
+create schema group13proj
+go
+drop table if exists group13proj.Rental
+drop table if exists group13proj.Account
+drop table if exists group13proj.Inventory
+drop table if exists group13Proj.Movie
+drop table if exists group13proj.Genre
+create table group13proj.Genre
+(
+	GenreID int not null identity(1,1) primary key,
+	GenreName NVarchar(64) not null
+)
+
+--Populating the group13proj.Genre table
+insert group13proj.Genre(GenreName)
+select Genre
+from dbo.GenreTable
+select * from group13proj.Genre
+order by GenreID asc
+
+create table group13Proj.Movie(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear datetime null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100) not null 
+)
+select* from Movie_Database
+--populating the group13proj.Movie table
+insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie
+from dbo.Movie_Database
+
+select* from group13proj.Movie
+create table group13proj.Inventory
+(
+	InventoryID int not null identity(1,1) primary key,
+	MovieID int not null foreign key references group13Proj.movie(movieID),
+	Rented int not null default 0
+)
+
+create table group13proj.Account
+(
+	AccountID int not null identity(1,1) primary key,
+	FirstName NVARCHAR(32) not null,
+	LastName NVARCHAR(32) not null,
+	PhoneNumber NVARCHAR(15) not null,
+	Email NVARCHAR(64) not null unique
+)
+
+create table group13proj.Rental
+(
+	RentalID int not null identity(1,1) primary key,
+	InventoryID int not null foreign key references group13proj.Inventory(InventoryID),
+	RentalDate date not null,
+	DueDate date not null,
+	AccountID int not null foreign key references group13proj.Account(AccountID)
+
+)
