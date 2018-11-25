@@ -31,6 +31,7 @@
             this.uxPanelCreateAccount = new System.Windows.Forms.Panel();
             this.uxButtonCreateAccount = new System.Windows.Forms.Button();
             this.uxPanelMenu = new System.Windows.Forms.Panel();
+            this.uxLabelTitle = new System.Windows.Forms.Label();
             this.uxPanelAddMovie = new System.Windows.Forms.Panel();
             this.uxButtonAddMovie = new System.Windows.Forms.Button();
             this.uxPanelDeleteAccount = new System.Windows.Forms.Panel();
@@ -39,6 +40,7 @@
             this.uxButtonModifyAccount = new System.Windows.Forms.Button();
             this.uxPanelRentMovie = new System.Windows.Forms.Panel();
             this.uxButtonRentMovie = new System.Windows.Forms.Button();
+            this.uxPanelMain = new System.Windows.Forms.Panel();
             this.uxPanelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +68,7 @@
             // uxPanelMenu
             // 
             this.uxPanelMenu.BackColor = System.Drawing.Color.DarkBlue;
+            this.uxPanelMenu.Controls.Add(this.uxLabelTitle);
             this.uxPanelMenu.Controls.Add(this.uxPanelAddMovie);
             this.uxPanelMenu.Controls.Add(this.uxButtonAddMovie);
             this.uxPanelMenu.Controls.Add(this.uxPanelDeleteAccount);
@@ -82,6 +85,16 @@
             this.uxPanelMenu.Name = "uxPanelMenu";
             this.uxPanelMenu.Size = new System.Drawing.Size(200, 561);
             this.uxPanelMenu.TabIndex = 5;
+            // 
+            // uxLabelTitle
+            // 
+            this.uxLabelTitle.AutoSize = true;
+            this.uxLabelTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxLabelTitle.Location = new System.Drawing.Point(31, 2);
+            this.uxLabelTitle.Name = "uxLabelTitle";
+            this.uxLabelTitle.Size = new System.Drawing.Size(137, 30);
+            this.uxLabelTitle.TabIndex = 12;
+            this.uxLabelTitle.Text = "Phils Rentals";
             // 
             // uxPanelAddMovie
             // 
@@ -167,16 +180,26 @@
             this.uxButtonRentMovie.UseVisualStyleBackColor = true;
             this.uxButtonRentMovie.Click += new System.EventHandler(this.uxMenuHandler);
             // 
+            // uxPanelMain
+            // 
+            this.uxPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uxPanelMain.Location = new System.Drawing.Point(200, 0);
+            this.uxPanelMain.Name = "uxPanelMain";
+            this.uxPanelMain.Size = new System.Drawing.Size(584, 561);
+            this.uxPanelMain.TabIndex = 6;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.uxPanelMain);
             this.Controls.Add(this.uxPanelMenu);
             this.Name = "MainWindow";
             this.Text = "Phils Rentals";
             this.uxPanelMenu.ResumeLayout(false);
+            this.uxPanelMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -193,6 +216,8 @@
         private System.Windows.Forms.Button uxButtonDeleteAccount;
         private System.Windows.Forms.Panel uxPanelModifyAccount;
         private System.Windows.Forms.Button uxButtonModifyAccount;
+        private System.Windows.Forms.Label uxLabelTitle;
+        private System.Windows.Forms.Panel uxPanelMain;
     }
 }
 

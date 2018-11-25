@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhilsRentals.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +12,26 @@ namespace PhilsRentals
         /// <summary>
         /// Handle to the MainWindow which is the view for this controller.
         /// </summary>
-        private IMainWindow _view;
+        private IWindow _view;
+
+        /// <summary>
+        /// Dictionary of the operation windows.
+        /// </summary>
+        private Dictionary<string, IWindow> _windows;
 
         /// <summary>
         /// Constructs an instance of MainWindowController.
         /// </summary>
-        public MainWindowController()
+        public MainWindowController(Dictionary<string, IWindow> windows)
         {
-
+            _windows = windows;
         }
 
         /// <summary>
         /// Attach the view its controller.
         /// </summary>
         /// <param name="view"></param>
-        public void AttachView(IMainWindow view)
+        public void AttachView(IWindow view)
         {
             _view = view;
         }
@@ -33,8 +39,13 @@ namespace PhilsRentals
         /// <summary>
         /// Operation handler for the view.
         /// </summary>
-        public void Handle()
+        public IWindow Handle(string operation)
         {
+            /* Code to send window to main window */
+            IWindow window;
+            _windows.TryGetValue(operation, out window);
+            return window;
+
             // Create a switch for the passed in argument which contains any operation.
             // Call private functions to handle each operation.
         }

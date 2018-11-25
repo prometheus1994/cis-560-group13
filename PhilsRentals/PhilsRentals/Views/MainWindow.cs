@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhilsRentals.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PhilsRentals
 {
-    public partial class MainWindow : Form, IMainWindow
+    public partial class MainWindow : Form, IWindow
     {
         /// <summary>
         /// Operation handler for MainWindowController.
@@ -66,6 +67,18 @@ namespace PhilsRentals
             }
 
             // Call _operate with operation that needs to be done.
+            if (uxPanelMain.Controls.Count > 0)
+            {
+                uxPanelMain.Controls.RemoveAt(0);
+            }
+
+            IWindow window = _operate(selectedMenu);
+            if (window != null)
+            {
+                Control c = (Control)window;
+                c.Dock = DockStyle.Fill;
+                uxPanelMain.Controls.Add(c);
+            }
         }
     }
 }

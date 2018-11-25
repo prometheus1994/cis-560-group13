@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhilsRentals
+namespace PhilsRentals.Views
 {
-    public interface IMainWindow
+    public interface IWindow
     {
-        // MainWindow update functions
+        // Window update functions
     }
 }
