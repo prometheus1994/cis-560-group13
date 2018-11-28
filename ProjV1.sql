@@ -1,3 +1,4 @@
+
 create schema group13proj
 go
 drop table if exists group13proj.Rental
@@ -26,7 +27,7 @@ create table group13Proj.Movie(
 	Rating float,
 	GenreID nvarchar(100) not null 
 )
-select* from MovieDatabase
+select* from dbo.MovieDatabase
 --populating the group13proj.Movie table
 insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
 select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie
@@ -41,18 +42,9 @@ create table group13proj.Inventory
 	Rented int not null default 0
 )
 --inserting 4 sample rows in the inventory table
-insert group13proj.Inventory(MovieID, Rented)
-values
-	(1,1),
-	(11,1),
-	(21,1),
-	(31,0),
-	(41,0),
-	(45,1),
-	(22,0),
-	(12,1),
-	(23,0),
-	(14,1)
+insert group13proj.Inventory(MovieID)
+select M.MovieID
+from group13proj.Movie M
 create table group13proj.Account
 (
 	AccountID int not null identity(1,1) primary key,
@@ -74,13 +66,10 @@ create table group13proj.Rental
 	RentalDate date not null,
 	DueDate date not null,
 	AccountID int not null foreign key references group13proj.Account(AccountID),
-	FirstName nvarchar(40) not null,
-	LastName nvarchar(40) not null,
-	MovieName nvarchar(100) not null
-)
+	)
 
-insert group13proj.Rental(InventoryID, RentalDate, DueDate, AccountID, FirstName, LastName, MovieName)
-select I.InventoryID, T.RentalDate, T.DueDate, A.AccountID, T.FirstName, T.LastName, T.MovieName
+/*insert group13proj.Rental(InventoryID, RentalDate, DueDate, AccountID)
+select I.InventoryID, T.RentalDate, T.DueDate, A.AccountID
 from 
 	(
 	values
@@ -98,6 +87,7 @@ from
 	inner join group13proj.Account A on A.FirstName=T.FirstName and A.LastName=T.LastName
 	inner join group13proj.Movie M on M.MovieTitle=T.MovieName
 	inner join group13proj.Inventory I on I.MovieID= M.MovieID
+go*/
 select* from group13proj.Rental
 
 select* from group13proj.Movie
@@ -106,3 +96,4 @@ select* from group13proj.Movie
 --Or if the due date is before the rentaldate
 --or as discussed before, a user tries to rent a movie before returning a certain number 
 --of those already in his posession
+select * from group13proj.Inventory
