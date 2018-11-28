@@ -43,44 +43,52 @@
             // uxTextboxFirstName
             // 
             this.uxTextboxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxTextboxFirstName.Location = new System.Drawing.Point(235, 83);
+            this.uxTextboxFirstName.Location = new System.Drawing.Point(176, 67);
+            this.uxTextboxFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.uxTextboxFirstName.Name = "uxTextboxFirstName";
-            this.uxTextboxFirstName.Size = new System.Drawing.Size(408, 45);
+            this.uxTextboxFirstName.Size = new System.Drawing.Size(307, 37);
             this.uxTextboxFirstName.TabIndex = 0;
+            this.uxTextboxFirstName.TextChanged += new System.EventHandler(this.uxTextboxTextChanged);
             // 
             // uxLabelFirstName
             // 
             this.uxLabelFirstName.AutoSize = true;
             this.uxLabelFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelFirstName.Location = new System.Drawing.Point(23, 89);
+            this.uxLabelFirstName.Location = new System.Drawing.Point(17, 72);
+            this.uxLabelFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelFirstName.Name = "uxLabelFirstName";
-            this.uxLabelFirstName.Size = new System.Drawing.Size(186, 38);
+            this.uxLabelFirstName.Size = new System.Drawing.Size(155, 31);
             this.uxLabelFirstName.TabIndex = 1;
             this.uxLabelFirstName.Text = "First Name:";
             // 
             // uxTextboxPhoneNumber
             // 
             this.uxTextboxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxTextboxPhoneNumber.Location = new System.Drawing.Point(298, 284);
+            this.uxTextboxPhoneNumber.Location = new System.Drawing.Point(224, 231);
+            this.uxTextboxPhoneNumber.Margin = new System.Windows.Forms.Padding(2);
             this.uxTextboxPhoneNumber.Name = "uxTextboxPhoneNumber";
-            this.uxTextboxPhoneNumber.Size = new System.Drawing.Size(345, 45);
+            this.uxTextboxPhoneNumber.Size = new System.Drawing.Size(260, 37);
             this.uxTextboxPhoneNumber.TabIndex = 2;
+            this.uxTextboxPhoneNumber.TextChanged += new System.EventHandler(this.uxTextboxTextChanged);
             // 
             // uxTextboxLastName
             // 
             this.uxTextboxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxTextboxLastName.Location = new System.Drawing.Point(235, 186);
+            this.uxTextboxLastName.Location = new System.Drawing.Point(176, 151);
+            this.uxTextboxLastName.Margin = new System.Windows.Forms.Padding(2);
             this.uxTextboxLastName.Name = "uxTextboxLastName";
-            this.uxTextboxLastName.Size = new System.Drawing.Size(408, 45);
+            this.uxTextboxLastName.Size = new System.Drawing.Size(307, 37);
             this.uxTextboxLastName.TabIndex = 1;
+            this.uxTextboxLastName.TextChanged += new System.EventHandler(this.uxTextboxTextChanged);
             // 
             // uxLabelLastName
             // 
             this.uxLabelLastName.AutoSize = true;
             this.uxLabelLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelLastName.Location = new System.Drawing.Point(23, 192);
+            this.uxLabelLastName.Location = new System.Drawing.Point(17, 156);
+            this.uxLabelLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelLastName.Name = "uxLabelLastName";
-            this.uxLabelLastName.Size = new System.Drawing.Size(184, 38);
+            this.uxLabelLastName.Size = new System.Drawing.Size(153, 31);
             this.uxLabelLastName.TabIndex = 4;
             this.uxLabelLastName.Text = "Last Name:";
             // 
@@ -88,9 +96,10 @@
             // 
             this.uxLabelCreateAccount.AutoSize = true;
             this.uxLabelCreateAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelCreateAccount.Location = new System.Drawing.Point(266, 14);
+            this.uxLabelCreateAccount.Location = new System.Drawing.Point(200, 11);
+            this.uxLabelCreateAccount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelCreateAccount.Name = "uxLabelCreateAccount";
-            this.uxLabelCreateAccount.Size = new System.Drawing.Size(243, 38);
+            this.uxLabelCreateAccount.Size = new System.Drawing.Size(202, 31);
             this.uxLabelCreateAccount.TabIndex = 5;
             this.uxLabelCreateAccount.Text = "Create Account";
             // 
@@ -98,9 +107,10 @@
             // 
             this.uxLabelPhoneNumber.AutoSize = true;
             this.uxLabelPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelPhoneNumber.Location = new System.Drawing.Point(23, 290);
+            this.uxLabelPhoneNumber.Location = new System.Drawing.Point(17, 236);
+            this.uxLabelPhoneNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelPhoneNumber.Name = "uxLabelPhoneNumber";
-            this.uxLabelPhoneNumber.Size = new System.Drawing.Size(245, 38);
+            this.uxLabelPhoneNumber.Size = new System.Drawing.Size(203, 31);
             this.uxLabelPhoneNumber.TabIndex = 6;
             this.uxLabelPhoneNumber.Text = "Phone Number:";
             // 
@@ -108,18 +118,21 @@
             // 
             this.uxLabelEmail.AutoSize = true;
             this.uxLabelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelEmail.Location = new System.Drawing.Point(23, 382);
+            this.uxLabelEmail.Location = new System.Drawing.Point(17, 310);
+            this.uxLabelEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelEmail.Name = "uxLabelEmail";
-            this.uxLabelEmail.Size = new System.Drawing.Size(107, 38);
+            this.uxLabelEmail.Size = new System.Drawing.Size(89, 31);
             this.uxLabelEmail.TabIndex = 7;
             this.uxLabelEmail.Text = "Email:";
             // 
             // uxButtonAccept
             // 
+            this.uxButtonAccept.Enabled = false;
             this.uxButtonAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonAccept.Location = new System.Drawing.Point(273, 490);
+            this.uxButtonAccept.Location = new System.Drawing.Point(205, 398);
+            this.uxButtonAccept.Margin = new System.Windows.Forms.Padding(2);
             this.uxButtonAccept.Name = "uxButtonAccept";
-            this.uxButtonAccept.Size = new System.Drawing.Size(244, 84);
+            this.uxButtonAccept.Size = new System.Drawing.Size(183, 68);
             this.uxButtonAccept.TabIndex = 4;
             this.uxButtonAccept.Text = "Accept";
             this.uxButtonAccept.UseVisualStyleBackColor = true;
@@ -128,14 +141,16 @@
             // uxTextboxEmail
             // 
             this.uxTextboxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxTextboxEmail.Location = new System.Drawing.Point(158, 376);
+            this.uxTextboxEmail.Location = new System.Drawing.Point(118, 306);
+            this.uxTextboxEmail.Margin = new System.Windows.Forms.Padding(2);
             this.uxTextboxEmail.Name = "uxTextboxEmail";
-            this.uxTextboxEmail.Size = new System.Drawing.Size(485, 45);
+            this.uxTextboxEmail.Size = new System.Drawing.Size(365, 37);
             this.uxTextboxEmail.TabIndex = 3;
+            this.uxTextboxEmail.TextChanged += new System.EventHandler(this.uxTextboxTextChanged);
             // 
             // CreateAccountWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.uxTextboxEmail);
@@ -148,9 +163,8 @@
             this.Controls.Add(this.uxTextboxPhoneNumber);
             this.Controls.Add(this.uxLabelFirstName);
             this.Controls.Add(this.uxTextboxFirstName);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateAccountWindow";
-            this.Size = new System.Drawing.Size(779, 690);
+            this.Size = new System.Drawing.Size(584, 561);
             this.ResumeLayout(false);
             this.PerformLayout();
 
