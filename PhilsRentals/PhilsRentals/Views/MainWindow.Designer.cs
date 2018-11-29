@@ -67,7 +67,7 @@
             // 
             // uxPanelMenu
             // 
-            this.uxPanelMenu.BackColor = System.Drawing.Color.DarkBlue;
+            this.uxPanelMenu.BackColor = System.Drawing.Color.Navy;
             this.uxPanelMenu.Controls.Add(this.uxLabelTitle);
             this.uxPanelMenu.Controls.Add(this.uxPanelAddMovie);
             this.uxPanelMenu.Controls.Add(this.uxButtonAddMovie);
@@ -196,6 +196,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.uxPanelMain);
             this.Controls.Add(this.uxPanelMenu);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainWindow";
             this.Text = "Phils Rentals";
             this.uxPanelMenu.ResumeLayout(false);
