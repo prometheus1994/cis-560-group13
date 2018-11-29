@@ -220,6 +220,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.uxPanelMain);
             this.Controls.Add(this.uxPanelMenu);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainWindow";
             this.Text = "Phils Rentals";
             this.uxPanelMenu.ResumeLayout(false);

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class ModifyAccountWindow : UserControl, IWindow
+    public partial class uxModifyAccountLabel : UserControl, IWindow
     {
-        public ModifyAccountWindow()
+        public uxModifyAccountLabel()
         {
             InitializeComponent();
+        }
+
+        private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
