@@ -19,11 +19,6 @@ namespace PhilsRentals.Views
             AddMovies();
         }
 
-        private void uxTextBoxTextChanged(object sender, EventArgs e)
-        {
-            uxListBoxMovies.Enabled = uxTextBoxEmailAddress.TextLength > 0;
-        }
-
         private void AddMovies()
         {
 
@@ -32,6 +27,11 @@ namespace PhilsRentals.Views
         private void uxListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
         {
             uxNumericUpDownRentCount.Enabled = uxListBoxMovies.SelectedItem != null;
+        }
+
+        private void uxListBoxMovies_DoubleClick(object sender, EventArgs e)
+        {
+
         }
 
         private void uxNumericUpDownRentCount_ValueChanged(object sender, EventArgs e)

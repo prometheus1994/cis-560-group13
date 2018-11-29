@@ -17,6 +17,11 @@ namespace PhilsRentals.Views
             InitializeComponent();
         }
 
+        private void uxFieldsChanged(object sender, EventArgs e)
+        {
+            uxButtonAddMovie.Enabled = uxTextBoxMovieTitle.TextLength > 0 && uxCheckedListBoxMovieGenre.CheckedIndices.Count > 0 && uxNumericUpDownDuration.Value != 0;
+        }
+
         //Ignore the formatting for all of this. Waiting to learn how Rida needs the data. 
         private void uxButtonAddMovie_Click(object sender, EventArgs e)
         {
@@ -36,6 +41,6 @@ namespace PhilsRentals.Views
             }
 
             MessageBox.Show(movieInformation[1]);
-        }
+        }        
     }
 }
