@@ -1,11 +1,14 @@
 
-create schema group13proj
-go
 drop table if exists group13proj.Rental
 drop table if exists group13proj.Account
 drop table if exists group13proj.Inventory
 drop table if exists group13Proj.Movie
 drop table if exists group13proj.Genre
+
+drop schema if exists group13proj
+go
+create schema group13proj
+go
 create table group13proj.Genre
 (
 	GenreID int not null identity(1,1) primary key,
