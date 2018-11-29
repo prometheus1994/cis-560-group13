@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class RentMovieWindow : UserControl, IWindow
+    public partial class BrowseMovieWindow : UserControl, IWindow
     {
-        public RentMovieWindow()
+        public BrowseMovieWindow()
         {
             InitializeComponent();
             AddMovies();

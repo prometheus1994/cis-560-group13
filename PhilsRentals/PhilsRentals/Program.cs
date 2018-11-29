@@ -25,7 +25,8 @@ namespace PhilsRentals
 
             /* Create dictionary of all operation windows */
             Dictionary<string, IWindow> windows = new Dictionary<string, IWindow>();
-            windows.Add("Rent Movie", new RentMovieWindow());
+            windows.Add("Browse Movies", new BrowseMovieWindow());
+            windows.Add("Rent Movies", new RentMovieWindow());
             windows.Add("Create Account", new CreateAccountWindow());
             windows.Add("Modify Account", new ModifyAccountWindow());
             windows.Add("Delete Account", new DeleteAccountWindow());

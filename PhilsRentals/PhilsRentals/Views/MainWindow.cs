@@ -40,14 +40,15 @@ namespace PhilsRentals
         private void InitializeUx()
         {
             /* Add menu selection panels to the dictionary of menu selection panels */
-            _menuPanels.Add("Rent Movie", uxPanelRentMovie);
+            _menuPanels.Add("Browse Movies", uxPanelBrowseMovie);
+            _menuPanels.Add("Rent Movies", uxPanelRentMovie);
             _menuPanels.Add("Create Account", uxPanelCreateAccount);
             _menuPanels.Add("Modify Account", uxPanelModifyAccount);
             _menuPanels.Add("Delete Account", uxPanelDeleteAccount);
             _menuPanels.Add("Add Movie", uxPanelAddMovie);
 
             /* Start program with default menu */
-            uxMenuHandler(uxButtonRentMovie, new EventArgs()); // Open default menu
+            uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
         }
 
         /// <summary>

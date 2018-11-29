@@ -1,6 +1,6 @@
 ﻿namespace PhilsRentals.Views
 {
-    partial class RentMovieWindow
+    partial class BrowseMovieWindow
     {
         /// <summary> 
         /// Required designer variable.

@@ -80,6 +80,12 @@
     <Compile Include="Views\CreateAccountWindow.Designer.cs">
       <DependentUpon>CreateAccountWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BrowseMovieWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\BrowseMovieWindow.Designer.cs">
+      <DependentUpon>BrowseMovieWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RentMovieWindow.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateAccountWindow.resx">
       <DependentUpon>CreateAccountWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BrowseMovieWindow.resx">
+      <DependentUpon>BrowseMovieWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RentMovieWindow.resx">
       <DependentUpon>RentMovieWindow.cs</DependentUpon>
