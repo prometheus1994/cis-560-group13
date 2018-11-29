@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class uxModifyAccountLabel : UserControl, IWindow
+    public partial class ModifyAccountWindow : UserControl, IWindow
     {
-        public uxModifyAccountLabel()
+        public ModifyAccountWindow()
         {
             InitializeComponent();
         }

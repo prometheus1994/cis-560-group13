@@ -1,6 +1,6 @@
 ﻿namespace PhilsRentals.Views
 {
-    partial class uxModifyAccountLabel
+    partial class ModifyAccountWindow
     {
         /// <summary> 
         /// Required designer variable.
