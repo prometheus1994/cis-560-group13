@@ -31,6 +31,8 @@
             this.uxPanelCreateAccount = new System.Windows.Forms.Panel();
             this.uxButtonCreateAccount = new System.Windows.Forms.Button();
             this.uxPanelMenu = new System.Windows.Forms.Panel();
+            this.uxPanelBrowseMovie = new System.Windows.Forms.Panel();
+            this.uxButtonBrowseMovie = new System.Windows.Forms.Button();
             this.uxLabelTitle = new System.Windows.Forms.Label();
             this.uxPanelAddMovie = new System.Windows.Forms.Panel();
             this.uxButtonAddMovie = new System.Windows.Forms.Button();
@@ -41,8 +43,6 @@
             this.uxPanelRentMovie = new System.Windows.Forms.Panel();
             this.uxButtonRentMovie = new System.Windows.Forms.Button();
             this.uxPanelMain = new System.Windows.Forms.Panel();
-            this.uxPanelBrowseMovie = new System.Windows.Forms.Panel();
-            this.uxButtonBrowseMovie = new System.Windows.Forms.Button();
             this.uxPanelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             // 
             // uxPanelMenu
             // 
-            this.uxPanelMenu.BackColor = System.Drawing.Color.DarkBlue;
+            this.uxPanelMenu.BackColor = System.Drawing.Color.Navy;
             this.uxPanelMenu.Controls.Add(this.uxPanelBrowseMovie);
             this.uxPanelMenu.Controls.Add(this.uxButtonBrowseMovie);
             this.uxPanelMenu.Controls.Add(this.uxLabelTitle);
@@ -89,6 +89,26 @@
             this.uxPanelMenu.Name = "uxPanelMenu";
             this.uxPanelMenu.Size = new System.Drawing.Size(200, 561);
             this.uxPanelMenu.TabIndex = 5;
+            // 
+            // uxPanelBrowseMovie
+            // 
+            this.uxPanelBrowseMovie.BackColor = System.Drawing.Color.RoyalBlue;
+            this.uxPanelBrowseMovie.Location = new System.Drawing.Point(0, 35);
+            this.uxPanelBrowseMovie.Name = "uxPanelBrowseMovie";
+            this.uxPanelBrowseMovie.Size = new System.Drawing.Size(5, 35);
+            this.uxPanelBrowseMovie.TabIndex = 14;
+            // 
+            // uxButtonBrowseMovie
+            // 
+            this.uxButtonBrowseMovie.FlatAppearance.BorderSize = 0;
+            this.uxButtonBrowseMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxButtonBrowseMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxButtonBrowseMovie.Location = new System.Drawing.Point(0, 35);
+            this.uxButtonBrowseMovie.Name = "uxButtonBrowseMovie";
+            this.uxButtonBrowseMovie.Size = new System.Drawing.Size(200, 35);
+            this.uxButtonBrowseMovie.TabIndex = 13;
+            this.uxButtonBrowseMovie.Text = "Browse Movies";
+            this.uxButtonBrowseMovie.UseVisualStyleBackColor = true;
             // 
             // uxLabelTitle
             // 
@@ -191,26 +211,6 @@
             this.uxPanelMain.Name = "uxPanelMain";
             this.uxPanelMain.Size = new System.Drawing.Size(584, 561);
             this.uxPanelMain.TabIndex = 6;
-            // 
-            // uxPanelBrowseMovie
-            // 
-            this.uxPanelBrowseMovie.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelBrowseMovie.Location = new System.Drawing.Point(0, 35);
-            this.uxPanelBrowseMovie.Name = "uxPanelBrowseMovie";
-            this.uxPanelBrowseMovie.Size = new System.Drawing.Size(5, 35);
-            this.uxPanelBrowseMovie.TabIndex = 14;
-            // 
-            // uxButtonBrowseMovie
-            // 
-            this.uxButtonBrowseMovie.FlatAppearance.BorderSize = 0;
-            this.uxButtonBrowseMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxButtonBrowseMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonBrowseMovie.Location = new System.Drawing.Point(0, 35);
-            this.uxButtonBrowseMovie.Name = "uxButtonBrowseMovie";
-            this.uxButtonBrowseMovie.Size = new System.Drawing.Size(200, 35);
-            this.uxButtonBrowseMovie.TabIndex = 13;
-            this.uxButtonBrowseMovie.Text = "Browse Movies";
-            this.uxButtonBrowseMovie.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
