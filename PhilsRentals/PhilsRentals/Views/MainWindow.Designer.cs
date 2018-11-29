@@ -109,6 +109,7 @@
             this.uxButtonBrowseMovie.TabIndex = 13;
             this.uxButtonBrowseMovie.Text = "Browse Movies";
             this.uxButtonBrowseMovie.UseVisualStyleBackColor = true;
+            this.uxButtonBrowseMovie.Click += new System.EventHandler(this.uxMenuHandler);
             // 
             // uxLabelTitle
             // 
