@@ -15,30 +15,25 @@ namespace PhilsRentals.Views
         public BrowseMovieWindow()
         {
             InitializeComponent();
-            AddMovies();
         }
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)
         {
-            uxListBoxMovies.Enabled = uxTextBoxEmailAddress.TextLength > 0;
+            uxButtonGetMovie.Enabled = uxTextBoxMovieTitle.TextLength > 0;
         }
 
-        private void AddMovies()
+        private void uxButtonGetMovie_Click(object sender, EventArgs e)
         {
-
+            uxListBoxMovies.Enabled = GetMovies();
+            uxTextBoxMovieTitle.Text = "";
         }
 
-        private void uxListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
+        private bool GetMovies()
         {
-            uxNumericUpDownRentCount.Enabled = uxListBoxMovies.SelectedItem != null;
+            return false;
         }
 
-        private void uxNumericUpDownRentCount_ValueChanged(object sender, EventArgs e)
-        {
-            uxButtonRentMovie.Enabled = uxNumericUpDownRentCount.Value > 0;
-        }
-
-        private void uxButtonRentMovie_Click(object sender, EventArgs e)
+        private void uxListBoxMovies_DoubleClick(object sender, EventArgs e)
         {
 
         }

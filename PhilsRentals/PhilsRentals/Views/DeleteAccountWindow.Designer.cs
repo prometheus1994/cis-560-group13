@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // CreateAccountWindow
+            // DeleteAccountWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Olive;
-            this.Name = "CreateAccountWindow";
+            this.BackColor = System.Drawing.Color.White;
+            this.Name = "DeleteAccountWindow";
             this.Size = new System.Drawing.Size(584, 561);
             this.ResumeLayout(false);
 

@@ -24,6 +24,11 @@ namespace PhilsRentals
         private Dictionary<string, Panel> _menuPanels = new Dictionary<string, Panel>();
 
         /// <summary>
+        /// Email of the account selected
+        /// </summary>
+        private string _account = "Select Account";
+
+        /// <summary>
         /// Constructs the MainWindow view.
         /// </summary>
         /// <param name="operate">Operation handler for MainWindowController</param>
@@ -73,13 +78,66 @@ namespace PhilsRentals
                 uxPanelMain.Controls.RemoveAt(0);
             }
 
-            IWindow window = _operate(selectedMenu);
-            if (window != null)
+            if (!selectedMenu.Equals(_account))
             {
-                Control c = (Control)window;
-                c.Dock = DockStyle.Fill;
-                uxPanelMain.Controls.Add(c);
+                IWindow window = _operate(selectedMenu);
+                if (window != null)
+                {
+                    Control c = (Control)window;
+                    c.Dock = DockStyle.Fill;
+                    uxPanelMain.Controls.Add(c);
+                }
             }
+            else
+            {
+                if (_account.Equals("Select Account"))
+                {
+                    string email = GetAccount();
+                    if (email.Length > 0 && email.Contains("@"))
+                    {
+                        uxPanelSelectAccount.Visible = true;
+                        uxButtonSelectAccount.Text = email;
+                        _account = email;
+                        uxButtonRentMovie.Enabled = true;
+                    }
+                    else
+                    {
+                        if (email.Length != 0)
+                        {
+                            MessageBox.Show("Invalid Email");
+                        }
+                    }
+
+                    uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
+                }
+                else
+                {
+                    uxPanelSelectAccount.Visible = false;
+                    uxButtonSelectAccount.Text = "Select Account";
+                    _account = "Select Account";
+                    uxButtonRentMovie.Enabled = false;
+                    uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
+                }
+                
+            }
+        }
+
+        private string GetAccount()
+        {
+            Form prompt = new Form() {
+                BackColor = System.Drawing.Color.White, Width = 350, Height = 150, Text = "Select Account", MaximizeBox = false
+            };
+
+            Label textLabel = new Label() { Left = 15, Top = 30, Text = "Email Address:" };
+            TextBox inputBox = new TextBox() { Left = 120, Top = 28, Width = 200 };
+            Button confirmation = new Button() { Text = "Ok", Left = 222, Width = 100, Top = 70 };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(inputBox);
+
+            DialogResult result = prompt.ShowDialog();
+            return (result == DialogResult.Abort) ? "" : inputBox.Text;
         }
     }
 }

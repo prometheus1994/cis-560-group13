@@ -43,13 +43,16 @@
             this.uxPanelRentMovie = new System.Windows.Forms.Panel();
             this.uxButtonRentMovie = new System.Windows.Forms.Button();
             this.uxPanelMain = new System.Windows.Forms.Panel();
+            this.uxPanelSelectAccount = new System.Windows.Forms.Panel();
+            this.uxButtonSelectAccount = new System.Windows.Forms.Button();
             this.uxPanelMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // uxPanelCreateAccount
             // 
-            this.uxPanelCreateAccount.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelCreateAccount.Location = new System.Drawing.Point(0, 105);
+            this.uxPanelCreateAccount.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelCreateAccount.ForeColor = System.Drawing.Color.White;
+            this.uxPanelCreateAccount.Location = new System.Drawing.Point(0, 75);
             this.uxPanelCreateAccount.Name = "uxPanelCreateAccount";
             this.uxPanelCreateAccount.Size = new System.Drawing.Size(5, 35);
             this.uxPanelCreateAccount.TabIndex = 1;
@@ -59,7 +62,8 @@
             this.uxButtonCreateAccount.FlatAppearance.BorderSize = 0;
             this.uxButtonCreateAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonCreateAccount.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonCreateAccount.Location = new System.Drawing.Point(0, 105);
+            this.uxButtonCreateAccount.ForeColor = System.Drawing.Color.White;
+            this.uxButtonCreateAccount.Location = new System.Drawing.Point(0, 75);
             this.uxButtonCreateAccount.Name = "uxButtonCreateAccount";
             this.uxButtonCreateAccount.Size = new System.Drawing.Size(200, 35);
             this.uxButtonCreateAccount.TabIndex = 0;
@@ -69,7 +73,9 @@
             // 
             // uxPanelMenu
             // 
-            this.uxPanelMenu.BackColor = System.Drawing.Color.Navy;
+            this.uxPanelMenu.BackColor = System.Drawing.Color.Purple;
+            this.uxPanelMenu.Controls.Add(this.uxPanelSelectAccount);
+            this.uxPanelMenu.Controls.Add(this.uxButtonSelectAccount);
             this.uxPanelMenu.Controls.Add(this.uxPanelBrowseMovie);
             this.uxPanelMenu.Controls.Add(this.uxButtonBrowseMovie);
             this.uxPanelMenu.Controls.Add(this.uxLabelTitle);
@@ -92,8 +98,9 @@
             // 
             // uxPanelBrowseMovie
             // 
-            this.uxPanelBrowseMovie.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelBrowseMovie.Location = new System.Drawing.Point(0, 35);
+            this.uxPanelBrowseMovie.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelBrowseMovie.ForeColor = System.Drawing.Color.White;
+            this.uxPanelBrowseMovie.Location = new System.Drawing.Point(0, 180);
             this.uxPanelBrowseMovie.Name = "uxPanelBrowseMovie";
             this.uxPanelBrowseMovie.Size = new System.Drawing.Size(5, 35);
             this.uxPanelBrowseMovie.TabIndex = 14;
@@ -103,7 +110,8 @@
             this.uxButtonBrowseMovie.FlatAppearance.BorderSize = 0;
             this.uxButtonBrowseMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonBrowseMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonBrowseMovie.Location = new System.Drawing.Point(0, 35);
+            this.uxButtonBrowseMovie.ForeColor = System.Drawing.Color.White;
+            this.uxButtonBrowseMovie.Location = new System.Drawing.Point(0, 180);
             this.uxButtonBrowseMovie.Name = "uxButtonBrowseMovie";
             this.uxButtonBrowseMovie.Size = new System.Drawing.Size(200, 35);
             this.uxButtonBrowseMovie.TabIndex = 13;
@@ -115,6 +123,7 @@
             // 
             this.uxLabelTitle.AutoSize = true;
             this.uxLabelTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxLabelTitle.ForeColor = System.Drawing.Color.White;
             this.uxLabelTitle.Location = new System.Drawing.Point(31, 2);
             this.uxLabelTitle.Name = "uxLabelTitle";
             this.uxLabelTitle.Size = new System.Drawing.Size(137, 30);
@@ -123,8 +132,9 @@
             // 
             // uxPanelAddMovie
             // 
-            this.uxPanelAddMovie.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelAddMovie.Location = new System.Drawing.Point(0, 210);
+            this.uxPanelAddMovie.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelAddMovie.ForeColor = System.Drawing.Color.White;
+            this.uxPanelAddMovie.Location = new System.Drawing.Point(0, 250);
             this.uxPanelAddMovie.Name = "uxPanelAddMovie";
             this.uxPanelAddMovie.Size = new System.Drawing.Size(5, 35);
             this.uxPanelAddMovie.TabIndex = 11;
@@ -134,7 +144,8 @@
             this.uxButtonAddMovie.FlatAppearance.BorderSize = 0;
             this.uxButtonAddMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonAddMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonAddMovie.Location = new System.Drawing.Point(0, 210);
+            this.uxButtonAddMovie.ForeColor = System.Drawing.Color.White;
+            this.uxButtonAddMovie.Location = new System.Drawing.Point(0, 250);
             this.uxButtonAddMovie.Name = "uxButtonAddMovie";
             this.uxButtonAddMovie.Size = new System.Drawing.Size(200, 35);
             this.uxButtonAddMovie.TabIndex = 10;
@@ -144,8 +155,9 @@
             // 
             // uxPanelDeleteAccount
             // 
-            this.uxPanelDeleteAccount.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelDeleteAccount.Location = new System.Drawing.Point(0, 175);
+            this.uxPanelDeleteAccount.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelDeleteAccount.ForeColor = System.Drawing.Color.White;
+            this.uxPanelDeleteAccount.Location = new System.Drawing.Point(0, 145);
             this.uxPanelDeleteAccount.Name = "uxPanelDeleteAccount";
             this.uxPanelDeleteAccount.Size = new System.Drawing.Size(5, 35);
             this.uxPanelDeleteAccount.TabIndex = 9;
@@ -155,7 +167,8 @@
             this.uxButtonDeleteAccount.FlatAppearance.BorderSize = 0;
             this.uxButtonDeleteAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonDeleteAccount.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonDeleteAccount.Location = new System.Drawing.Point(0, 175);
+            this.uxButtonDeleteAccount.ForeColor = System.Drawing.Color.White;
+            this.uxButtonDeleteAccount.Location = new System.Drawing.Point(0, 145);
             this.uxButtonDeleteAccount.Name = "uxButtonDeleteAccount";
             this.uxButtonDeleteAccount.Size = new System.Drawing.Size(200, 35);
             this.uxButtonDeleteAccount.TabIndex = 8;
@@ -165,8 +178,9 @@
             // 
             // uxPanelModifyAccount
             // 
-            this.uxPanelModifyAccount.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelModifyAccount.Location = new System.Drawing.Point(0, 140);
+            this.uxPanelModifyAccount.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelModifyAccount.ForeColor = System.Drawing.Color.White;
+            this.uxPanelModifyAccount.Location = new System.Drawing.Point(0, 110);
             this.uxPanelModifyAccount.Name = "uxPanelModifyAccount";
             this.uxPanelModifyAccount.Size = new System.Drawing.Size(5, 35);
             this.uxPanelModifyAccount.TabIndex = 7;
@@ -176,7 +190,8 @@
             this.uxButtonModifyAccount.FlatAppearance.BorderSize = 0;
             this.uxButtonModifyAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonModifyAccount.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonModifyAccount.Location = new System.Drawing.Point(0, 140);
+            this.uxButtonModifyAccount.ForeColor = System.Drawing.Color.White;
+            this.uxButtonModifyAccount.Location = new System.Drawing.Point(0, 110);
             this.uxButtonModifyAccount.Name = "uxButtonModifyAccount";
             this.uxButtonModifyAccount.Size = new System.Drawing.Size(200, 35);
             this.uxButtonModifyAccount.TabIndex = 6;
@@ -186,18 +201,21 @@
             // 
             // uxPanelRentMovie
             // 
-            this.uxPanelRentMovie.BackColor = System.Drawing.Color.RoyalBlue;
-            this.uxPanelRentMovie.Location = new System.Drawing.Point(0, 70);
+            this.uxPanelRentMovie.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelRentMovie.ForeColor = System.Drawing.Color.White;
+            this.uxPanelRentMovie.Location = new System.Drawing.Point(0, 215);
             this.uxPanelRentMovie.Name = "uxPanelRentMovie";
             this.uxPanelRentMovie.Size = new System.Drawing.Size(5, 35);
             this.uxPanelRentMovie.TabIndex = 5;
             // 
             // uxButtonRentMovie
             // 
+            this.uxButtonRentMovie.Enabled = false;
             this.uxButtonRentMovie.FlatAppearance.BorderSize = 0;
             this.uxButtonRentMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxButtonRentMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonRentMovie.Location = new System.Drawing.Point(0, 70);
+            this.uxButtonRentMovie.ForeColor = System.Drawing.Color.White;
+            this.uxButtonRentMovie.Location = new System.Drawing.Point(0, 215);
             this.uxButtonRentMovie.Name = "uxButtonRentMovie";
             this.uxButtonRentMovie.Size = new System.Drawing.Size(200, 35);
             this.uxButtonRentMovie.TabIndex = 4;
@@ -207,11 +225,36 @@
             // 
             // uxPanelMain
             // 
+            this.uxPanelMain.BackColor = System.Drawing.Color.White;
             this.uxPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uxPanelMain.Location = new System.Drawing.Point(200, 0);
             this.uxPanelMain.Name = "uxPanelMain";
             this.uxPanelMain.Size = new System.Drawing.Size(584, 561);
             this.uxPanelMain.TabIndex = 6;
+            // 
+            // uxPanelSelectAccount
+            // 
+            this.uxPanelSelectAccount.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelSelectAccount.ForeColor = System.Drawing.Color.White;
+            this.uxPanelSelectAccount.Location = new System.Drawing.Point(0, 40);
+            this.uxPanelSelectAccount.Name = "uxPanelSelectAccount";
+            this.uxPanelSelectAccount.Size = new System.Drawing.Size(5, 35);
+            this.uxPanelSelectAccount.TabIndex = 16;
+            this.uxPanelSelectAccount.Visible = false;
+            // 
+            // uxButtonSelectAccount
+            // 
+            this.uxButtonSelectAccount.FlatAppearance.BorderSize = 0;
+            this.uxButtonSelectAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxButtonSelectAccount.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxButtonSelectAccount.ForeColor = System.Drawing.Color.White;
+            this.uxButtonSelectAccount.Location = new System.Drawing.Point(0, 40);
+            this.uxButtonSelectAccount.Name = "uxButtonSelectAccount";
+            this.uxButtonSelectAccount.Size = new System.Drawing.Size(200, 35);
+            this.uxButtonSelectAccount.TabIndex = 15;
+            this.uxButtonSelectAccount.Text = "Select Account";
+            this.uxButtonSelectAccount.UseVisualStyleBackColor = true;
+            this.uxButtonSelectAccount.Click += new System.EventHandler(this.uxMenuHandler);
             // 
             // MainWindow
             // 
@@ -246,6 +289,8 @@
         private System.Windows.Forms.Panel uxPanelMain;
         private System.Windows.Forms.Panel uxPanelBrowseMovie;
         private System.Windows.Forms.Button uxButtonBrowseMovie;
+        private System.Windows.Forms.Panel uxPanelSelectAccount;
+        private System.Windows.Forms.Button uxButtonSelectAccount;
     }
 }
 

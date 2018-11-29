@@ -47,85 +47,102 @@
             // 
             // uxLabelTitle
             // 
-            this.uxLabelTitle.AutoSize = true;
-            this.uxLabelTitle.Font = new System.Drawing.Font("Segoe UI", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelTitle.BackColor = System.Drawing.Color.Purple;
+            this.uxLabelTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.uxLabelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uxLabelTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.uxLabelTitle.ForeColor = System.Drawing.Color.White;
-            this.uxLabelTitle.Location = new System.Drawing.Point(210, 19);
+            this.uxLabelTitle.Location = new System.Drawing.Point(0, 0);
             this.uxLabelTitle.Name = "uxLabelTitle";
-            this.uxLabelTitle.Size = new System.Drawing.Size(158, 37);
+            this.uxLabelTitle.Size = new System.Drawing.Size(584, 50);
             this.uxLabelTitle.TabIndex = 0;
             this.uxLabelTitle.Text = "Add Movie";
+            this.uxLabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uxLabelMovieTitle
             // 
+            this.uxLabelMovieTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelMovieTitle.AutoSize = true;
-            this.uxLabelMovieTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelMovieTitle.ForeColor = System.Drawing.Color.White;
-            this.uxLabelMovieTitle.Location = new System.Drawing.Point(32, 92);
+            this.uxLabelMovieTitle.BackColor = System.Drawing.Color.White;
+            this.uxLabelMovieTitle.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelMovieTitle.ForeColor = System.Drawing.Color.Black;
+            this.uxLabelMovieTitle.Location = new System.Drawing.Point(20, 90);
             this.uxLabelMovieTitle.Name = "uxLabelMovieTitle";
-            this.uxLabelMovieTitle.Size = new System.Drawing.Size(129, 30);
+            this.uxLabelMovieTitle.Size = new System.Drawing.Size(135, 30);
             this.uxLabelMovieTitle.TabIndex = 1;
             this.uxLabelMovieTitle.Text = "Movie Title:";
             // 
             // uxLabelMovieGenre
             // 
+            this.uxLabelMovieGenre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelMovieGenre.AutoSize = true;
-            this.uxLabelMovieGenre.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelMovieGenre.ForeColor = System.Drawing.Color.White;
-            this.uxLabelMovieGenre.Location = new System.Drawing.Point(32, 149);
+            this.uxLabelMovieGenre.BackColor = System.Drawing.Color.White;
+            this.uxLabelMovieGenre.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelMovieGenre.ForeColor = System.Drawing.Color.Black;
+            this.uxLabelMovieGenre.Location = new System.Drawing.Point(20, 165);
             this.uxLabelMovieGenre.Name = "uxLabelMovieGenre";
-            this.uxLabelMovieGenre.Size = new System.Drawing.Size(144, 30);
+            this.uxLabelMovieGenre.Size = new System.Drawing.Size(151, 30);
             this.uxLabelMovieGenre.TabIndex = 2;
             this.uxLabelMovieGenre.Text = "Movie Genre:";
             // 
             // uxLabelReleaseDate
             // 
+            this.uxLabelReleaseDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelReleaseDate.AutoSize = true;
-            this.uxLabelReleaseDate.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelReleaseDate.ForeColor = System.Drawing.Color.White;
-            this.uxLabelReleaseDate.Location = new System.Drawing.Point(32, 277);
+            this.uxLabelReleaseDate.BackColor = System.Drawing.Color.White;
+            this.uxLabelReleaseDate.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelReleaseDate.ForeColor = System.Drawing.Color.Black;
+            this.uxLabelReleaseDate.Location = new System.Drawing.Point(20, 282);
             this.uxLabelReleaseDate.Name = "uxLabelReleaseDate";
-            this.uxLabelReleaseDate.Size = new System.Drawing.Size(272, 30);
+            this.uxLabelReleaseDate.Size = new System.Drawing.Size(287, 30);
             this.uxLabelReleaseDate.TabIndex = 3;
             this.uxLabelReleaseDate.Text = "Movie Release Date (Year):";
             // 
             // uxLabelDuration
             // 
+            this.uxLabelDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelDuration.AutoSize = true;
-            this.uxLabelDuration.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelDuration.ForeColor = System.Drawing.Color.White;
-            this.uxLabelDuration.Location = new System.Drawing.Point(32, 351);
+            this.uxLabelDuration.BackColor = System.Drawing.Color.White;
+            this.uxLabelDuration.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelDuration.ForeColor = System.Drawing.Color.Black;
+            this.uxLabelDuration.Location = new System.Drawing.Point(20, 357);
             this.uxLabelDuration.Name = "uxLabelDuration";
-            this.uxLabelDuration.Size = new System.Drawing.Size(275, 30);
+            this.uxLabelDuration.Size = new System.Drawing.Size(286, 30);
             this.uxLabelDuration.TabIndex = 4;
             this.uxLabelDuration.Text = "Movie Duration (Minutes):";
             // 
             // uxLabelStarRating
             // 
+            this.uxLabelStarRating.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelStarRating.AutoSize = true;
-            this.uxLabelStarRating.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelStarRating.ForeColor = System.Drawing.Color.White;
-            this.uxLabelStarRating.Location = new System.Drawing.Point(32, 429);
+            this.uxLabelStarRating.BackColor = System.Drawing.Color.White;
+            this.uxLabelStarRating.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelStarRating.ForeColor = System.Drawing.Color.Black;
+            this.uxLabelStarRating.Location = new System.Drawing.Point(20, 432);
             this.uxLabelStarRating.Name = "uxLabelStarRating";
-            this.uxLabelStarRating.Size = new System.Drawing.Size(151, 30);
+            this.uxLabelStarRating.Size = new System.Drawing.Size(157, 30);
             this.uxLabelStarRating.TabIndex = 5;
             this.uxLabelStarRating.Text = "Movie Rating:";
             // 
             // uxTextBoxMovieTitle
             // 
-            this.uxTextBoxMovieTitle.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.uxTextBoxMovieTitle.Location = new System.Drawing.Point(167, 90);
+            this.uxTextBoxMovieTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxTextBoxMovieTitle.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.uxTextBoxMovieTitle.Location = new System.Drawing.Point(160, 90);
             this.uxTextBoxMovieTitle.Multiline = true;
             this.uxTextBoxMovieTitle.Name = "uxTextBoxMovieTitle";
             this.uxTextBoxMovieTitle.Size = new System.Drawing.Size(404, 37);
             this.uxTextBoxMovieTitle.TabIndex = 6;
+            this.uxTextBoxMovieTitle.TextChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxButtonAddMovie
             // 
-            this.uxButtonAddMovie.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.uxButtonAddMovie.Location = new System.Drawing.Point(191, 499);
+            this.uxButtonAddMovie.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxButtonAddMovie.Enabled = false;
+            this.uxButtonAddMovie.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxButtonAddMovie.Location = new System.Drawing.Point(192, 501);
             this.uxButtonAddMovie.Name = "uxButtonAddMovie";
-            this.uxButtonAddMovie.Size = new System.Drawing.Size(177, 37);
+            this.uxButtonAddMovie.Size = new System.Drawing.Size(200, 50);
             this.uxButtonAddMovie.TabIndex = 12;
             this.uxButtonAddMovie.Text = "Add Movie";
             this.uxButtonAddMovie.UseVisualStyleBackColor = true;
@@ -133,8 +150,9 @@
             // 
             // uxNumericUpDownYear
             // 
-            this.uxNumericUpDownYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.uxNumericUpDownYear.Location = new System.Drawing.Point(303, 279);
+            this.uxNumericUpDownYear.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownYear.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.uxNumericUpDownYear.Location = new System.Drawing.Point(320, 282);
             this.uxNumericUpDownYear.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -146,7 +164,7 @@
             0,
             0});
             this.uxNumericUpDownYear.Name = "uxNumericUpDownYear";
-            this.uxNumericUpDownYear.Size = new System.Drawing.Size(120, 30);
+            this.uxNumericUpDownYear.Size = new System.Drawing.Size(120, 32);
             this.uxNumericUpDownYear.TabIndex = 13;
             this.uxNumericUpDownYear.Value = new decimal(new int[] {
             2018,
@@ -156,21 +174,24 @@
             // 
             // uxNumericUpDownDuration
             // 
-            this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.uxNumericUpDownDuration.Location = new System.Drawing.Point(313, 351);
+            this.uxNumericUpDownDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.uxNumericUpDownDuration.Location = new System.Drawing.Point(322, 357);
             this.uxNumericUpDownDuration.Maximum = new decimal(new int[] {
             5000,
             0,
             0,
             0});
             this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
-            this.uxNumericUpDownDuration.Size = new System.Drawing.Size(120, 30);
+            this.uxNumericUpDownDuration.Size = new System.Drawing.Size(120, 32);
             this.uxNumericUpDownDuration.TabIndex = 14;
+            this.uxNumericUpDownDuration.ValueChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxCheckedListBoxMovieGenre
             // 
+            this.uxCheckedListBoxMovieGenre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxCheckedListBoxMovieGenre.CheckOnClick = true;
-            this.uxCheckedListBoxMovieGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.uxCheckedListBoxMovieGenre.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.uxCheckedListBoxMovieGenre.FormattingEnabled = true;
             this.uxCheckedListBoxMovieGenre.Items.AddRange(new object[] {
             "Mystery",
@@ -194,36 +215,38 @@
             "Musical",
             "Thriller",
             "Western"});
-            this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(182, 155);
+            this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(177, 165);
             this.uxCheckedListBoxMovieGenre.Name = "uxCheckedListBoxMovieGenre";
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
-            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 104);
+            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 82);
             this.uxCheckedListBoxMovieGenre.TabIndex = 15;
+            this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxNumericUpDownRating
             // 
+            this.uxNumericUpDownRating.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxNumericUpDownRating.DecimalPlaces = 1;
-            this.uxNumericUpDownRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.uxNumericUpDownRating.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.uxNumericUpDownRating.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.uxNumericUpDownRating.Location = new System.Drawing.Point(184, 431);
+            this.uxNumericUpDownRating.Location = new System.Drawing.Point(189, 431);
             this.uxNumericUpDownRating.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.uxNumericUpDownRating.Name = "uxNumericUpDownRating";
-            this.uxNumericUpDownRating.Size = new System.Drawing.Size(120, 30);
+            this.uxNumericUpDownRating.Size = new System.Drawing.Size(120, 32);
             this.uxNumericUpDownRating.TabIndex = 16;
             // 
             // AddMovieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PeachPuff;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.uxNumericUpDownRating);
             this.Controls.Add(this.uxCheckedListBoxMovieGenre);
             this.Controls.Add(this.uxNumericUpDownDuration);
