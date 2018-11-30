@@ -25,22 +25,33 @@ namespace PhilsRentals.Views
         //Ignore the formatting for all of this. Waiting to learn how Rida needs the data. 
         private void uxButtonAddMovie_Click(object sender, EventArgs e)
         {
-            string[] movieInformation = new string[5];
+            string movieTitle = uxTextBoxMovieTitle.ToString();
+            int movieYear = Convert.ToInt32(uxNumericUpDownYear.Value);
+            int movieDuration = Convert.ToInt32(uxNumericUpDownDuration.Value);
+            int movieRating = Convert.ToInt32(uxNumericUpDownRating.Value);
 
-            movieInformation[0] = uxTextBoxMovieTitle.ToString();
-            movieInformation[2] = uxNumericUpDownYear.ToString();
-            movieInformation[3] = uxNumericUpDownYear.ToString();
-            movieInformation[4] = uxNumericUpDownRating.ToString();
-
-            int[] genreArray = new int[21];
-            int count = 0;
+            string movieGenres = "";
             foreach (int indexChecked in uxCheckedListBoxMovieGenre.CheckedIndices)
             {
-                genreArray[count] = indexChecked + 1;
-                count++;
+                movieGenres += (indexChecked + 1).ToString() + ",";
             }
+            movieGenres = movieGenres.Remove(movieGenres.Length - 1);
 
-            MessageBox.Show(movieInformation[1]);
+            string spInfo = @"Data"; //Final piece needed - possibly...
+            var cmd = new SqlCommand("New added movie information", new SqlConnection(spInfo));
+            cmd.CommandType = CommandType.Text;
+            cmd = new SqlCommand("New added movie information", new SqlConnection(spInfo));
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@param1", SqlDbType.Structured).Value = movieTitle;
+            cmd.Parameters.Add("@param2", SqlDbType.Structured).Value = movieGenres;
+            cmd.Parameters.Add("@param3", SqlDbType.Structured).Value = movieYear;
+            cmd.Parameters.Add("@param4", SqlDbType.Structured).Value = movieDuration;
+            cmd.Parameters.Add("@param5", SqlDbType.Structured).Value = movieRating;
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+
+            MessageBox.Show("Process Complete.");
         }        
     }
 }
