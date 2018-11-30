@@ -29,11 +29,12 @@ create table group13Proj.Movie(
 	Duration int null,
 	Rating float,
 	GenreID nvarchar(100) not null 
+	NumberOfCopies int not null
 )
-select* from dbo.MovieDatabase
+
 --populating the group13proj.Movie table
-insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie
+insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID, NumberOfCopies)
+select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie, Copies
 from dbo.MovieDatabase
 
 select* from group13proj.Movie
