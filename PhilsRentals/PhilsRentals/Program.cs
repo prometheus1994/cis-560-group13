@@ -7,11 +7,6 @@ using System.Windows.Forms;
 
 namespace PhilsRentals
 {
-    /// <summary>
-    /// Delegate for MainWindowController operations.
-    /// </summary>
-    public delegate IWindow OperationHandler(string operation);
-
     static class Program
     {
         /// <summary>
@@ -34,7 +29,7 @@ namespace PhilsRentals
 
             /* Create controller and attach main view */
             MainWindowController mwc = new MainWindowController(windows); // Create controller
-            MainWindow mw = new MainWindow(mwc.Handle); // Create view with controller operation handler
+            MainWindow mw = new MainWindow(mwc); // Create view with controller operation handler
             mwc.AttachView(mw); // Attach view to controller
 
             Application.Run(mw);
