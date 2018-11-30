@@ -17,10 +17,6 @@ namespace PhilsRentals.Views
             InitializeComponent();
         }
 
-        private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)
         {
@@ -41,6 +37,13 @@ namespace PhilsRentals.Views
             uxTextBoxNewEmail.Enabled = true;
             uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
             uxTextBoxPhoneNumber.Enabled = true;
+
+            uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
+        }
+
+        private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

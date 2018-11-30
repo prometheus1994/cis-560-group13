@@ -42,6 +42,7 @@
             this.uxTextBoxSearchEmail = new System.Windows.Forms.TextBox();
             this.uxButtonSearchEmail = new System.Windows.Forms.Button();
             this.uxLabelModififyInstruction = new System.Windows.Forms.Label();
+            this.uxLabelCurrentEmail = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // uxModifyAccountWindowLabel
@@ -61,9 +62,9 @@
             // uxLabelEmail
             // 
             this.uxLabelEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxLabelEmail.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxLabelEmail.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.uxLabelEmail.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.uxLabelEmail.Location = new System.Drawing.Point(208, 320);
+            this.uxLabelEmail.Location = new System.Drawing.Point(148, 305);
             this.uxLabelEmail.Name = "uxLabelEmail";
             this.uxLabelEmail.Size = new System.Drawing.Size(150, 30);
             this.uxLabelEmail.TabIndex = 0;
@@ -73,22 +74,23 @@
             // uxButtonUpdateInfo
             // 
             this.uxButtonUpdateInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxButtonUpdateInfo.BackColor = System.Drawing.SystemColors.Control;
             this.uxButtonUpdateInfo.Enabled = false;
             this.uxButtonUpdateInfo.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxButtonUpdateInfo.Location = new System.Drawing.Point(364, 482);
+            this.uxButtonUpdateInfo.Location = new System.Drawing.Point(304, 467);
             this.uxButtonUpdateInfo.Name = "uxButtonUpdateInfo";
             this.uxButtonUpdateInfo.Size = new System.Drawing.Size(200, 40);
             this.uxButtonUpdateInfo.TabIndex = 1;
             this.uxButtonUpdateInfo.Text = "Update";
-            this.uxButtonUpdateInfo.UseVisualStyleBackColor = true;
+            this.uxButtonUpdateInfo.UseVisualStyleBackColor = false;
             this.uxButtonUpdateInfo.Click += new System.EventHandler(this.uxButtonUpdateInfo_Click);
             // 
             // uxLabelPhoneNumber
             // 
             this.uxLabelPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxLabelPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.uxLabelPhoneNumber.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.uxLabelPhoneNumber.Location = new System.Drawing.Point(208, 361);
+            this.uxLabelPhoneNumber.Location = new System.Drawing.Point(148, 346);
             this.uxLabelPhoneNumber.Name = "uxLabelPhoneNumber";
             this.uxLabelPhoneNumber.Size = new System.Drawing.Size(150, 30);
             this.uxLabelPhoneNumber.TabIndex = 2;
@@ -98,9 +100,9 @@
             // uxLabelLastName
             // 
             this.uxLabelLastName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxLabelLastName.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelLastName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.uxLabelLastName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.uxLabelLastName.Location = new System.Drawing.Point(208, 443);
+            this.uxLabelLastName.Location = new System.Drawing.Point(148, 428);
             this.uxLabelLastName.Name = "uxLabelLastName";
             this.uxLabelLastName.Size = new System.Drawing.Size(150, 30);
             this.uxLabelLastName.TabIndex = 3;
@@ -112,7 +114,7 @@
             this.uxTextBoxNewEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextBoxNewEmail.Enabled = false;
             this.uxTextBoxNewEmail.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxNewEmail.Location = new System.Drawing.Point(364, 317);
+            this.uxTextBoxNewEmail.Location = new System.Drawing.Point(304, 302);
             this.uxTextBoxNewEmail.MaxLength = 150;
             this.uxTextBoxNewEmail.Name = "uxTextBoxNewEmail";
             this.uxTextBoxNewEmail.Size = new System.Drawing.Size(200, 36);
@@ -126,7 +128,7 @@
             this.uxTextBoxPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextBoxPhoneNumber.Enabled = false;
             this.uxTextBoxPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxPhoneNumber.Location = new System.Drawing.Point(364, 440);
+            this.uxTextBoxPhoneNumber.Location = new System.Drawing.Point(304, 425);
             this.uxTextBoxPhoneNumber.MaxLength = 10;
             this.uxTextBoxPhoneNumber.Name = "uxTextBoxPhoneNumber";
             this.uxTextBoxPhoneNumber.Size = new System.Drawing.Size(200, 36);
@@ -139,7 +141,7 @@
             this.uxTextBoxFirstName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextBoxFirstName.Enabled = false;
             this.uxTextBoxFirstName.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxFirstName.Location = new System.Drawing.Point(364, 399);
+            this.uxTextBoxFirstName.Location = new System.Drawing.Point(304, 384);
             this.uxTextBoxFirstName.MaxLength = 150;
             this.uxTextBoxFirstName.Name = "uxTextBoxFirstName";
             this.uxTextBoxFirstName.Size = new System.Drawing.Size(200, 36);
@@ -150,9 +152,9 @@
             // uxLabelFirstName
             // 
             this.uxLabelFirstName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxLabelFirstName.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelFirstName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.uxLabelFirstName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.uxLabelFirstName.Location = new System.Drawing.Point(208, 402);
+            this.uxLabelFirstName.Location = new System.Drawing.Point(148, 387);
             this.uxLabelFirstName.Name = "uxLabelFirstName";
             this.uxLabelFirstName.Size = new System.Drawing.Size(150, 30);
             this.uxLabelFirstName.TabIndex = 7;
@@ -164,7 +166,7 @@
             this.uxTextBoxLastName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextBoxLastName.Enabled = false;
             this.uxTextBoxLastName.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxLastName.Location = new System.Drawing.Point(364, 358);
+            this.uxTextBoxLastName.Location = new System.Drawing.Point(304, 343);
             this.uxTextBoxLastName.MaxLength = 150;
             this.uxTextBoxLastName.Name = "uxTextBoxLastName";
             this.uxTextBoxLastName.Size = new System.Drawing.Size(200, 36);
@@ -177,7 +179,7 @@
             this.uxLabelSearchEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelSearchEmail.AutoSize = true;
             this.uxLabelSearchEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelSearchEmail.Location = new System.Drawing.Point(21, 135);
+            this.uxLabelSearchEmail.Location = new System.Drawing.Point(64, 115);
             this.uxLabelSearchEmail.Name = "uxLabelSearchEmail";
             this.uxLabelSearchEmail.Size = new System.Drawing.Size(391, 32);
             this.uxLabelSearchEmail.TabIndex = 9;
@@ -187,7 +189,7 @@
             // 
             this.uxTextBoxSearchEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextBoxSearchEmail.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxSearchEmail.Location = new System.Drawing.Point(364, 170);
+            this.uxTextBoxSearchEmail.Location = new System.Drawing.Point(304, 150);
             this.uxTextBoxSearchEmail.MaxLength = 150;
             this.uxTextBoxSearchEmail.Name = "uxTextBoxSearchEmail";
             this.uxTextBoxSearchEmail.Size = new System.Drawing.Size(200, 36);
@@ -199,14 +201,16 @@
             // uxButtonSearchEmail
             // 
             this.uxButtonSearchEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxButtonSearchEmail.BackColor = System.Drawing.SystemColors.Control;
             this.uxButtonSearchEmail.Enabled = false;
             this.uxButtonSearchEmail.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxButtonSearchEmail.Location = new System.Drawing.Point(364, 211);
+            this.uxButtonSearchEmail.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.uxButtonSearchEmail.Location = new System.Drawing.Point(304, 191);
             this.uxButtonSearchEmail.Name = "uxButtonSearchEmail";
             this.uxButtonSearchEmail.Size = new System.Drawing.Size(200, 40);
             this.uxButtonSearchEmail.TabIndex = 11;
             this.uxButtonSearchEmail.Text = "Search";
-            this.uxButtonSearchEmail.UseVisualStyleBackColor = true;
+            this.uxButtonSearchEmail.UseVisualStyleBackColor = false;
             this.uxButtonSearchEmail.Click += new System.EventHandler(this.uxButtonSearchEmail_Click);
             // 
             // uxLabelModififyInstruction
@@ -214,17 +218,30 @@
             this.uxLabelModififyInstruction.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelModififyInstruction.AutoSize = true;
             this.uxLabelModififyInstruction.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxLabelModififyInstruction.Location = new System.Drawing.Point(21, 277);
+            this.uxLabelModififyInstruction.Location = new System.Drawing.Point(64, 257);
             this.uxLabelModififyInstruction.Name = "uxLabelModififyInstruction";
             this.uxLabelModififyInstruction.Size = new System.Drawing.Size(400, 32);
             this.uxLabelModififyInstruction.TabIndex = 12;
             this.uxLabelModififyInstruction.Text = "Modify the customers account info:";
+            // 
+            // uxLabelCurrentEmail
+            // 
+            this.uxLabelCurrentEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxLabelCurrentEmail.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.uxLabelCurrentEmail.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.uxLabelCurrentEmail.Location = new System.Drawing.Point(148, 156);
+            this.uxLabelCurrentEmail.Name = "uxLabelCurrentEmail";
+            this.uxLabelCurrentEmail.Size = new System.Drawing.Size(150, 30);
+            this.uxLabelCurrentEmail.TabIndex = 13;
+            this.uxLabelCurrentEmail.Text = "Email:";
+            this.uxLabelCurrentEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ModifyAccountWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.uxLabelCurrentEmail);
             this.Controls.Add(this.uxLabelModififyInstruction);
             this.Controls.Add(this.uxButtonSearchEmail);
             this.Controls.Add(this.uxTextBoxSearchEmail);
@@ -262,5 +279,6 @@
         private System.Windows.Forms.TextBox uxTextBoxSearchEmail;
         private System.Windows.Forms.Button uxButtonSearchEmail;
         private System.Windows.Forms.Label uxLabelModififyInstruction;
+        private System.Windows.Forms.Label uxLabelCurrentEmail;
     }
 }
