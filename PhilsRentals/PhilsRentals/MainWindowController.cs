@@ -9,9 +9,8 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals
 {
-    public class MainWindowController
+    public class MainWindowController : IMainWindowController
     {
-
         /// <summary>
         /// Connection string for accessing the database.
         /// </summary>
@@ -45,30 +44,76 @@ namespace PhilsRentals
         }
 
         /// <summary>
-        /// Operation handler for the view.
+        /// Gets the form window for a given operation.
         /// </summary>
-        public IWindow Handle(string operation)
+        /// <param name="operation">Operation name</param>
+        /// <returns>Form window to display</returns>
+        public IWindow GetOperationWindow(string operation)
         {
             /* Code to send window to main window */
             IWindow window;
             _windows.TryGetValue(operation, out window);
 
-            // modAcctLookup for ModifyAccountWindow.cs
-            List<string> account_info = GetAccountInformation("Put Email Here");
-
             return window;
-
-            // Create a switch for the passed in argument which contains any operation.
-            // Call private functions to handle each operation.
         }
 
-        // Create private functions for each different operation.
+        /// <summary>
+        /// Adds a movie to the database.
+        /// </summary>
+        /// <param name="title">Title of the movie</param>
+        /// <param name="genres">Genres of the movie</param>
+        /// <param name="releaseYear">Release year of the movie</param>
+        /// <param name="duration">Duration of the movie</param>
+        /// <param name="rating">Rating of the movie</param>
+        /// <returns>Whether the movie was added successfully or not</returns>
+        public bool AddMovie(string title, string genres, int releaseYear, int duration, float rating)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
-        /// Gets the Account Info using stored procedure ""
+        /// Gets movies that match the provided filters
         /// </summary>
-        /// <param name="email"></param>
-        private List<string> GetAccountInformation(string email)
+        /// <param name="title">Title of the movie</param>
+        /// <param name="genres">Genres of the movie</param>
+        /// <param name="releaseYear">Release year of the movie</param>
+        /// <param name="duration">Duration of the movie</param>
+        /// <param name="rating">Rating of the movie</param>
+        /// <returns>Movies that matched the filters</returns>
+        public List<string> GetMovies(string title, string genres, int releaseYear, int duration, float rating)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Create an account in the database.
+        /// </summary>
+        /// <param name="firstName">First name of the account</param>
+        /// <param name="lastName">Last name of the account</param>
+        /// <param name="phoneNumber">Phone number of the account</param>
+        /// <param name="email">Email address of the account</param>
+        /// <returns>Whether the account was added successfully or not</returns>
+        public bool CreateAccount(string firstName, string lastName, string phoneNumber, string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Delete an account from the database.
+        /// </summary>
+        /// <param name="email">Email of the account</param>
+        /// <returns>Whether the account was deleted successfully or not</returns>
+        public bool DeleteAccount(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets account information for a given email address.
+        /// </summary>
+        /// <param name="email">Email address</param>
+        /// <returns>List of account information</returns>
+        public List<string> GetAccountInformation(string email)
         {
             List<string> account_info = new List<string>();
             using (SqlConnection conn = new SqlConnection())
@@ -87,7 +132,7 @@ namespace PhilsRentals
 
                 conn.Open();
                 int row_check = cmd.ExecuteNonQuery();
-                
+
                 // if the number of rows returned is not 1, then the SQL procedure failed.
                 // we only need to grab 1 row because one row represents 1 account.
                 if (row_check != 1)
@@ -109,6 +154,50 @@ namespace PhilsRentals
             }
 
             return account_info;
+        }
+
+        /// <summary>
+        /// Modifys the selected account with the information provided.
+        /// </summary>
+        /// <param name="email">Modified email address</param>
+        /// <param name="phoneNumber">Modified phone number</param>
+        /// <param name="firstName">Modified first name</param>
+        /// <param name="lastName">Modified last name</param>
+        /// <returns>Whether the modification was successful or not</returns>
+        public bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Rents a movie for a given account.
+        /// </summary>
+        /// <param name="email">Email of the account</param>
+        /// <param name="movieTitle">Title of movie rented</param>
+        /// <returns>Whether the rent movie was successful or not</returns>
+        public bool RentMovie(string email, string movieTitle)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the rented movies of an account
+        /// </summary>
+        /// <param name="email">Email account to get rented movies for</param>
+        /// <returns>List of rented movies, rented date and return date</returns>
+        public List<string> GetRentedMovies(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns a movie for a given account.
+        /// </summary>
+        /// <param name="email">Email of the account</param>
+        /// <param name="movieTitle">Title of the movie returned</param>
+        public void ReturnMovie(string email, string movieTitle)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,9 +14,9 @@ namespace PhilsRentals
     public partial class MainWindow : Form, IWindow
     {
         /// <summary>
-        /// Operation handler for MainWindowController.
+        /// MainWindowController handle.
         /// </summary>
-        private OperationHandler _operate;
+        private IMainWindowController _mwc;
 
         /// <summary>
         /// Dictionary of menu selection panels.
@@ -32,10 +32,10 @@ namespace PhilsRentals
         /// Constructs the MainWindow view.
         /// </summary>
         /// <param name="operate">Operation handler for MainWindowController</param>
-        public MainWindow(OperationHandler operate)
+        public MainWindow(IMainWindowController mwc)
         {
             InitializeComponent();
-            _operate = operate; // Store operation handler
+            _mwc = mwc; // Store MainWindowController
             InitializeUx(); // Initialize Ux
         }
 
@@ -80,7 +80,7 @@ namespace PhilsRentals
 
             if (!selectedMenu.Equals(_account))
             {
-                IWindow window = _operate(selectedMenu);
+                IWindow window = _mwc.GetOperationWindow(selectedMenu);
                 if (window != null)
                 {
                     Control c = (Control)window;

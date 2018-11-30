@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMainWindowController.cs" />
     <Compile Include="Views\ModifyAccountWindow.cs">
       <SubType>UserControl</SubType>
     </Compile>
