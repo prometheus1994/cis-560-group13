@@ -36,7 +36,7 @@ namespace PhilsRentals
         /// <param name="duration">Duration of the movie</param>
         /// <param name="rating">Rating of the movie</param>
         /// <returns>Movies that matched the filters</returns>
-        List<string> GetMovies(string title, string genres, int releaseYear, int duration, float rating);
+        List<string> GetMovies(string title, string genres, int releaseYear, char operationDuration, int duration, char operationRating, float rating);
 
         /// <summary>
         /// Create an account in the database.
