@@ -1,4 +1,5 @@
 
+
 drop table if exists group13proj.Rental
 drop table if exists group13proj.Account
 drop table if exists group13proj.Inventory
@@ -34,7 +35,7 @@ create table group13Proj.Movie(
 
 --populating the group13proj.Movie table
 insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID, NumberOfCopies)
-select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie, Copies
+select MovieTitle, CAST(ReleaseYear AS INT), Duration, Rating, Genre_ID_ForMovie, Copies
 from dbo.MovieDatabase
 
 select* from group13proj.Movie
@@ -67,8 +68,8 @@ create table group13proj.Rental
 (
 	RentalID int not null identity(1,1) primary key,
 	InventoryID int not null foreign key references group13proj.Inventory(InventoryID),
-	RentalDate date not null,
-	DueDate date not null,
+	RentalDate date not null default convert(date, getdate()) ,
+	DueDate date not null default convert(date, getdate()+5),
 	AccountID int not null foreign key references group13proj.Account(AccountID),
 	)
 
