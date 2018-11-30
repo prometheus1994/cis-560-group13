@@ -140,7 +140,7 @@ declare @glist nvarchar(max)
 exec genreNames @idString, gList
 return @glist
 end
-go
+go			
 select [dbo].[ff]('1,2,3,4');--doesnt work, need to fix
 
 Declare @var nvarchar(max)
@@ -150,7 +150,7 @@ select @var
 
 
 
---2. when the employee selects a movie in the list, display the movie title, rating, year, all info.
+--2. when the employee selects a movie in the list in rental window, display the movie title, rating, year, all info.
 drop procedure if exists SelectedMovie
 go 
 create procedure SelectedMovie
@@ -177,4 +177,81 @@ go
 --update rentals with user info and movie info, update no of copies. 
 
 
+--This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
+drop procedure if exists initDispRental
+go
 
+create procedure initDispRental As
+Select M.MovieTitle, count(distinct i.InventoryID) as [Number of copies]
+from group13proj.Inventory I
+	inner join group13proj.Movie M on m.MovieID = i.MovieID
+where i.Rented = 0
+group by M.MovieTitle
+go
+
+exec initDispRental
+go
+
+--filtering for the movie name is going to be done on the front end
+
+drop procedure if exists rentMovie
+go 
+
+create procedure rentMovie
+@title NVarChar(255), @email NvarChar(64)
+as
+Insert group13proj.Rental(InventoryID, AccountID)
+Select Top(1)
+	    I.InventoryID, a.AccountID
+from group13proj.Movie M
+	inner join group13proj.Inventory I on I.MovieID = M.MovieID and i.Rented = 0
+	inner join group13proj.Account A on a.Email = @email
+where M.MovieTitle = @title;
+
+
+declare @rID int = Scope_Identity();
+
+select r.DueDate
+from group13proj.Rental r
+where r.RentalID = @rID
+go
+
+
+
+
+
+
+
+-- in process
+
+
+go
+
+--looks up a customers information to be displayed in the modify account window
+drop procedure if exists modAcctLookup
+go
+create procedure modAcctLookup
+@email Nvarchar(64)
+as
+select a.Email, a.PhoneNumber, a.FirstName, A.LastName
+from group13proj.Account A
+where a.Email = @email
+go
+
+exec modAcctLookup 'uncle@yahoo.com'
+go
+
+--summary of account's rentals to be displayed (don't know if it works yet, need to finish rental)
+drop procedure if exists acctRentals
+go
+create procedure acctRentals
+@email nvarchar(64)
+as
+select m.MovieTitle, r.RentalDate, r.DueDate
+from group13proj.Rental R
+	inner join ( select a.AccountID
+				 from group13proj.Account a
+				 where a.Email = @email) acct(acctID) on r.AccountID = acct.acctID
+	inner join group13proj.Inventory I on i.InventoryID = r.InventoryID
+	inner join group13proj.Movie m on m.MovieID = i.InventoryID
+go
