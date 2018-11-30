@@ -30,6 +30,11 @@ namespace PhilsRentals.Views
             }
         }
 
+        private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void uxButtonSearchEmail_Click(object sender, EventArgs e)
         {
             uxTextBoxFirstName.Enabled = true;
