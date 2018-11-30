@@ -28,7 +28,7 @@ create table group13Proj.Movie(
 	ReleaseYear datetime null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100) not null 
+	GenreID nvarchar(100)  null,
 	NumberOfCopies int not null
 )
 
@@ -72,6 +72,7 @@ create table group13proj.Rental
 	AccountID int not null foreign key references group13proj.Account(AccountID),
 	)
 
+	
 /*insert group13proj.Rental(InventoryID, RentalDate, DueDate, AccountID)
 select I.InventoryID, T.RentalDate, T.DueDate, A.AccountID
 from 
