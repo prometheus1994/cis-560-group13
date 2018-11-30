@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace PhilsRentals
 {
     public class MainWindowController : IMainWindowController
@@ -14,7 +15,7 @@ namespace PhilsRentals
         /// <summary>
         /// Connection string for accessing the database.
         /// </summary>
-        private const string _connection = "Server=[server_name];Database=[group13proj];Trusted_Connection=true";
+        private const string _connection = "Server=mssql.cs.ksu.edu;Database=pc6;Trusted_Connection=true";
 
         /// <summary>
         /// Handle to the MainWindow which is the view for this controller.
@@ -34,6 +35,8 @@ namespace PhilsRentals
             _windows = windows;
         }
 
+        public MainWindowController()
+        { }
         /// <summary>
         /// Attach the view its controller.
         /// </summary>
@@ -113,9 +116,9 @@ namespace PhilsRentals
         /// </summary>
         /// <param name="email">Email address</param>
         /// <returns>List of account information</returns>
-        public List<string> GetAccountInformation(string email)
+        public string[] GetAccountInformation(string email)
         {
-            List<string> account_info = new List<string>();
+            string[] account_info = new string[5];
             using (SqlConnection conn = new SqlConnection())
             {
 
@@ -126,28 +129,30 @@ namespace PhilsRentals
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 SqlParameter param = new SqlParameter();
-                param.ParameterName = "Email";
-                param.Value = email; // Get Value
-                cmd.Parameters.Add(param);
+                cmd.Parameters.AddWithValue("Email", email);
+                //param.ParameterName = "Email";
+                //param.Value = email;//email; // Get Value
+                //cmd.Parameters.Add(param);
 
                 conn.Open();
-                int row_check = cmd.ExecuteNonQuery();
+                //int row_check
+                //SqlDataReader reader = cmd.ExecuteReader();
 
                 // if the number of rows returned is not 1, then the SQL procedure failed.
                 // we only need to grab 1 row because one row represents 1 account.
-                if (row_check != 1)
-                {
-                    throw new Exception("Invalid Procedure Call");
-                }
+               // if (row_check != 1)
+                //{
+                  //  throw new Exception("Invalid Procedure Call");
+                //}
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        account_info.Add(reader["Email"].ToString());
-                        account_info.Add(reader["PhoneNumber"].ToString());
-                        account_info.Add(reader["FirstName"].ToString());
-                        account_info.Add(reader["LastName"].ToString());
+                        account_info[0] = ((reader.GetString(reader.GetOrdinal("Email"))));
+                        account_info[1] = (reader["PhoneNumber"].ToString());
+                        account_info[2] = (reader["FirstName"].ToString());
+                        account_info[3] = (reader["LastName"].ToString());
                     }
                 }
                 conn.Close();
@@ -166,9 +171,35 @@ namespace PhilsRentals
         /// <returns>Whether the modification was successful or not</returns>
         public bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
 
+                    SqlCommand cmd = new SqlCommand("ModifyAccount", conn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Email", email);
+                    cmd.Parameters.AddWithValue("FirstName", firstName);
+                    cmd.Parameters.AddWithValue("LastName", lastName);
+                    cmd.Parameters.AddWithValue("PhoneNumber", phoneNumber);
+
+                    conn.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
         /// <summary>
         /// Rents a movie for a given account.
         /// </summary>

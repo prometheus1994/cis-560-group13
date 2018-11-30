@@ -13,6 +13,9 @@ namespace PhilsRentals.Views
 {
     public partial class ModifyAccountWindow : UserControl, IWindow
     {
+
+        public IMainWindowController mwc = new MainWindowController();
+        //public IMainWindowController iWindowController = new IMainWindowController();
         public ModifyAccountWindow()
         {
             InitializeComponent();
@@ -27,7 +30,7 @@ namespace PhilsRentals.Views
             }
             else
             {
-                uxButtonUpdateInfo.Enabled = uxTextBoxFirstName.TextLength > 0 || uxTextBoxLastName.TextLength > 0 || uxTextBoxNewEmail.TextLength > 0 || uxTextBoxPhoneNumber.TextLength == 10;
+                uxButtonUpdateInfo.Enabled = uxTextBoxFirstName.TextLength > 0 || uxTextBoxPhoneNumber.TextLength > 0 || uxTextBoxNewEmail.TextLength > 0 || uxTextBoxLastName.TextLength == 10;
             }
         }
 
@@ -39,7 +42,15 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            bool ret = mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
+            if(ret)
+            {
+                MessageBox.Show("Update processed successfully");
+            }
+            else
+            {
+                MessageBox.Show("Error With Update");
+            }
         }
 
         /* 
@@ -64,13 +75,17 @@ namespace PhilsRentals.Views
             // [1] = FirstName
             // ...
             // [4] = Email
-            string[] account_info = new string[5];
-
+            string email = uxTextBoxSearchEmail.Text.Substring(0, uxTextBoxSearchEmail.Text.Length-2);
+            string[] account_info = mwc.GetAccountInformation(email);
             uxTextBoxFirstName.Enabled = true;
-            uxTextBoxLastName.Enabled = true;
+            uxTextBoxPhoneNumber.Enabled = true;
             uxTextBoxNewEmail.Enabled = true;
             uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
-            uxTextBoxPhoneNumber.Enabled = true;
+            uxTextBoxLastName.Enabled = true;
+            uxTextBoxNewEmail.Text = account_info[0];
+            uxTextBoxLastName.Text = account_info[3];
+            uxTextBoxFirstName.Text = account_info[2];
+            uxTextBoxPhoneNumber.Text = account_info[1];
             // grab the existing email from the TextBoxSearchEmail
             // uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
         }

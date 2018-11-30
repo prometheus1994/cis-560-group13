@@ -60,7 +60,7 @@ namespace PhilsRentals
         /// </summary>
         /// <param name="email">Email address</param>
         /// <returns>List of account information</returns>
-        List<string> GetAccountInformation(string email);
+        string[] GetAccountInformation(string email);
 
         /// <summary>
         /// Modifys the selected account with the information provided.

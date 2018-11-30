@@ -34,10 +34,10 @@
             this.uxLabelPhoneNumber = new System.Windows.Forms.Label();
             this.uxLabelLastName = new System.Windows.Forms.Label();
             this.uxTextBoxNewEmail = new System.Windows.Forms.TextBox();
-            this.uxTextBoxPhoneNumber = new System.Windows.Forms.TextBox();
+            this.uxTextBoxLastName = new System.Windows.Forms.TextBox();
             this.uxTextBoxFirstName = new System.Windows.Forms.TextBox();
             this.uxLabelFirstName = new System.Windows.Forms.Label();
-            this.uxTextBoxLastName = new System.Windows.Forms.TextBox();
+            this.uxTextBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.uxLabelSearchEmail = new System.Windows.Forms.Label();
             this.uxTextBoxSearchEmail = new System.Windows.Forms.TextBox();
             this.uxButtonSearchEmail = new System.Windows.Forms.Button();
@@ -117,24 +117,24 @@
             this.uxTextBoxNewEmail.Location = new System.Drawing.Point(304, 302);
             this.uxTextBoxNewEmail.MaxLength = 150;
             this.uxTextBoxNewEmail.Name = "uxTextBoxNewEmail";
-            this.uxTextBoxNewEmail.Size = new System.Drawing.Size(200, 36);
+            this.uxTextBoxNewEmail.Size = new System.Drawing.Size(200, 43);
             this.uxTextBoxNewEmail.TabIndex = 4;
             this.uxTextBoxNewEmail.Tag = "Current email";
             this.uxTextBoxNewEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxNewEmail.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
-            // uxTextBoxPhoneNumber
+            // uxTextBoxLastName
             // 
-            this.uxTextBoxPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxTextBoxPhoneNumber.Enabled = false;
-            this.uxTextBoxPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxPhoneNumber.Location = new System.Drawing.Point(304, 425);
-            this.uxTextBoxPhoneNumber.MaxLength = 10;
-            this.uxTextBoxPhoneNumber.Name = "uxTextBoxPhoneNumber";
-            this.uxTextBoxPhoneNumber.Size = new System.Drawing.Size(200, 36);
-            this.uxTextBoxPhoneNumber.TabIndex = 5;
-            this.uxTextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.uxTextBoxPhoneNumber.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
+            this.uxTextBoxLastName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxTextBoxLastName.Enabled = false;
+            this.uxTextBoxLastName.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.uxTextBoxLastName.Location = new System.Drawing.Point(304, 425);
+            this.uxTextBoxLastName.MaxLength = 10;
+            this.uxTextBoxLastName.Name = "uxTextBoxLastName";
+            this.uxTextBoxLastName.Size = new System.Drawing.Size(200, 43);
+            this.uxTextBoxLastName.TabIndex = 5;
+            this.uxTextBoxLastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.uxTextBoxLastName.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
             // uxTextBoxFirstName
             // 
@@ -144,7 +144,7 @@
             this.uxTextBoxFirstName.Location = new System.Drawing.Point(304, 384);
             this.uxTextBoxFirstName.MaxLength = 150;
             this.uxTextBoxFirstName.Name = "uxTextBoxFirstName";
-            this.uxTextBoxFirstName.Size = new System.Drawing.Size(200, 36);
+            this.uxTextBoxFirstName.Size = new System.Drawing.Size(200, 43);
             this.uxTextBoxFirstName.TabIndex = 6;
             this.uxTextBoxFirstName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxFirstName.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
@@ -161,18 +161,18 @@
             this.uxLabelFirstName.Text = "First Name:";
             this.uxLabelFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // uxTextBoxLastName
+            // uxTextBoxPhoneNumber
             // 
-            this.uxTextBoxLastName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxTextBoxLastName.Enabled = false;
-            this.uxTextBoxLastName.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.uxTextBoxLastName.Location = new System.Drawing.Point(304, 343);
-            this.uxTextBoxLastName.MaxLength = 150;
-            this.uxTextBoxLastName.Name = "uxTextBoxLastName";
-            this.uxTextBoxLastName.Size = new System.Drawing.Size(200, 36);
-            this.uxTextBoxLastName.TabIndex = 8;
-            this.uxTextBoxLastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.uxTextBoxLastName.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
+            this.uxTextBoxPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxTextBoxPhoneNumber.Enabled = false;
+            this.uxTextBoxPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.uxTextBoxPhoneNumber.Location = new System.Drawing.Point(304, 343);
+            this.uxTextBoxPhoneNumber.MaxLength = 150;
+            this.uxTextBoxPhoneNumber.Name = "uxTextBoxPhoneNumber";
+            this.uxTextBoxPhoneNumber.Size = new System.Drawing.Size(200, 43);
+            this.uxTextBoxPhoneNumber.TabIndex = 8;
+            this.uxTextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.uxTextBoxPhoneNumber.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
             // uxLabelSearchEmail
             // 
@@ -181,7 +181,7 @@
             this.uxLabelSearchEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxLabelSearchEmail.Location = new System.Drawing.Point(64, 115);
             this.uxLabelSearchEmail.Name = "uxLabelSearchEmail";
-            this.uxLabelSearchEmail.Size = new System.Drawing.Size(391, 32);
+            this.uxLabelSearchEmail.Size = new System.Drawing.Size(488, 41);
             this.uxLabelSearchEmail.TabIndex = 9;
             this.uxLabelSearchEmail.Text = "Enter the customers current email:";
             // 
@@ -192,7 +192,7 @@
             this.uxTextBoxSearchEmail.Location = new System.Drawing.Point(304, 150);
             this.uxTextBoxSearchEmail.MaxLength = 150;
             this.uxTextBoxSearchEmail.Name = "uxTextBoxSearchEmail";
-            this.uxTextBoxSearchEmail.Size = new System.Drawing.Size(200, 36);
+            this.uxTextBoxSearchEmail.Size = new System.Drawing.Size(200, 43);
             this.uxTextBoxSearchEmail.TabIndex = 10;
             this.uxTextBoxSearchEmail.Text = "\r\n";
             this.uxTextBoxSearchEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -220,7 +220,7 @@
             this.uxLabelModififyInstruction.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxLabelModififyInstruction.Location = new System.Drawing.Point(64, 257);
             this.uxLabelModififyInstruction.Name = "uxLabelModififyInstruction";
-            this.uxLabelModififyInstruction.Size = new System.Drawing.Size(400, 32);
+            this.uxLabelModififyInstruction.Size = new System.Drawing.Size(503, 41);
             this.uxLabelModififyInstruction.TabIndex = 12;
             this.uxLabelModififyInstruction.Text = "Modify the customers account info:";
             // 
@@ -246,10 +246,10 @@
             this.Controls.Add(this.uxButtonSearchEmail);
             this.Controls.Add(this.uxTextBoxSearchEmail);
             this.Controls.Add(this.uxLabelSearchEmail);
-            this.Controls.Add(this.uxTextBoxLastName);
+            this.Controls.Add(this.uxTextBoxPhoneNumber);
             this.Controls.Add(this.uxLabelFirstName);
             this.Controls.Add(this.uxTextBoxFirstName);
-            this.Controls.Add(this.uxTextBoxPhoneNumber);
+            this.Controls.Add(this.uxTextBoxLastName);
             this.Controls.Add(this.uxTextBoxNewEmail);
             this.Controls.Add(this.uxLabelLastName);
             this.Controls.Add(this.uxLabelPhoneNumber);
@@ -271,10 +271,10 @@
         private System.Windows.Forms.Label uxLabelPhoneNumber;
         private System.Windows.Forms.Label uxLabelLastName;
         private System.Windows.Forms.TextBox uxTextBoxNewEmail;
-        private System.Windows.Forms.TextBox uxTextBoxPhoneNumber;
+        private System.Windows.Forms.TextBox uxTextBoxLastName;
         private System.Windows.Forms.TextBox uxTextBoxFirstName;
         private System.Windows.Forms.Label uxLabelFirstName;
-        private System.Windows.Forms.TextBox uxTextBoxLastName;
+        private System.Windows.Forms.TextBox uxTextBoxPhoneNumber;
         private System.Windows.Forms.Label uxLabelSearchEmail;
         private System.Windows.Forms.TextBox uxTextBoxSearchEmail;
         private System.Windows.Forms.Button uxButtonSearchEmail;
