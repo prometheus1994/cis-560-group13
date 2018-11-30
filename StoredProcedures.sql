@@ -111,7 +111,7 @@ BEGIN
 END
 go
 --procedure to convert the ids into genre names, each row in the table returned is a genre name
-drop procedure if exists genreNames
+drop function if exists genreNames
 go
 
 create procedure genreNames
@@ -131,11 +131,23 @@ inner join group13proj.Genre G on temp.id= G.GenreID
 )temp(GenreName)
 go
 
+drop function if exists ff
+go
+create function ff(@idString nvarchar(100)) returns nvarchar(max)
+as
+begin
+declare @glist nvarchar(max)
+exec genreNames @idString, gList
+return @glist
+end
+go
+select [dbo].[ff]('1,2,3,4');--doesnt work, need to fix
 
 Declare @var nvarchar(max)
 exec genreNames '12,3,4,6' , @var output
 select @var
 --@var returns all genre names as a single string
+
 
 
 --2. when the employee selects a movie in the list, display the movie title, rating, year, all info.
@@ -147,8 +159,9 @@ as
 declare @var nvarchar(max);
 select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, 
 (
- genreNames M.
- Select @var 
+ 
+ ff(M.GenreID, @var output)--need to fix
+ 
 ) as gName
 , M.NumberOfCopies
 from group13proj.Movie M
@@ -162,5 +175,6 @@ go
 
 --3. Renting movies: enters customers email, movie title, no of copies, searches for movies and chooses one at a time, check how many copies available,
 --update rentals with user info and movie info, update no of copies. 
+
 
 
