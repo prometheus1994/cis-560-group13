@@ -82,6 +82,61 @@ from group13proj.Movie M
 go
 exec ShowMovies
 
+--function that returns the genreIds as a a table with each id on a separate row
+drop function if exists splitString
+go
+CREATE FUNCTION splitstring ( @stringToSplit VARCHAR(50) )
+RETURNS
+ @returnList TABLE ([id] [nvarchar] (500))
+AS
+BEGIN
+
+ DECLARE @name NVARCHAR(255)
+ DECLARE @pos INT
+
+ WHILE CHARINDEX(',', @stringToSplit) > 0
+ BEGIN
+  SELECT @pos  = CHARINDEX(',', @stringToSplit)  
+  SELECT @name = SUBSTRING(@stringToSplit, 1, @pos-1)
+
+  INSERT INTO @returnList 
+  SELECT @name
+  SELECT @stringToSplit = SUBSTRING(@stringToSplit, @pos+1, LEN(@stringToSplit)-@pos)
+ END
+
+ INSERT INTO @returnList
+ SELECT @stringToSplit
+
+ RETURN
+END
+go
+--procedure to convert the ids into genre names, each row in the table returned is a genre name
+drop procedure if exists genreNames
+go
+
+create procedure genreNames
+@IdString nvarchar(100),
+@gNames nvarchar(max) output
+as
+select @gNames= coalesce(@gNames+',','')+isnull(temp.GenreName, '')
+from 
+(
+select distinct G.GenreName
+from 
+(
+	select id
+	from splitstring(@IdString)
+)temp
+inner join group13proj.Genre G on temp.id= G.GenreID
+)temp(GenreName)
+go
+
+
+Declare @var nvarchar(max)
+exec genreNames '12,3,4,6' , @var output
+select @var
+--@var returns all genre names as a single string
+
 
 --2. when the employee selects a movie in the list, display the movie title, rating, year, all info.
 drop procedure if exists SelectedMovie
@@ -89,11 +144,23 @@ go
 create procedure SelectedMovie
 @MovieName nvarchar(255)
 as
-select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, M.GenreID, M.NumberOfCopies
+declare @var nvarchar(max);
+select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, 
+(
+ genreNames M.
+ Select @var 
+) as gName
+, M.NumberOfCopies
 from group13proj.Movie M
 where M.MovieTitle=@MovieName
+group by M.MovieTitle,  M.ReleaseYear, M.Duration, M.Rating
 go
 exec SelectedMovie 'Avatar'
+go
+
+ 
+
 --3. Renting movies: enters customers email, movie title, no of copies, searches for movies and chooses one at a time, check how many copies available,
 --update rentals with user info and movie info, update no of copies. 
+
 
