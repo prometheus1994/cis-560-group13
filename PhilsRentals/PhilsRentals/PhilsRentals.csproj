@@ -93,6 +93,12 @@
     <Compile Include="Views\RentMovieWindow.Designer.cs">
       <DependentUpon>RentMovieWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReturnMovieWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ReturnMovieWindow.Designer.cs">
+      <DependentUpon>ReturnMovieWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RentMovieWindow.resx">
       <DependentUpon>RentMovieWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReturnMovieWindow.resx">
+      <DependentUpon>ReturnMovieWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
