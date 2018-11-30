@@ -203,3 +203,42 @@ as
 WHILE @numofCop <> 0
 BEGIN
 Insert group13proj.Rental(InventoryID, RentalDate
+
+
+
+
+
+
+-- in process
+
+
+go
+
+--looks up a customers information to be displayed in the modify account window
+drop procedure if exists modAcctLookup
+go
+create procedure modAcctLookup
+@email Nvarchar(64)
+as
+select a.Email, a.PhoneNumber, a.FirstName, A.LastName
+from group13proj.Account A
+where a.Email = @email
+go
+
+exec modAcctLookup 'uncle@yahoo.com'
+go
+
+--summary of account's rentals to be displayed (don't know if it works yet, need to finish rental)
+drop procedure if exists acctRentals
+go
+create procedure acctRentals
+@email nvarchar(64)
+as
+select m.MovieTitle, r.RentalDate, r.DueDate
+from group13proj.Rental R
+	inner join ( select a.AccountID
+				 from group13proj.Account a
+				 where a.Email = @email) acct(acctID) on r.AccountID = acct.acctID
+	inner join group13proj.Inventory I on i.InventoryID = r.InventoryID
+	inner join group13proj.Movie m on m.MovieID = i.InventoryID
+go

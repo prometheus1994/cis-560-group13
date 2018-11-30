@@ -29,7 +29,7 @@ create table group13Proj.Movie(
 	Duration int null,
 	Rating float,
 	GenreID nvarchar(100)  null,
-	NumberOfCopies int not null
+	--NumberOfCopies int not null
 )
 
 --populating the group13proj.Movie table
@@ -67,8 +67,8 @@ create table group13proj.Rental
 (
 	RentalID int not null identity(1,1) primary key,
 	InventoryID int not null foreign key references group13proj.Inventory(InventoryID),
-	RentalDate date not null,
-	DueDate date not null,
+	RentalDate date not null default convert(date, getdate()) ,
+	DueDate date not null default convert(date, getdate())+5,
 	AccountID int not null foreign key references group13proj.Account(AccountID),
 	)
 
