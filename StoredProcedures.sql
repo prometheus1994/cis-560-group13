@@ -150,7 +150,7 @@ select @var
 
 
 
---2. when the employee selects a movie in the list, display the movie title, rating, year, all info.
+--2. when the employee selects a movie in the list in rental window, display the movie title, rating, year, all info.
 drop procedure if exists SelectedMovie
 go 
 create procedure SelectedMovie
@@ -177,4 +177,29 @@ go
 --update rentals with user info and movie info, update no of copies. 
 
 
+--This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
+drop procedure if exists initDispRental
+go
 
+create procedure initDispRental As
+Select M.MovieTitle, count(distinct i.InventoryID) as [Number of copies]
+from group13proj.Inventory I
+	inner join group13proj.Movie M on m.MovieID = i.MovieID
+where i.Rented = 0
+group by M.MovieTitle
+go
+
+exec initDispRental
+go
+
+--filtering for the movie name is going to be done on the front end
+
+drop procedure if exists rentMovie
+go 
+
+create procedure rentMovie
+@numofCop int, @title NVarChar(255), @email NvarChar(64)
+as
+WHILE @numofCop <> 0
+BEGIN
+Insert group13proj.Rental(InventoryID, RentalDate
