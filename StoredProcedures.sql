@@ -7,13 +7,14 @@ CREATE PROCEDURE AddMovie
    @Year DateTime,
    @duration int,
    @rating float,
-   @genreID nvarchar(100)
+   @genreID nvarchar(100),
+   @Copies int
 AS
-Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-values(@MovieName, @Year, @duration, @rating,@genreID)
+Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID, NumberOfCopies)
+values(@MovieName, @Year, @duration, @rating,@genreID, @Copies)
 GO
 --example execution
-exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3'
+exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3', '2'
 select * from group13proj.Movie
 
 --Create account: 
@@ -69,3 +70,30 @@ exec CreateAccount 'John', 'Doe','(373) 234-1333', 'john@idk.com'
 select * from group13proj.Account
 exec ModifyAccount 'john@idk.com', 'William'
 select * from group13proj.Account
+
+--Renting movies:
+--1. all movies and their number of copies returned
+drop procedure if exists ShowMovies
+go
+create procedure ShowMovies
+as
+select M.MovieTitle, M.NumberOfCopies
+from group13proj.Movie M
+go
+exec ShowMovies
+
+
+--2. when the employee selects a movie in the list, display the movie title, rating, year, all info.
+drop procedure if exists SelectedMovie
+go 
+create procedure SelectedMovie
+@MovieName nvarchar(255)
+as
+select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, M.GenreID, M.NumberOfCopies
+from group13proj.Movie M
+where M.MovieTitle=@MovieName
+go
+exec SelectedMovie 'Avatar'
+--3. Renting movies: enters customers email, movie title, no of copies, searches for movies and chooses one at a time, check how many copies available,
+--update rentals with user info and movie info, update no of copies. 
+
