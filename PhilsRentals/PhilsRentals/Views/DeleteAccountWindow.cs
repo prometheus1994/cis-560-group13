@@ -16,5 +16,20 @@ namespace PhilsRentals.Views
         {
             InitializeComponent();
         }
+
+        private void uxTextboxEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (uxTextboxEmail.Text == "")
+            {
+                uxButtonAccept.Enabled = false;
+            }
+            else
+                uxButtonAccept.Enabled = true;
+        }
+
+        private void uxButtonAccept_Click(object sender, EventArgs e)
+        {
+            string email = uxTextboxEmail.Text;
+        }
     }
 }
