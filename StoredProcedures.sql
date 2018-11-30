@@ -140,7 +140,7 @@ declare @glist nvarchar(max)
 exec genreNames @idString, gList
 return @glist
 end
-go
+go			
 select [dbo].[ff]('1,2,3,4');--doesnt work, need to fix
 
 Declare @var nvarchar(max)
@@ -198,11 +198,24 @@ drop procedure if exists rentMovie
 go 
 
 create procedure rentMovie
-@numofCop int, @title NVarChar(255), @email NvarChar(64)
+@title NVarChar(255), @email NvarChar(64)
 as
-WHILE @numofCop <> 0
-BEGIN
-Insert group13proj.Rental(InventoryID, RentalDate
+Insert group13proj.Rental(InventoryID, AccountID)
+Select Top(1)
+	    I.InventoryID, a.AccountID
+from group13proj.Movie M
+	inner join group13proj.Inventory I on I.MovieID = M.MovieID and i.Rented = 0
+	inner join group13proj.Account A on a.Email = @email
+where M.MovieTitle = @title;
+
+
+declare @rID int = Scope_Identity();
+
+select r.DueDate
+from group13proj.Rental r
+where r.RentalID = @rID
+go
+
 
 
 
