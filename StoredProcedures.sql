@@ -136,16 +136,6 @@ select @outvar
 --@var returns all genre names as a single string
 
 
-
---2. when the employee selects a movie in the list in rental window, display the movie title, rating, year, all info.
-
-
- 
-
---3. Renting movies: enters customers email, movie title, no of copies, searches for movies and chooses one at a time, check how many copies available,
---update rentals with user info and movie info, update no of copies. 
-
-
 --This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
 drop procedure if exists initDispRental
 go 
@@ -266,14 +256,18 @@ go
 exec filteredYear @Operator='<',  @year=1999
 exec filteredYear @Operator='>',  @year=1998
 
+--takes one genreId at a time				    
 drop procedure if exists filterGenres
+go
 create procedure filterGenres
-@listofIds int
+@id nvarchar(50)
 as
 select *
-from group13proj.Movie
-where 
+from group13proj.Movie M 
+where M.GenreID like '%'+', '+@id+','+'%'
+--where M.GenreID in( string_split (@listofIds, ',')as N on '%'+N.value+'%' like M.GenreID
 
+exec filterGenres '2'
 
 
 
