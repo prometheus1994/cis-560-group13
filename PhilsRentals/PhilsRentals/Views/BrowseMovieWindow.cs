@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class BrowseMovieWindow : UserControl, IWindow
+    public partial class BrowseMovieWindow : UserControl
     {
-        public BrowseMovieWindow()
+        /// <summary>
+        /// Handle to the MainWindowController.
+        /// 
+        /// This class will only use _mwc.GetMovies()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// </summary>
+        IMainWindowController _mwc;
+
+        public BrowseMovieWindow(IMainWindowController mwc)
         {
             InitializeComponent();
+            _mwc = mwc;
         }
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)

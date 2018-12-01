@@ -11,16 +11,18 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class ModifyAccountWindow : UserControl, IWindow
+    public partial class ModifyAccountWindow : UserControl
     {
+        /// <summary>
+        /// Handle to the MainWindowController.
+        /// </summary>
+        IMainWindowController _mwc;
 
-        public IMainWindowController mwc = new MainWindowController();
-        //public IMainWindowController iWindowController = new IMainWindowController();
-        public ModifyAccountWindow()
+        public ModifyAccountWindow(IMainWindowController mwc)
         {
             InitializeComponent();
+            _mwc = mwc;
         }
-
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)
         {
@@ -42,7 +44,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
         {
-            bool ret = mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
+            bool ret = _mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
             if(ret)
             {
                 MessageBox.Show("Update processed successfully");
@@ -76,7 +78,7 @@ namespace PhilsRentals.Views
             // ...
             // [4] = Email
             string email = uxTextBoxSearchEmail.Text.Substring(0, uxTextBoxSearchEmail.Text.Length-2);
-            string[] account_info = mwc.GetAccountInformation(email);
+            string[] account_info = _mwc.GetAccountInformation(email);
             uxTextBoxFirstName.Enabled = true;
             uxTextBoxPhoneNumber.Enabled = true;
             uxTextBoxNewEmail.Enabled = true;

@@ -10,13 +10,6 @@ namespace PhilsRentals
     public interface IMainWindowController
     {
         /// <summary>
-        /// Gets the form window for a given operation.
-        /// </summary>
-        /// <param name="operation">Operation name</param>
-        /// <returns>Form window to display</returns>
-        IWindow GetOperationWindow(string operation);
-
-        /// <summary>
         /// Adds a movie to the database.
         /// </summary>
         /// <param name="title">Title of the movie</param>
@@ -71,6 +64,12 @@ namespace PhilsRentals
         /// <param name="lastName">Modified last name</param>
         /// <returns>Whether the modification was successful or not</returns>
         bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName);
+
+        /// <summary>
+        /// Gets all rentable movies in inventory.
+        /// </summary>
+        /// <returns>Rentable movies and their inventory counts</returns>
+        List<string> GetRentableMovies();
 
         /// <summary>
         /// Rents a movie for a given account.

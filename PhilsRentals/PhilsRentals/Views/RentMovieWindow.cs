@@ -11,11 +11,30 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class RentMovieWindow : UserControl, IWindow
+    public partial class RentMovieWindow : UserControl
     {
-        public RentMovieWindow()
+        /// <summary>
+        /// Handle to get the selected account from the MainWindow.
+        /// </summary>
+        AccountSelector _GetSelectedAccount;
+
+        /// <summary>
+        /// Handle to the MainWindowController.
+        /// 
+        /// This class will only use _mwc.GetRentableMovies() and _mwc.RentMovie()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// 
+        /// Use _GetSelectedAccount to get selected email
+        /// </summary>
+        IMainWindowController _mwc;
+
+        public RentMovieWindow(IMainWindowController mwc, AccountSelector GetSelectedAccount)
         {
             InitializeComponent();
+            _mwc = mwc;
+            _GetSelectedAccount = GetSelectedAccount;
             AddMovies();
         }
 

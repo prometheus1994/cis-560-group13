@@ -17,47 +17,9 @@ namespace PhilsRentals
         /// </summary>
         private const string _connection = "Server=mssql.cs.ksu.edu;Database=pc6;Trusted_Connection=true";
 
-        /// <summary>
-        /// Handle to the MainWindow which is the view for this controller.
-        /// </summary>
-        private IWindow _view;
-
-        /// <summary>
-        /// Dictionary of the operation windows.
-        /// </summary>
-        private Dictionary<string, IWindow> _windows;
-
-        /// <summary>
-        /// Constructs an instance of MainWindowController.
-        /// </summary>
-        public MainWindowController(Dictionary<string, IWindow> windows)
-        {
-            _windows = windows;
-        }
-
         public MainWindowController()
-        { }
-        /// <summary>
-        /// Attach the view its controller.
-        /// </summary>
-        /// <param name="view"></param>
-        public void AttachView(IWindow view)
         {
-            _view = view;
-        }
 
-        /// <summary>
-        /// Gets the form window for a given operation.
-        /// </summary>
-        /// <param name="operation">Operation name</param>
-        /// <returns>Form window to display</returns>
-        public IWindow GetOperationWindow(string operation)
-        {
-            /* Code to send window to main window */
-            IWindow window;
-            _windows.TryGetValue(operation, out window);
-
-            return window;
         }
 
         /// <summary>
@@ -126,7 +88,7 @@ namespace PhilsRentals
 
                 // procedure to grab the account info
                 SqlCommand cmd = new SqlCommand("modAcctLookup", conn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter param = new SqlParameter();
                 cmd.Parameters.AddWithValue("Email", email);
@@ -178,7 +140,7 @@ namespace PhilsRentals
                     conn.ConnectionString = _connection;
 
                     SqlCommand cmd = new SqlCommand("ModifyAccount", conn);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("Email", email);
                     cmd.Parameters.AddWithValue("FirstName", firstName);
                     cmd.Parameters.AddWithValue("LastName", lastName);
@@ -189,9 +151,6 @@ namespace PhilsRentals
                     cmd.ExecuteNonQuery();
 
                     conn.Close();
-
-
-
                 }
             }
             catch (Exception)
@@ -200,6 +159,16 @@ namespace PhilsRentals
             }
             return true;
         }
+
+        /// <summary>
+        /// Gets all rentable movies in inventory.
+        /// </summary>
+        /// <returns>Rentable movies and their inventory counts</returns>
+        public List<string> GetRentableMovies()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Rents a movie for a given account.
         /// </summary>

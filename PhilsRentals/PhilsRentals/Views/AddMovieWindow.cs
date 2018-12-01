@@ -11,11 +11,22 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class AddMovieWindow : UserControl, IWindow
+    public partial class AddMovieWindow : UserControl
     {
-        public AddMovieWindow()
+        /// <summary>
+        /// Handle to the MainWindowController.
+        /// 
+        /// This class will only use _mwc.AddMovie()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// </summary>
+        IMainWindowController _mwc;
+
+        public AddMovieWindow(IMainWindowController mwc)
         {
             InitializeComponent();
+            _mwc = mwc;
         }
 
         private void uxFieldsChanged(object sender, EventArgs e)
