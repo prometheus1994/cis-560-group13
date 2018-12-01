@@ -110,11 +110,11 @@ BEGIN
  RETURN
 END
 go
+select * from splitString('2,3,4,5')
 --procedure to convert the ids into genre names, each row in the table returned is a genre name
-drop function if exists genreNames
+drop procedure if exists genreId2Names
 go
-
-create procedure genreNames
+create procedure genreId2Names
 @IdString nvarchar(100),
 @gNames nvarchar(max) output
 as
@@ -130,46 +130,15 @@ from
 inner join group13proj.Genre G on temp.id= G.GenreID
 )temp(GenreName)
 go
-
-drop function if exists ff
-go
-create function ff(@idString nvarchar(100)) returns nvarchar(max)
-as
-begin
-declare @glist nvarchar(max)
-exec genreNames @idString, gList
-return @glist
-end
-go			
-select [dbo].[ff]('1,2,3,4');--doesnt work, need to fix
-
-Declare @var nvarchar(max)
-exec genreNames '12,3,4,6' , @var output
-select @var
+declare @outvar nvarchar(1000);
+exec genreId2Names '2,3,5', @outvar output
+select @outvar
 --@var returns all genre names as a single string
 
 
 
 --2. when the employee selects a movie in the list in rental window, display the movie title, rating, year, all info.
-drop procedure if exists SelectedMovie
-go 
-create procedure SelectedMovie
-@MovieName nvarchar(255)
-as
-declare @var nvarchar(max);
-select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, 
-(
- 
- ff(M.GenreID, @var output)--need to fix
- 
-) as gName
-, M.NumberOfCopies
-from group13proj.Movie M
-where M.MovieTitle=@MovieName
-group by M.MovieTitle,  M.ReleaseYear, M.Duration, M.Rating
-go
-exec SelectedMovie 'Avatar'
-go
+
 
  
 
@@ -179,7 +148,7 @@ go
 
 --This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
 drop procedure if exists initDispRental
-go
+go 
 
 create procedure initDispRental As
 Select M.MovieTitle, count(distinct i.InventoryID) as [Number of copies]
@@ -203,6 +172,7 @@ from group13proj.Movie M
 where M.MovieTitle like '%'+@MovieTitle+'%'
 go
 exec filteredMovieTitle 'vat'
+
 drop procedure if exists filteredDurationBoth
 go
 create procedure filteredDurationBoth
@@ -233,7 +203,6 @@ where  (@Operator ='<' and M.Duration<@duration) or (@Operator ='>' and M.Durati
 go
 exec filteredDuration @Operator='<',  @duration=120
 exec filteredDuration @Operator='>',  @duration=120
-
 
 drop procedure if exists filteredRatingBoth
 go
@@ -296,6 +265,18 @@ where  (@Operator ='<' and M.ReleaseYear<@year) or (@Operator ='>' and M.Release
 go
 exec filteredYear @Operator='<',  @year=1999
 exec filteredYear @Operator='>',  @year=1998
+
+drop procedure if exists filterGenres
+create procedure filterGenres
+@listofIds int
+as
+select *
+from group13proj.Movie
+where 
+
+
+
+
 
 
 drop procedure if exists rentMovie
