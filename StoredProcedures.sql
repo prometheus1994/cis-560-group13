@@ -193,22 +193,94 @@ exec initDispRental
 go
 
 --filtering for the movie name is going to be done on the front end
-drop procedure if exists filteredMovies
+drop procedure if exists filteredMovieTitle
 go
-create procedure filteredMovies
-@MovieTitle nvarchar(255) = '%',
-@duration int ='%',
-@rating float ='%',
-@genreId nvarchar(100)='%',
-@year int ='%',
-@operator_rating nchar(1)=null,
-@operator_duration nchar(1)=null
+create procedure filteredMovieTitle
+@MovieTitle nvarchar(255) = '%'
+as
+select *
+from group13proj.Movie M 
+where M.MovieTitle like '%'+@MovieTitle+'%'
+go
+exec filteredMovieTitle 'vat'
+
+drop procedure if exists filteredDurationG
+go
+create procedure filteredDurationG
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@duration int
 as
 select *
 from group13proj.Movie M
-where M.MovieTitle like @MovieTitle 
-having 
+where  @operatorGreater ='>' and M.Duration>@duration
+go
+exec filteredDurationG @OperatorGreater='>',  @duration=120
 
+drop procedure if exists filteredDurationL
+go
+create procedure filteredDurationL
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@duration int
+as
+select *
+from group13proj.Movie M
+where  @OperatorLesser ='<' and M.Duration<@duration
+go
+exec filteredDurationL @OperatorLesser='<',  @duration=120
+
+drop procedure if exists filteredYearL
+go
+create procedure filteredYearL
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@year int
+as
+select *
+from group13proj.Movie M
+where  @OperatorLesser ='<' and M.ReleaseYear<@year
+go
+exec filteredYearL @OperatorLesser='<',  @year=2000
+
+drop procedure if exists filteredYearG
+go
+create procedure filteredYearG
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@year int
+as
+select *
+from group13proj.Movie M
+where  @OperatorGreater ='>' and M.ReleaseYear>@year
+go
+exec filteredYearG @OperatorGreater='>',  @year=2000
+
+drop procedure if exists filteredRatingL
+go
+create procedure filteredRatingL
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@rating float
+as
+select *
+from group13proj.Movie M
+where  @OperatorLesser ='<' and M.Rating<@rating
+go
+exec filteredRatingL @OperatorLesser='<',  @rating=9.6
+
+drop procedure if exists filteredRatingG
+go
+create procedure filteredRatingG
+@OperatorGreater nchar(1)=null,
+@OperatorLesser nchar(1)=null,
+@rating float
+as
+select *
+from group13proj.Movie M
+where  @OperatorGreater ='>' and M.Rating>@rating
+go
+exec filteredRatingG @OperatorGreater='>',  @rating=3
 
 drop procedure if exists greaterThanDuration
 go
@@ -249,7 +321,6 @@ select*
 from group13proj.Movie M
 where M.Rating <= @rating
 go
-
 
 drop procedure if exists rentMovie
 go 
@@ -312,6 +383,3 @@ from group13proj.Rental R
 	inner join group13proj.Inventory I on i.InventoryID = r.InventoryID
 	inner join group13proj.Movie m on m.MovieID = i.InventoryID
 go
-
-
-
