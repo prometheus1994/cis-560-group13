@@ -4,7 +4,7 @@ drop procedure if exists AddMovie
 go
 CREATE PROCEDURE AddMovie
    @MovieName nvarchar(256),
-   @Year DateTime,
+   @Year int,
    @duration int,
    @rating float,
    @genreID nvarchar(100),
