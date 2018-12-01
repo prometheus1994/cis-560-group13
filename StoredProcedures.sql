@@ -203,32 +203,36 @@ from group13proj.Movie M
 where M.MovieTitle like '%'+@MovieTitle+'%'
 go
 exec filteredMovieTitle 'vat'
-
-drop procedure if exists filteredDurationG
+drop procedure if exists filteredDurationBoth
 go
-create procedure filteredDurationG
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
+create procedure filteredDurationBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@durationG int,
+@durationL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.Duration>@durationG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.Duration<@durationL
+go
+exec filteredDurationBoth @OperatorGreater='>',  @durationG=120, @OperatorLesser='<',  @durationL=170
+
+drop procedure if exists filteredDuration
+go
+create procedure filteredDuration
+@Operator nchar(1),
 @duration int
 as
 select *
 from group13proj.Movie M
-where  @operatorGreater ='>' and M.Duration>@duration
+where  (@Operator ='<' and M.Duration<@duration) or (@Operator ='>' and M.Duration>@duration)
 go
-exec filteredDurationG @OperatorGreater='>',  @duration=120
-
-drop procedure if exists filteredDurationL
-go
-create procedure filteredDurationL
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
-@duration int
-as
-select *
-from group13proj.Movie M
-where  @OperatorLesser ='<' and M.Duration<@duration
-go
-exec filteredDurationL @OperatorLesser='<',  @duration=120
+exec filteredDuration @Operator='<',  @duration=120
+exec filteredDuration @Operator='>',  @duration=120
 
 drop procedure if exists filteredYearL
 go
