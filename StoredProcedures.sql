@@ -234,57 +234,68 @@ go
 exec filteredDuration @Operator='<',  @duration=120
 exec filteredDuration @Operator='>',  @duration=120
 
-drop procedure if exists filteredYearL
+
+drop procedure if exists filteredRatingBoth
 go
-create procedure filteredYearL
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
+create procedure filteredRatingBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@ratingG int,
+@ratingL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.Rating>@ratingG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.Rating<@ratingL
+go
+exec filteredRatingBoth @OperatorGreater='>',  @ratingG=5, @OperatorLesser='<',  @ratingL=7
+
+drop procedure if exists filteredRating
+go
+create procedure filteredRating
+@Operator nchar(1),
+@rating int
+as
+select *
+from group13proj.Movie M
+where  (@Operator ='<' and M.Rating<@rating) or (@Operator ='>' and M.Rating>@rating)
+go
+exec filteredRating @Operator='<',  @rating=5
+exec filteredRating @Operator='>',  @rating=8
+
+drop procedure if exists filteredYearBoth
+go
+create procedure filteredYearBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@yearG int,
+@yearL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.ReleaseYear>@yearG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.ReleaseYear<@yearL
+go
+exec filteredYearBoth @OperatorGreater='>',  @yearG=2000, @OperatorLesser='<',  @yearL=2005
+
+drop procedure if exists filteredYear
+go
+create procedure filteredYear
+@Operator nchar(1),
 @year int
 as
 select *
 from group13proj.Movie M
-where  @OperatorLesser ='<' and M.ReleaseYear<@year
+where  (@Operator ='<' and M.ReleaseYear<@year) or (@Operator ='>' and M.ReleaseYear>@year)
 go
-exec filteredYearL @OperatorLesser='<',  @year=2000
-
-drop procedure if exists filteredYearG
-go
-create procedure filteredYearG
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
-@year int
-as
-select *
-from group13proj.Movie M
-where  @OperatorGreater ='>' and M.ReleaseYear>@year
-go
-exec filteredYearG @OperatorGreater='>',  @year=2000
-
-drop procedure if exists filteredRatingL
-go
-create procedure filteredRatingL
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
-@rating float
-as
-select *
-from group13proj.Movie M
-where  @OperatorLesser ='<' and M.Rating<@rating
-go
-exec filteredRatingL @OperatorLesser='<',  @rating=9.6
-
-drop procedure if exists filteredRatingG
-go
-create procedure filteredRatingG
-@OperatorGreater nchar(1)=null,
-@OperatorLesser nchar(1)=null,
-@rating float
-as
-select *
-from group13proj.Movie M
-where  @OperatorGreater ='>' and M.Rating>@rating
-go
-exec filteredRatingG @OperatorGreater='>',  @rating=3
+exec filteredYear @Operator='<',  @year=1999
+exec filteredYear @Operator='>',  @year=1998
 
 
 drop procedure if exists rentMovie
