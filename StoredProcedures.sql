@@ -282,45 +282,6 @@ where  @OperatorGreater ='>' and M.Rating>@rating
 go
 exec filteredRatingG @OperatorGreater='>',  @rating=3
 
-drop procedure if exists greaterThanDuration
-go
-create procedure greaterThanDuration 
-@duration int
-as
-select*
-from group13proj.Movie M
-where M.Duration>=@duration
-go
-
-drop procedure if exists lesserThanDuration
-go
-create procedure lesserThanDuration 
-@duration int
-as
-select*
-from group13proj.Movie M
-where M.Duration<=@duration
-go
-
-drop procedure if exists greaterThanRating
-go
-create procedure greaterThanRating 
-@rating int
-as
-select*
-from group13proj.Movie M
-where M.Rating >= @rating
-go
-
-drop procedure if exists lesserThanRating
-go
-create procedure lesserThanRating 
-@rating int
-as
-select*
-from group13proj.Movie M
-where M.Rating <= @rating
-go
 
 drop procedure if exists rentMovie
 go 
