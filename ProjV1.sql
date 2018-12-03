@@ -1,4 +1,5 @@
 
+
 drop table if exists group13proj.Rental
 drop table if exists group13proj.Account
 drop table if exists group13proj.Inventory
@@ -76,10 +77,10 @@ create table group13proj.Rental
 	AccountID int not null foreign key references group13proj.Account(AccountID),
 	)
 
-	
+
 /*insert group13proj.Rental(InventoryID, RentalDate, DueDate, AccountID)
 select I.InventoryID, T.RentalDate, T.DueDate, A.AccountID
-from 
+from
 	(
 	values
 	('2018-02-21', '2018-02-28', N'Heather', N'Wright', N'Avatar'),
@@ -100,9 +101,9 @@ go*/
 select* from group13proj.Rental
 
 select* from group13proj.Movie
---idk what interesting cases would be, 
+--idk what interesting cases would be,
 --maybe we can show what happens if 2 accounts have the same phone or email
 --Or if the due date is before the rentaldate
---or as discussed before, a user tries to rent a movie before returning a certain number 
+--or as discussed before, a user tries to rent a movie before returning a certain number
 --of those already in his posession
 select * from group13proj.Inventory

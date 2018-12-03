@@ -8,7 +8,7 @@ CREATE PROCEDURE AddMovie
    @duration int,
    @rating float,
    @genreID nvarchar(100)
-   
+
 AS
 Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
 values(@MovieName, @Year, @duration, @rating,@genreID)
@@ -17,7 +17,7 @@ GO
 exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3'
 select * from group13proj.Movie
 
---Create account: 
+--Create account:
 --1. EMployee enters in the fname, lname, email, phone
 Drop Procedure if exists CreateAccount
 go
@@ -52,15 +52,15 @@ select * from group13proj.Account
 
 --Modify account:
 --1. look up the account using the email and modify the optional parameters: fname, lname, email, phone
-drop procedure if exists ModifyAccount 
+drop procedure if exists ModifyAccount
 go
 create procedure ModifyAccount
 @Email nvarchar(64),
 @FirstName nvarchar(256)= null,
 @LastName NVARCHAR(32) =null,
 @PhoneNumber NVARCHAR(15) =null
-AS 
-update group13proj.Account 
+AS
+update group13proj.Account
 set FirstName = Coalesce(@FirstName, FirstName),
     LastName = Coalesce(@LastName, LastName),
 	PhoneNumber = Coalesce(@PhoneNumber, PhoneNumber)
@@ -97,10 +97,10 @@ BEGIN
 
  WHILE CHARINDEX(',', @stringToSplit) > 0
  BEGIN
-  SELECT @pos  = CHARINDEX(',', @stringToSplit)  
+  SELECT @pos  = CHARINDEX(',', @stringToSplit)
   SELECT @name = SUBSTRING(@stringToSplit, 1, @pos-1)
 
-  INSERT INTO @returnList 
+  INSERT INTO @returnList
   SELECT @name
   SELECT @stringToSplit = SUBSTRING(@stringToSplit, @pos+1, LEN(@stringToSplit)-@pos)
  END
@@ -111,19 +111,19 @@ BEGIN
  RETURN
 END
 go
+select * from splitString('2,3,4,5')
 --procedure to convert the ids into genre names, each row in the table returned is a genre name
-drop function if exists genreNames
+drop procedure if exists genreId2Names
 go
-
-create procedure genreNames
+create procedure genreId2Names
 @IdString nvarchar(100),
 @gNames nvarchar(max) output
 as
 select @gNames= coalesce(@gNames+',','')+isnull(temp.GenreName, '')
-from 
+from
 (
 select distinct G.GenreName
-from 
+from
 (
 	select id
 	from splitstring(@IdString)
@@ -131,51 +131,200 @@ from
 inner join group13proj.Genre G on temp.id= G.GenreID
 )temp(GenreName)
 go
-
-drop function if exists ff
-go
-create function ff(@idString nvarchar(100)) returns nvarchar(max)
-as
-begin
-declare @glist nvarchar(max)
-exec genreNames @idString, gList
-return @glist
-end
-go			
-select [dbo].[ff]('1,2,3,4');--doesnt work, need to fix
-
-Declare @var nvarchar(max)
-exec genreNames '12,3,4,6' , @var output
-select @var
+declare @outvar nvarchar(1000);
+exec genreId2Names '2,3,5', @outvar output
+select @outvar
 --@var returns all genre names as a single string
 
 
+--This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
+drop procedure if exists initDispRental
+go
 
---2. when the employee selects a movie in the list in rental window, display the movie title, rating, year, all info.
-drop procedure if exists SelectedMovie
-go 
-create procedure SelectedMovie
-@MovieName nvarchar(255)
+create procedure initDispRental As
+Select M.MovieTitle, count(distinct i.InventoryID) as [Number of copies]
+from group13proj.Inventory I
+	inner join group13proj.Movie M on m.MovieID = i.MovieID
+where i.Rented = 0
+group by M.MovieTitle
+go
+
+exec initDispRental
+go
+
+--filtering for the movie name is going to be done on the front end
+drop procedure if exists filteredMovieTitle
+go
+create procedure filteredMovieTitle
+@MovieTitle nvarchar(255) = '%'
 as
-declare @var nvarchar(max);
-select M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, 
-(
- 
- ff(M.GenreID, @var output)--need to fix
- 
-) as gName
-, M.NumberOfCopies
+select *
 from group13proj.Movie M
-where M.MovieTitle=@MovieName
-group by M.MovieTitle,  M.ReleaseYear, M.Duration, M.Rating
+where M.MovieTitle like '%'+@MovieTitle+'%'
 go
-exec SelectedMovie 'Avatar'
+exec filteredMovieTitle 'vat'
+
+drop procedure if exists filteredDurationBoth
+go
+create procedure filteredDurationBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@durationG int,
+@durationL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.Duration>@durationG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.Duration<@durationL
+go
+exec filteredDurationBoth @OperatorGreater='>',  @durationG=120, @OperatorLesser='<',  @durationL=170
+
+drop procedure if exists filteredDuration
+go
+create procedure filteredDuration
+@Operator nchar(1),
+@duration int
+as
+select *
+from group13proj.Movie M
+where  (@Operator ='<' and M.Duration<@duration) or (@Operator ='>' and M.Duration>@duration)
+go
+exec filteredDuration @Operator='<',  @duration=120
+exec filteredDuration @Operator='>',  @duration=120
+
+drop procedure if exists filteredRatingBoth
+go
+create procedure filteredRatingBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@ratingG int,
+@ratingL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.Rating>@ratingG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.Rating<@ratingL
+go
+exec filteredRatingBoth @OperatorGreater='>',  @ratingG=5, @OperatorLesser='<',  @ratingL=7
+
+drop procedure if exists filteredRating
+go
+create procedure filteredRating
+@Operator nchar(1),
+@rating int
+as
+select *
+from group13proj.Movie M
+where  (@Operator ='<' and M.Rating<@rating) or (@Operator ='>' and M.Rating>@rating)
+go
+exec filteredRating @Operator='<',  @rating=5
+exec filteredRating @Operator='>',  @rating=8
+
+drop procedure if exists filteredYearBoth
+go
+create procedure filteredYearBoth
+@OperatorGreater nchar(1),
+@OperatorLesser nchar(1),
+@yearG int,
+@yearL int
+as
+select *
+from group13proj.Movie M
+where  @operatorGreater ='>' and M.ReleaseYear>@yearG
+intersect
+select *
+from group13proj.Movie M
+where @OperatorLesser='<' and M.ReleaseYear<@yearL
+go
+exec filteredYearBoth @OperatorGreater='>',  @yearG=2000, @OperatorLesser='<',  @yearL=2005
+
+drop procedure if exists filteredYear
+go
+create procedure filteredYear
+@Operator nchar(1),
+@year int
+as
+select *
+from group13proj.Movie M
+where  (@Operator ='<' and M.ReleaseYear<@year) or (@Operator ='>' and M.ReleaseYear>@year)
+go
+exec filteredYear @Operator='<',  @year=1999
+exec filteredYear @Operator='>',  @year=1998
+
+--takes one genreId at a time
+drop procedure if exists filterGenres
+go
+create procedure filterGenres
+@id nvarchar(50)
+as
+select *
+from group13proj.Movie M
+where M.GenreID like '%'+', '+@id+','+'%'
+--where M.GenreID in( string_split (@listofIds, ',')as N on '%'+N.value+'%' like M.GenreID
+
+exec filterGenres '2'
+
+
+--combined filers
+
+drop procedure if exists allFilters
+go
+create procedure allfilters
+@genreId nvarchar(50)='%',
+@duration int='%',
+@doperator nchar(1)=null,
+@rating float='%',
+@roperator nchar(1)=null,
+@year int='%',
+@yoperator nchar(1)=null,
+@movietitle nvarchar(255)='%'
+as
+select *
+from group13proj.Movie M
+where M.GenreID like '%'+', '+@genreId+','+'%' and  ((@yoperator ='<' and M.ReleaseYear<@year)
+or (@yoperator ='>' and M.ReleaseYear>@year)) and ((@doperator ='<' and M.Duration<@duration)
+or (@doperator ='>' and M.Duration>@duration)) and ((@roperator ='<' and M.Rating<@rating)
+or (@roperator ='>' and M.Rating>@rating)) and M.MovieTitle like '%'+@movietitle+'%'
+go
+exec allFilters
+@genreId='14',
+@duration =120,
+@doperator ='>',
+@rating = 5.5,
+@roperator ='>',
+@year =2000,
+@yoperator ='>',
+@movietitle='vat'
+
+
+
+drop procedure if exists rentMovie
 go
 
- 
+create procedure rentMovie
+@title NVarChar(255), @email NvarChar(64)
+as
+Insert group13proj.Rental(InventoryID, AccountID)
+Select Top(1)
+	    I.InventoryID, a.AccountID
+from group13proj.Movie M
+	inner join group13proj.Inventory I on I.MovieID = M.MovieID and i.Rented = 0
+	inner join group13proj.Account A on a.Email = @email
+where M.MovieTitle = @title;
 
---3. Renting movies: enters customers email, movie title, no of copies, searches for movies and chooses one at a time, check how many copies available,
---update rentals with user info and movie info, update no of copies. 
+
+declare @rID int = Scope_Identity();
+
+select r.DueDate
+from group13proj.Rental r
+where r.RentalID = @rID
+go
 
 
 --This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
@@ -196,7 +345,7 @@ go
 --filtering for the movie name is going to be done on the front end
 
 drop procedure if exists rentMovie
-go 
+go
 
 create procedure rentMovie
 @title NVarChar(255), @email NvarChar(64)
