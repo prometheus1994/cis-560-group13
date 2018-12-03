@@ -43,7 +43,10 @@ namespace PhilsRentals.Views
         {
             List<Movie> movies = new List<Movie>();
             movies = _mwc.initDisp();
-
+            uxListBoxMovies.DataSource = movies;
+            uxListBoxMovies.DisplayMember = "title";
+            uxListBoxMovies.DisplayMember = "count";
+            uxListBoxMovies.ValueMember = "count";
 
         }
 

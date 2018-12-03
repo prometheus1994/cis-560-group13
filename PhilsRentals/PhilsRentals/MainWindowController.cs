@@ -396,8 +396,8 @@ namespace PhilsRentals
     //this class might be useful for showing the movies in the rental page or browse movie page, idk anymore though
     public class Movie
     {
-        public string title;
-        public int count;
+        public string title { get; set; }
+        public int count { get; set; }
         public Movie(string t, int c)
         {
             title = t;
