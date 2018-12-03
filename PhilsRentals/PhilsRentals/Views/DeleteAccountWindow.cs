@@ -10,12 +10,22 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class DeleteAccountWindow : UserControl, IWindow
+    public partial class DeleteAccountWindow : UserControl
     {
-        public IMainWindowController mwc = new MainWindowController();
-        public DeleteAccountWindow()
+        /// <summary>
+        /// Handle to the MainWindowController.
+        ///
+        /// This class will only use _mwc.DeleteAccount()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// </summary>
+        IMainWindowController _mwc;
+
+        public DeleteAccountWindow(IMainWindowController mwc)
         {
             InitializeComponent();
+            _mwc = mwc;
         }
 
         private void uxTextboxEmail_TextChanged(object sender, EventArgs e)

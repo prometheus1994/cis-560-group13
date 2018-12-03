@@ -65,7 +65,6 @@
     <Compile Include="Views\AddMovieWindow.Designer.cs">
       <DependentUpon>AddMovieWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\IWindow.cs" />
     <Compile Include="Views\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

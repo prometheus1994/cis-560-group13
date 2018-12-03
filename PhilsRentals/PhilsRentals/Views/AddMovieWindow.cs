@@ -11,12 +11,22 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class AddMovieWindow : UserControl, IWindow
+    public partial class AddMovieWindow : UserControl
     {
-        public IMainWindowController mwc = new MainWindowController();
-        public AddMovieWindow()
+        /// <summary>
+        /// Handle to the MainWindowController.
+        ///
+        /// This class will only use _mwc.AddMovie()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// </summary>
+        IMainWindowController _mwc;
+
+        public AddMovieWindow(IMainWindowController mwc)
         {
             InitializeComponent();
+            _mwc = mwc;
         }
 
         private void uxFieldsChanged(object sender, EventArgs e)
@@ -32,7 +42,7 @@ namespace PhilsRentals.Views
             int movieYear = Convert.ToInt32(uxNumericUpDownYear.Value);
             int movieDuration = Convert.ToInt32(uxNumericUpDownDuration.Value);
             double movieRating = Convert.ToDouble(uxNumericUpDownRating.Value);
-            
+
             string movieGenres = "";
             foreach (int indexChecked in uxCheckedListBoxMovieGenre.CheckedIndices)
             {
@@ -52,6 +62,6 @@ namespace PhilsRentals.Views
                 MessageBox.Show("Process Complete.");
             else
                 MessageBox.Show("Process Failed");
-        }        
+        }
     }
 }

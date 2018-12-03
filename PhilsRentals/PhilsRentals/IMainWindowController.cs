@@ -95,6 +95,12 @@ namespace PhilsRentals
         bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName);
 
         /// <summary>
+        /// Gets all rentable movies in inventory.
+        /// </summary>
+        /// <returns>Rentable movies and their inventory counts</returns>
+        List<string> GetRentableMovies();
+
+        /// <summary>
         /// Rents a movie for a given account.
         /// </summary>
         /// <param name="email">Email of the account</param>
