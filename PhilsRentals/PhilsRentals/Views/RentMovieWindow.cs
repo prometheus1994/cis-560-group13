@@ -42,7 +42,7 @@ namespace PhilsRentals.Views
         private void AddMovies()
         {
             List<Movie> movies = new List<Movie>();
-            movies = mwc.initDisp();
+            movies = _mwc.initDisp();
 
 
         }

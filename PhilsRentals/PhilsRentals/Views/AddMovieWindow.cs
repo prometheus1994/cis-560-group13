@@ -49,14 +49,14 @@ namespace PhilsRentals.Views
                 movieGenres += (indexChecked + 1).ToString() + ",";
             }
             movieGenres = movieGenres.Remove(movieGenres.Length - 1);
-            bool ret = mwc.checkAddMovie(movieTitle, movieYear);
+            bool ret = _mwc.checkAddMovie(movieTitle, movieYear);
             if(ret)
             {
-                ret = mwc.AddInventory(movieTitle, movieYear);
+                ret = _mwc.AddInventory(movieTitle, movieYear);
             }
             else
             {
-                ret = mwc.AddMovie(movieTitle, movieGenres, movieYear, movieDuration, movieRating);
+                ret = _mwc.AddMovie(movieTitle, movieGenres, movieYear, movieDuration, movieRating);
             }
             if (ret)
                 MessageBox.Show("Process Complete.");

@@ -100,7 +100,7 @@ namespace PhilsRentals.Views
             {
                 email = uxTextBoxSearchEmail.Text;
             }
-            string[] account_info = mwc.GetAccountInformation(email);
+            string[] account_info = _mwc.GetAccountInformation(email);
             if (account_info[0].Equals("error"))
             {
                 MessageBox.Show("Account not in system. Please try a different Email address.");
