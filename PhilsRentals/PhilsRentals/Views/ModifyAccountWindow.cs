@@ -11,19 +11,17 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class ModifyAccountWindow : UserControl
+    public partial class ModifyAccountWindow : UserControl, IWindow
     {
         private int cnt = 0;
-        /// <summary>
-        /// Handle to the MainWindowController.
-        /// </summary>
-        IMainWindowController _mwc;
 
-        public ModifyAccountWindow(IMainWindowController mwc)
+        public IMainWindowController mwc = new MainWindowController();
+        //public IMainWindowController iWindowController = new IMainWindowController();
+        public ModifyAccountWindow()
         {
             InitializeComponent();
-            _mwc = mwc;
         }
+
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)
         {
@@ -45,7 +43,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
         {
-            bool ret = _mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
+            bool ret = mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
             if(ret)
             {
                 MessageBox.Show("Update processed successfully");
@@ -68,9 +66,9 @@ namespace PhilsRentals.Views
             uxButtonUpdateInfo.Enabled = false;
         }
 
-        /*
+        /* 
          * create table group13proj.Account
-         *
+         * 
          * (
 	            AccountID int not null identity(1,1) primary key,
 	            FirstName NVARCHAR(32) not null,
@@ -126,3 +124,4 @@ namespace PhilsRentals.Views
             }
     }
 }
+ 

@@ -11,40 +11,22 @@ using System.Data.SqlClient;
 
 namespace PhilsRentals.Views
 {
-    public partial class RentMovieWindow : UserControl
+    public partial class RentMovieWindow : UserControl, IWindow
     {
-        /// <summary>
-        /// Handle to get the selected account from the MainWindow.
-        /// </summary>
-        AccountSelector _GetSelectedAccount;
-
-        /// <summary>
-        /// Handle to the MainWindowController.
-        ///
-        /// This class will only use _mwc.GetRentableMovies() and _mwc.RentMovie()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
-        ///
-        /// Use _GetSelectedAccount to get selected email
-        /// </summary>
-        IMainWindowController _mwc;
-
-        public RentMovieWindow(IMainWindowController mwc, AccountSelector GetSelectedAccount)
+        public IMainWindowController mwc = new MainWindowController();
+        public RentMovieWindow()
         {
             InitializeComponent();
-            _mwc = mwc;
-            _GetSelectedAccount = GetSelectedAccount;
             AddMovies();
         }
-
+        
         //not working yet, the information is coming in from the database but not being displayed right within the listbox
         private void AddMovies()
         {
             List<Movie> movies = new List<Movie>();
             movies = mwc.initDisp();
-
-
+           
+            
         }
 
         private void uxListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +46,7 @@ namespace PhilsRentals.Views
 
         private void uxButtonRentMovie_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
