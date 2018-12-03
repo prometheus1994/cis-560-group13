@@ -270,6 +270,36 @@ where M.GenreID like '%'+', '+@id+','+'%'
 exec filterGenres '2'
 
 
+--combined filers 
+				     
+drop procedure if exists allFilters
+go
+create procedure allfilters
+@genreId nvarchar(50)='%',
+@duration int='%',
+@doperator nchar(1)=null,
+@rating float='%',
+@roperator nchar(1)=null,
+@year int='%',
+@yoperator nchar(1)=null,
+@movietitle nvarchar(255)='%'
+as
+select *
+from group13proj.Movie M 
+where M.GenreID like '%'+', '+@genreId+','+'%' and  ((@yoperator ='<' and M.ReleaseYear<@year) 
+or (@yoperator ='>' and M.ReleaseYear>@year)) and ((@doperator ='<' and M.Duration<@duration) 
+or (@doperator ='>' and M.Duration>@duration)) and ((@roperator ='<' and M.Rating<@rating) 
+or (@roperator ='>' and M.Rating>@rating)) and M.MovieTitle like '%'+@movietitle+'%'
+go
+exec allFilters 
+@genreId='14',
+@duration =120,
+@doperator ='>',
+@rating = 5.5,
+@roperator ='>',
+@year =2000,
+@yoperator ='>',
+@movietitle='vat'
 
 
 
