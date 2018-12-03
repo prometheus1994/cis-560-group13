@@ -301,6 +301,66 @@ exec allFilters
 @yoperator ='>',
 @movietitle='vat'
 
+ --filtering with both variables
+    
+drop procedure if exists allFilters2
+go
+create procedure allfilters2
+@genreId nvarchar(50)='%',
+@durationG int=null,
+@durationL int=null,
+@doperatorG nchar(1)=null,
+@doperatorL nchar(1)=null,
+@ratingG float=null,
+@roperatorG nchar(1)=null,
+@ratingL float=null,
+@roperatorL nchar(1)=null,
+@yearG int=null,
+@yoperatorG nchar(1)=null,
+@yearL int=null,
+@yoperatorL nchar(1)=null,
+@movietitle nvarchar(255)='%'
+as
+select *
+from group13proj.Movie M 
+where M.GenreID like '%'+', '+@genreId+','+'%' and M.MovieTitle like '%'+@movietitle+'%'
+intersect
+select *
+from group13proj.Movie M
+where (@yoperatorG ='>' and M.ReleaseYear>@yearG)
+intersect
+select *
+from group13proj.Movie M
+where  (@yoperatorL='<' and M.ReleaseYear<@yearL)
+intersect
+select *
+from group13proj.Movie M
+where  @roperatorG ='>' and M.Rating>@ratingG
+intersect
+select *
+from group13proj.Movie M
+where @roperatorL='<' and M.Rating<@ratingL
+intersect
+select *
+from group13proj.Movie M
+where  @doperatorG ='>' and M.Duration>@durationG
+intersect
+select *
+from group13proj.Movie M
+where @doperatorL='<' and M.Duration<@durationL
+go
+exec allFilters2 
+@genreId='2',
+@durationG =120,
+@durationL=200,
+@doperatorG ='>',
+@doperatorL='<',
+@ratingG = 3,
+@ratingL = 10,
+@roperatorG ='>',
+@roperatorL ='<',
+@yearG =1990,
+@yoperatorG ='>'
 
 
 drop procedure if exists rentMovie
