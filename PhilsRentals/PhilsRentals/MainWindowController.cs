@@ -98,7 +98,31 @@ namespace PhilsRentals
         /// <returns>Whether the account was added successfully or not</returns>
         public bool CreateAccount(string firstName, string lastName, string phoneNumber, string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+
+                    //  Do Work
+                    SqlCommand cmd = new SqlCommand("CreateAccount", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("FirstName", firstName);
+                    cmd.Parameters.AddWithValue("LastName", lastName);
+                    cmd.Parameters.AddWithValue("PhoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("Email", email);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;
+            
         }
 
         /// <summary>
@@ -108,7 +132,28 @@ namespace PhilsRentals
         /// <returns>Whether the account was deleted successfully or not</returns>
         public bool DeleteAccount(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+
+                    //  Do Work
+                    SqlCommand cmd = new SqlCommand("DeleteAccount", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Email", email);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+
         }
 
         /// <summary>

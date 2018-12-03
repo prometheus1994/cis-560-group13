@@ -12,6 +12,7 @@ namespace PhilsRentals.Views
 {
     public partial class DeleteAccountWindow : UserControl, IWindow
     {
+        public IMainWindowController mwc = new MainWindowController();
         public DeleteAccountWindow()
         {
             InitializeComponent();
@@ -30,6 +31,12 @@ namespace PhilsRentals.Views
         private void uxButtonAccept_Click(object sender, EventArgs e)
         {
             string email = uxTextboxEmail.Text;
+            if (mwc.DeleteAccount(email))
+                MessageBox.Show("Account Deleted Successfully.");
+            else
+                MessageBox.Show("There was an error deleting the account");
+            uxTextboxEmail.Text = "";
+            uxButtonAccept.Enabled = false;
         }
     }
 }

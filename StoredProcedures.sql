@@ -45,6 +45,7 @@ AS
 Delete A
 from group13proj.Account A
 where A.Email = @Email
+go
 --example execution
 exec DeleteAccount 'john@idk.com'
 select * from group13proj.Account
@@ -182,7 +183,7 @@ drop procedure if exists initDispRental
 go
 
 create procedure initDispRental As
-Select M.MovieTitle, count(distinct i.InventoryID) as [Number of copies]
+Select M.MovieTitle, count(distinct i.InventoryID) as [copies]
 from group13proj.Inventory I
 	inner join group13proj.Movie M on m.MovieID = i.MovieID
 where i.Rented = 0
