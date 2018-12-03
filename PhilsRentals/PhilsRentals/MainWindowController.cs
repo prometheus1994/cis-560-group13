@@ -288,7 +288,7 @@ namespace PhilsRentals
         /// <param name="firstName">Modified first name</param>
         /// <param name="lastName">Modified last name</param>
         /// <returns>Whether the modification was successful or not</returns>
-        public bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName)
+        public bool ModifyAccountInformation(string OldEmail, string NewEmail, string phoneNumber, string firstName, string lastName)
         {
             try
             {
@@ -298,7 +298,8 @@ namespace PhilsRentals
 
                     SqlCommand cmd = new SqlCommand("ModifyAccount", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("Email", email);
+                    cmd.Parameters.AddWithValue("NewEmail", NewEmail);
+                    cmd.Parameters.AddWithValue("OldEmail", OldEmail);
                     cmd.Parameters.AddWithValue("FirstName", firstName);
                     cmd.Parameters.AddWithValue("LastName", lastName);
                     cmd.Parameters.AddWithValue("PhoneNumber", phoneNumber);
@@ -310,7 +311,7 @@ namespace PhilsRentals
                     conn.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }

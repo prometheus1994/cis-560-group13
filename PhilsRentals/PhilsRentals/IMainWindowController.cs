@@ -92,7 +92,7 @@ namespace PhilsRentals
         /// <param name="firstName">Modified first name</param>
         /// <param name="lastName">Modified last name</param>
         /// <returns>Whether the modification was successful or not</returns>
-        bool ModifyAccountInformation(string email, string phoneNumber, string firstName, string lastName);
+        bool ModifyAccountInformation(string OldEmail, string NewEmail, string phoneNumber, string firstName, string lastName);
 
         /// <summary>
         /// Gets all rentable movies in inventory.

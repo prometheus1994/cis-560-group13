@@ -45,7 +45,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonUpdateInfo_Click(object sender, EventArgs e)
         {
-            bool ret = _mwc.ModifyAccountInformation(uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
+            bool ret = _mwc.ModifyAccountInformation(uxTextBoxSearchEmail.Text, uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
             if(ret)
             {
                 MessageBox.Show("Update processed successfully");
