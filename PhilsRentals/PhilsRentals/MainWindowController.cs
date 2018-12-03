@@ -91,6 +91,8 @@ namespace PhilsRentals
                         {
                             return true;
                         }
+                        else
+                            return false;
                     }
                 }
             }
@@ -98,7 +100,7 @@ namespace PhilsRentals
             {
                 return false;
             }
-            return true;
+           
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ CREATE PROCEDURE AddMovie
    
 AS
 Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-values(@MovieName, convert(DateTime,@Year), @duration, @rating,@genreID)
+values(@MovieName, @Year, @duration, @rating,@genreID)
 GO
 --example execution
 exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3'
@@ -267,10 +267,10 @@ create procedure checkMovie
 as
 Select m.MovieTitle
 from group13proj.Movie M
-where m.MovieTitle = @Title and year(m.ReleaseYear) = @year
+where m.MovieTitle = @Title and (m.ReleaseYear) = @year
 go
 
-exec checkMovie 'Avatar', 2009
+exec checkMovie 'Avatar', 2018
 
 
 drop procedure if exists AddInventory
@@ -282,7 +282,7 @@ as
 Insert group13proj.Inventory(MovieID)
 Select m.MovieID
 from group13proj.Movie M
-where m.MovieTitle = @Title and Year(m.ReleaseYear) = @Year
+where m.MovieTitle = @Title and (m.ReleaseYear) = @Year
 go
 
 select *
@@ -292,4 +292,4 @@ order by i.MovieID
 
 select *
 from group13proj.Inventory i
-where i.MovieID = 67
+where i.MovieID = 996

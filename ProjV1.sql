@@ -25,7 +25,7 @@ order by GenreID asc
 create table group13Proj.Movie(
 	MovieID int not null identity(1,1) primary key,
 	MovieTitle NVARCHAR(255) not null,
-	ReleaseYear datetime not null,
+	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
 	GenreID nvarchar(100)  null,
@@ -38,7 +38,7 @@ create table group13Proj.Movie(
 
 --populating the group13proj.Movie table
 insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-select MovieTitle, CAST(CAST(CAST(ReleaseYear AS INT) AS VARCHAR(8)) AS DATE), Duration, Rating, Genre_ID_ForMovie
+select MovieTitle, CAST(ReleaseYear AS INT), Duration, Rating, Genre_ID_ForMovie
 from dbo.MovieDatabase
 
 select* from group13proj.Movie
