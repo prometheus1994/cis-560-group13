@@ -16,6 +16,8 @@ namespace PhilsRentals
         /// <returns>Form window to display</returns>
         IWindow GetOperationWindow(string operation);
 
+         List<Movie> initDisp();
+
         /// <summary>
         /// Adds a movie to the database.
         /// </summary>

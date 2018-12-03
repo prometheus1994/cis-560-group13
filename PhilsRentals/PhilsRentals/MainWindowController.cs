@@ -140,20 +140,32 @@ namespace PhilsRentals
 
                 // if the number of rows returned is not 1, then the SQL procedure failed.
                 // we only need to grab 1 row because one row represents 1 account.
-               // if (row_check != 1)
+                // if (row_check != 1)
                 //{
-                  //  throw new Exception("Invalid Procedure Call");
+                //  throw new Exception("Invalid Procedure Call");
                 //}
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    if (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        account_info[0] = ((reader.GetString(reader.GetOrdinal("Email"))));
-                        account_info[1] = (reader["PhoneNumber"].ToString());
-                        account_info[2] = (reader["FirstName"].ToString());
-                        account_info[3] = (reader["LastName"].ToString());
+                        if (reader.Read())
+                        {
+                            account_info[0] = ((reader.GetString(reader.GetOrdinal("Email"))));
+                            account_info[1] = (reader["PhoneNumber"].ToString());
+                            account_info[2] = (reader["FirstName"].ToString());
+                            account_info[3] = (reader["LastName"].ToString());
+                        }
+                        else
+                        {
+                            account_info[0] = "error";
+                        }
                     }
+                }
+                catch(Exception e)
+                {
+                    account_info[0] = "error";
+                    conn.Close();
+                    return account_info;
                 }
                 conn.Close();
             }
@@ -211,6 +223,41 @@ namespace PhilsRentals
             throw new NotImplementedException();
         }
 
+        
+        /// <summary>
+        /// gets the initial listing of all the movies that are available to be rented in the database
+        /// </summary>
+        /// <returns>List of movie objects</returns>
+        public List<Movie> initDisp()
+        {
+            string temp = "";
+            List<Movie> movies = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = _connection;
+
+
+                //  Do Work
+                SqlCommand cmd = new SqlCommand("initDispRental", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                
+               
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        temp = (reader.GetString(reader.GetOrdinal("MovieTitle")));
+                        movies.Add(new Movie(temp, (reader.GetInt32(reader.GetOrdinal("copies")))));
+                    } 
+               }
+               
+                conn.Close();
+                return movies;
+            }
+        }
+
         /// <summary>
         /// Gets the rented movies of an account
         /// </summary>
@@ -231,4 +278,16 @@ namespace PhilsRentals
             throw new NotImplementedException();
         }
     }
+
+    public class Movie
+    {
+        public string title;
+        public int count;
+        public Movie(string t, int c)
+        {
+            title = t;
+            count = c;
+        }
+    }
+
 }

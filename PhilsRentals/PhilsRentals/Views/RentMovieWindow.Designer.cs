@@ -91,9 +91,9 @@
             // uxListBoxMovies
             // 
             this.uxListBoxMovies.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxListBoxMovies.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.uxListBoxMovies.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.uxListBoxMovies.Enabled = false;
-            this.uxListBoxMovies.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.uxListBoxMovies.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxListBoxMovies.ForeColor = System.Drawing.Color.White;
             this.uxListBoxMovies.FormattingEnabled = true;
             this.uxListBoxMovies.HorizontalScrollbar = true;

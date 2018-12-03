@@ -13,6 +13,7 @@ namespace PhilsRentals.Views
 {
     public partial class ModifyAccountWindow : UserControl, IWindow
     {
+        private int cnt = 0;
 
         public IMainWindowController mwc = new MainWindowController();
         //public IMainWindowController iWindowController = new IMainWindowController();
@@ -51,6 +52,18 @@ namespace PhilsRentals.Views
             {
                 MessageBox.Show("Error With Update");
             }
+            uxTextBoxFirstName.Text = "";
+            uxTextBoxLastName.Text = "";
+            uxTextBoxNewEmail.Text = "";
+            uxTextBoxPhoneNumber.Text = "";
+            uxTextBoxSearchEmail.Text = "";
+            uxTextBoxSearchEmail.Enabled = true;
+            uxTextBoxPhoneNumber.Enabled = false;
+            uxTextBoxNewEmail.Enabled = false;
+            uxTextBoxFirstName.Enabled = false;
+            uxTextBoxLastName.Enabled = false;
+            uxButtonSearchEmail.Enabled = true;
+            uxButtonUpdateInfo.Enabled = false;
         }
 
         /* 
@@ -71,24 +84,44 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonSearchEmail_Click(object sender, EventArgs e)
         {
+            string email = "";
             // [0] = AccountID
             // [1] = FirstName
             // ...
             // [4] = Email
-            string email = uxTextBoxSearchEmail.Text.Substring(0, uxTextBoxSearchEmail.Text.Length-2);
+            if (cnt == 0)
+            {
+                email = uxTextBoxSearchEmail.Text.Substring(0, uxTextBoxSearchEmail.Text.Length-2);
+                cnt++;
+            }
+            else
+            {
+                email = uxTextBoxSearchEmail.Text;
+            }
             string[] account_info = mwc.GetAccountInformation(email);
-            uxTextBoxFirstName.Enabled = true;
-            uxTextBoxPhoneNumber.Enabled = true;
-            uxTextBoxNewEmail.Enabled = true;
-            uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
-            uxTextBoxLastName.Enabled = true;
-            uxTextBoxNewEmail.Text = account_info[0];
-            uxTextBoxLastName.Text = account_info[3];
-            uxTextBoxFirstName.Text = account_info[2];
-            uxTextBoxPhoneNumber.Text = account_info[1];
-            // grab the existing email from the TextBoxSearchEmail
-            // uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
-        }
+            if (account_info[0].Equals("error"))
+            {
+                MessageBox.Show("Account not in system. Please try a different Email address.");
+            }
+            else
+            {
+
+
+                uxTextBoxFirstName.Enabled = true;
+                uxTextBoxPhoneNumber.Enabled = true;
+                uxTextBoxNewEmail.Enabled = true;
+                uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
+                uxTextBoxLastName.Enabled = true;
+                uxTextBoxSearchEmail.Enabled = false;
+                uxButtonSearchEmail.Enabled = false;
+                uxTextBoxNewEmail.Text = account_info[0];
+                uxTextBoxLastName.Text = account_info[3];
+                uxTextBoxFirstName.Text = account_info[2];
+                uxTextBoxPhoneNumber.Text = account_info[1];
+                // grab the existing email from the TextBoxSearchEmail
+                // uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
+            }
+            }
     }
 }
  

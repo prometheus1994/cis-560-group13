@@ -13,15 +13,20 @@ namespace PhilsRentals.Views
 {
     public partial class RentMovieWindow : UserControl, IWindow
     {
+        public IMainWindowController mwc = new MainWindowController();
         public RentMovieWindow()
         {
             InitializeComponent();
             AddMovies();
         }
-
+        
+        //not working yet, the information is coming in from the database but not being displayed right within the listbox
         private void AddMovies()
         {
-
+            List<Movie> movies = new List<Movie>();
+            movies = mwc.initDisp();
+           
+            
         }
 
         private void uxListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,24 +46,7 @@ namespace PhilsRentals.Views
 
         private void uxButtonRentMovie_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection())
-            {
-                conn.ConnectionString = "Server=[server_name];Database=[database_name];Trusted_Connection=true";
-                
-
-                //  Do Work
-                SqlCommand cmd = new SqlCommand("AddMovie", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "MovieTitle";
-                param.Value = ""; // Get Value
-                cmd.Parameters.Add(param);
-
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-            }
+            
         }
     }
 }
