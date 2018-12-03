@@ -10,17 +10,27 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public partial class CreateAccountWindow : UserControl, IWindow
+    public partial class CreateAccountWindow : UserControl
     {
-        public IMainWindowController mwc = new MainWindowController();
+        /// <summary>
+        /// Handle to the MainWindowController.
+        ///
+        /// This class will only use _mwc.CreateAccount()
+        /// Refer to these methods in the controller for their parameters
+        /// These methods need to be implemented
+        /// The return types may need to be changed (If you change them you must also change them in the interface)
+        /// </summary>
+        IMainWindowController _mwc;
+
         string firstName;
         string lastName;
         string email;
         string phoneNumber;
-        public CreateAccountWindow()
+
+        public CreateAccountWindow(IMainWindowController mwc)
         {
             InitializeComponent();
-            
+            _mwc = mwc;
         }
 
         /// <summary>

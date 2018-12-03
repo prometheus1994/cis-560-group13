@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PhilsRentals
 {
-    public partial class MainWindow : Form, IWindow
+    public partial class MainWindow : Form
     {
         /// <summary>
         /// MainWindowController handle.
@@ -19,12 +19,17 @@ namespace PhilsRentals
         private IMainWindowController _mwc;
 
         /// <summary>
-        /// Dictionary of menu selection panels.
+        /// Dictionary of operation windows.
         /// </summary>
-        private Dictionary<string, Panel> _menuPanels = new Dictionary<string, Panel>();
+        private Dictionary<string, UserControl> _windows;
 
         /// <summary>
-        /// Email of the account selected
+        /// Dictionary of menu selection panels.
+        /// </summary>
+        private Dictionary<string, Panel> _menuPanels;
+
+        /// <summary>
+        /// Email of the account selected.
         /// </summary>
         private string _account = "Select Account";
 
@@ -44,9 +49,20 @@ namespace PhilsRentals
         /// </summary>
         private void InitializeUx()
         {
+            _windows = new Dictionary<string, UserControl>();
+            _windows.Add("Browse Movies", new BrowseMovieWindow(_mwc));
+            _windows.Add("Rent Movies", new RentMovieWindow(_mwc, this.GetSelectedAccount));
+            _windows.Add("Return Movies", new ReturnMovieWindow(_mwc, this.GetSelectedAccount));
+            _windows.Add("Create Account", new CreateAccountWindow(_mwc));
+            _windows.Add("Modify Account", new ModifyAccountWindow(_mwc));
+            _windows.Add("Delete Account", new DeleteAccountWindow(_mwc));
+            _windows.Add("Add Movie", new AddMovieWindow(_mwc));
+
             /* Add menu selection panels to the dictionary of menu selection panels */
+            _menuPanels = new Dictionary<string, Panel>();
             _menuPanels.Add("Browse Movies", uxPanelBrowseMovie);
             _menuPanels.Add("Rent Movies", uxPanelRentMovie);
+            _menuPanels.Add("Return Movies", uxPanelReturnMovie);
             _menuPanels.Add("Create Account", uxPanelCreateAccount);
             _menuPanels.Add("Modify Account", uxPanelModifyAccount);
             _menuPanels.Add("Delete Account", uxPanelDeleteAccount);
@@ -54,6 +70,14 @@ namespace PhilsRentals
 
             /* Start program with default menu */
             uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
+        }
+
+        /// <summary>
+        /// Get selected account.
+        /// </summary>
+        public string GetSelectedAccount()
+        {
+            return _account;
         }
 
         /// <summary>
@@ -80,25 +104,25 @@ namespace PhilsRentals
 
             if (!selectedMenu.Equals(_account))
             {
-                IWindow window = _mwc.GetOperationWindow(selectedMenu);
+                Control window = _windows[selectedMenu];
                 if (window != null)
                 {
-                    Control c = (Control)window;
-                    c.Dock = DockStyle.Fill;
-                    uxPanelMain.Controls.Add(c);
+                    window.Dock = DockStyle.Fill;
+                    uxPanelMain.Controls.Add(window);
                 }
             }
             else
             {
                 if (_account.Equals("Select Account"))
                 {
-                    string email = GetAccount();
+                    string email = ObtainAccount();
                     if (email.Length > 0 && email.Contains("@"))
                     {
                         uxPanelSelectAccount.Visible = true;
                         uxButtonSelectAccount.Text = email;
                         _account = email;
                         uxButtonRentMovie.Enabled = true;
+                        uxButtonReturnMovie.Enabled = true;
                     }
                     else
                     {
@@ -116,13 +140,14 @@ namespace PhilsRentals
                     uxButtonSelectAccount.Text = "Select Account";
                     _account = "Select Account";
                     uxButtonRentMovie.Enabled = false;
+                    uxButtonReturnMovie.Enabled = false;
                     uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
                 }
                 
             }
         }
 
-        private string GetAccount()
+        private string ObtainAccount()
         {
             Form prompt = new Form() {
                 BackColor = System.Drawing.Color.White, Width = 350, Height = 150, Text = "Select Account", MaximizeBox = false
