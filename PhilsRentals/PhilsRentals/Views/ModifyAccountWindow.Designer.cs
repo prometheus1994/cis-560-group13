@@ -80,7 +80,7 @@
             this.uxButtonUpdateInfo.Location = new System.Drawing.Point(304, 467);
             this.uxButtonUpdateInfo.Name = "uxButtonUpdateInfo";
             this.uxButtonUpdateInfo.Size = new System.Drawing.Size(200, 40);
-            this.uxButtonUpdateInfo.TabIndex = 1;
+            this.uxButtonUpdateInfo.TabIndex = 6;
             this.uxButtonUpdateInfo.Text = "Update";
             this.uxButtonUpdateInfo.UseVisualStyleBackColor = false;
             this.uxButtonUpdateInfo.Click += new System.EventHandler(this.uxButtonUpdateInfo_Click);
@@ -118,7 +118,7 @@
             this.uxTextBoxNewEmail.MaxLength = 150;
             this.uxTextBoxNewEmail.Name = "uxTextBoxNewEmail";
             this.uxTextBoxNewEmail.Size = new System.Drawing.Size(200, 43);
-            this.uxTextBoxNewEmail.TabIndex = 4;
+            this.uxTextBoxNewEmail.TabIndex = 2;
             this.uxTextBoxNewEmail.Tag = "Current email";
             this.uxTextBoxNewEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxNewEmail.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
@@ -145,7 +145,7 @@
             this.uxTextBoxFirstName.MaxLength = 150;
             this.uxTextBoxFirstName.Name = "uxTextBoxFirstName";
             this.uxTextBoxFirstName.Size = new System.Drawing.Size(200, 43);
-            this.uxTextBoxFirstName.TabIndex = 6;
+            this.uxTextBoxFirstName.TabIndex = 4;
             this.uxTextBoxFirstName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxFirstName.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
@@ -170,7 +170,7 @@
             this.uxTextBoxPhoneNumber.MaxLength = 150;
             this.uxTextBoxPhoneNumber.Name = "uxTextBoxPhoneNumber";
             this.uxTextBoxPhoneNumber.Size = new System.Drawing.Size(200, 43);
-            this.uxTextBoxPhoneNumber.TabIndex = 8;
+            this.uxTextBoxPhoneNumber.TabIndex = 3;
             this.uxTextBoxPhoneNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxPhoneNumber.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
@@ -193,8 +193,7 @@
             this.uxTextBoxSearchEmail.MaxLength = 150;
             this.uxTextBoxSearchEmail.Name = "uxTextBoxSearchEmail";
             this.uxTextBoxSearchEmail.Size = new System.Drawing.Size(200, 43);
-            this.uxTextBoxSearchEmail.TabIndex = 10;
-            this.uxTextBoxSearchEmail.Text = "\r\n";
+            this.uxTextBoxSearchEmail.TabIndex = 0;
             this.uxTextBoxSearchEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uxTextBoxSearchEmail.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
             // 
@@ -208,7 +207,7 @@
             this.uxButtonSearchEmail.Location = new System.Drawing.Point(304, 191);
             this.uxButtonSearchEmail.Name = "uxButtonSearchEmail";
             this.uxButtonSearchEmail.Size = new System.Drawing.Size(200, 40);
-            this.uxButtonSearchEmail.TabIndex = 11;
+            this.uxButtonSearchEmail.TabIndex = 1;
             this.uxButtonSearchEmail.Text = "Search";
             this.uxButtonSearchEmail.UseVisualStyleBackColor = false;
             this.uxButtonSearchEmail.Click += new System.EventHandler(this.uxButtonSearchEmail_Click);

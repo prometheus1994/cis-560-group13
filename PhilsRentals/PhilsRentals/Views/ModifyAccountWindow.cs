@@ -91,15 +91,7 @@ namespace PhilsRentals.Views
             // [1] = FirstName
             // ...
             // [4] = Email
-            if (cnt == 0)
-            {
-                email = uxTextBoxSearchEmail.Text.Substring(0, uxTextBoxSearchEmail.Text.Length-2);
-                cnt++;
-            }
-            else
-            {
                 email = uxTextBoxSearchEmail.Text;
-            }
             string[] account_info = _mwc.GetAccountInformation(email);
             if (account_info[0].Equals("error"))
             {

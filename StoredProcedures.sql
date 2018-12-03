@@ -267,9 +267,7 @@ create procedure checkMovie
 as
 Select m.MovieTitle
 from group13proj.Movie M
-where year(m.ReleaseYear) = @year
-group by m.movieTitle
-having @Title like m.MovieTitle
+where m.MovieTitle = @Title and year(m.ReleaseYear) = @year
 go
 
 exec checkMovie 'Avatar', 2009
@@ -290,3 +288,8 @@ go
 select *
 from group13proj.Movie i
 order by i.MovieID
+
+
+select *
+from group13proj.Inventory i
+where i.MovieID = 67

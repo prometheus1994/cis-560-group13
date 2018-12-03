@@ -25,12 +25,16 @@ order by GenreID asc
 create table group13Proj.Movie(
 	MovieID int not null identity(1,1) primary key,
 	MovieTitle NVARCHAR(255) not null,
-	ReleaseYear datetime null,
+	ReleaseYear datetime not null,
 	Duration int null,
 	Rating float,
 	GenreID nvarchar(100)  null,
 	--NumberOfCopies int not null
+	unique(MovieTitle, ReleaseYear)
 )
+
+
+
 
 --populating the group13proj.Movie table
 insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)

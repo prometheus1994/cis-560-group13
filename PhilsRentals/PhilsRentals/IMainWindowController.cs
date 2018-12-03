@@ -14,7 +14,7 @@ namespace PhilsRentals
         /// </summary>
         /// <param name="operation">Operation name</param>
         /// <returns>Form window to display</returns>
-        IWindow GetOperationWindow(string operation);
+        //IWindow GetOperationWindow(string operation);    just commenting out to test
 
         /// <summary>
         /// calls the stored procedure to add a movie to the inventory.
