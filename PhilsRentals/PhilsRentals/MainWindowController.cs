@@ -69,9 +69,107 @@ namespace PhilsRentals
         /// <param name="duration">Duration of the movie</param>
         /// <param name="rating">Rating of the movie</param>
         /// <returns>Whether the movie was added successfully or not</returns>
-        public bool AddMovie(string title, string genres, int releaseYear, int duration, float rating)
+        public bool AddMovie(string title, string genres, int releaseYear, int duration, double rating)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+
+                    //  Do Work
+                    SqlCommand cmd = new SqlCommand("AddMovie", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("MovieName", title);
+                    cmd.Parameters.AddWithValue("Year", releaseYear);
+                    cmd.Parameters.AddWithValue("duration", duration);
+                    cmd.Parameters.AddWithValue("rating", rating);
+                    cmd.Parameters.AddWithValue("genreID", genres);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    if (AddInventory(title, releaseYear) != true)
+                        throw new Exception();
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// checks the database for the movie based on the given title and releaseYear
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="releaseYear"></param>
+        /// <returns></returns>
+        public bool checkAddMovie(string title, int releaseYear)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+
+                    //  Do Work
+                    SqlCommand cmd = new SqlCommand("checkMovie", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Title", title);
+                    cmd.Parameters.AddWithValue("Year", releaseYear);
+
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Adds the movie to the inventory table
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="releaseYear"></param>
+        /// <returns></returns>
+        public bool AddInventory(string title, int releaseYear)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+
+                    //  Do Work
+                    SqlCommand cmd = new SqlCommand("AddInventory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Title", title);
+                    cmd.Parameters.AddWithValue("Year", releaseYear);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -323,7 +421,7 @@ namespace PhilsRentals
             throw new NotImplementedException();
         }
     }
-
+    //this class might be useful for showing the movies in the rental page or browse movie page, idk anymore though
     public class Movie
     {
         public string title;

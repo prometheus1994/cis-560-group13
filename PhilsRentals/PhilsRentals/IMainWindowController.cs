@@ -16,7 +16,27 @@ namespace PhilsRentals
         /// <returns>Form window to display</returns>
         IWindow GetOperationWindow(string operation);
 
-         List<Movie> initDisp();
+        /// <summary>
+        /// calls the stored procedure to add a movie to the inventory.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="releaseYear"></param>
+        /// <returns></returns>
+        bool AddInventory(string title, int releaseYear);
+
+        /// <summary>
+        /// checks the database when adding a movie to see if the movie already exists in the database
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="releaseYear"></param>
+        /// <returns></returns>
+        bool checkAddMovie(string title, int releaseYear);
+
+        /// <summary>
+        /// used to set up the initial display for the rent movie window
+        /// </summary>
+        /// <returns></returns>
+        List<Movie> initDisp();
 
         /// <summary>
         /// Adds a movie to the database.
@@ -27,7 +47,7 @@ namespace PhilsRentals
         /// <param name="duration">Duration of the movie</param>
         /// <param name="rating">Rating of the movie</param>
         /// <returns>Whether the movie was added successfully or not</returns>
-        bool AddMovie(string title, string genres, int releaseYear, int duration, float rating);
+        bool AddMovie(string title, string genres, int releaseYear, int duration, double rating);
 
         /// <summary>
         /// Gets movies that match the provided filters

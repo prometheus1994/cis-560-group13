@@ -13,6 +13,7 @@ namespace PhilsRentals.Views
 {
     public partial class AddMovieWindow : UserControl, IWindow
     {
+        public IMainWindowController mwc = new MainWindowController();
         public AddMovieWindow()
         {
             InitializeComponent();
@@ -23,36 +24,34 @@ namespace PhilsRentals.Views
             uxButtonAddMovie.Enabled = uxTextBoxMovieTitle.TextLength > 0 && uxCheckedListBoxMovieGenre.CheckedIndices.Count > 0 && uxNumericUpDownDuration.Value != 0;
         }
 
-        //Ignore the formatting for all of this. Waiting to learn how Rida needs the data. 
+        //Ignore the formatting for all of this. Waiting to learn how Rida needs the data.
+        //this part should work now but the sql needs to be fixed in order to test
         private void uxButtonAddMovie_Click(object sender, EventArgs e)
         {
-            string movieTitle = uxTextBoxMovieTitle.ToString();
+            string movieTitle = uxTextBoxMovieTitle.Text;
             int movieYear = Convert.ToInt32(uxNumericUpDownYear.Value);
             int movieDuration = Convert.ToInt32(uxNumericUpDownDuration.Value);
-            int movieRating = Convert.ToInt32(uxNumericUpDownRating.Value);
-
+            double movieRating = Convert.ToDouble(uxNumericUpDownRating.Value);
+            
             string movieGenres = "";
             foreach (int indexChecked in uxCheckedListBoxMovieGenre.CheckedIndices)
             {
                 movieGenres += (indexChecked + 1).ToString() + ",";
             }
             movieGenres = movieGenres.Remove(movieGenres.Length - 1);
-
-            string spInfo = @"Data"; //Final piece needed - possibly...
-            var cmd = new SqlCommand("New added movie information", new SqlConnection(spInfo));
-            cmd.CommandType = CommandType.Text;
-            cmd = new SqlCommand("New added movie information", new SqlConnection(spInfo));
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@param1", SqlDbType.Structured).Value = movieTitle;
-            cmd.Parameters.Add("@param2", SqlDbType.Structured).Value = movieGenres;
-            cmd.Parameters.Add("@param3", SqlDbType.Structured).Value = movieYear;
-            cmd.Parameters.Add("@param4", SqlDbType.Structured).Value = movieDuration;
-            cmd.Parameters.Add("@param5", SqlDbType.Structured).Value = movieRating;
-            cmd.Connection.Open();
-            cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
-
-            MessageBox.Show("Process Complete.");
+            bool ret = mwc.checkAddMovie(movieTitle, movieYear);
+            if(ret)
+            {
+                ret = mwc.AddInventory(movieTitle, movieYear);
+            }
+            else
+            {
+                ret = mwc.AddMovie(movieTitle, movieGenres, movieYear, movieDuration, movieRating);
+            }
+            if (ret)
+                MessageBox.Show("Process Complete.");
+            else
+                MessageBox.Show("Process Failed");
         }        
     }
 }

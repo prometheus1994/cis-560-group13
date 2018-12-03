@@ -4,17 +4,17 @@ drop procedure if exists AddMovie
 go
 CREATE PROCEDURE AddMovie
    @MovieName nvarchar(256),
-   @Year DateTime,
+   @Year int,
    @duration int,
    @rating float,
-   @genreID nvarchar(100),
-   @Copies int
+   @genreID nvarchar(100)
+   
 AS
-Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID, NumberOfCopies)
-values(@MovieName, @Year, @duration, @rating,@genreID, @Copies)
+Insert group13proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+values(@MovieName, convert(DateTime,@Year), @duration, @rating,@genreID)
 GO
 --example execution
-exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3', '2'
+exec AddMovie 'Chucky 3', '2018', '123', '3.4', '12,13,3'
 select * from group13proj.Movie
 
 --Create account: 
@@ -256,3 +256,37 @@ from group13proj.Rental R
 	inner join group13proj.Inventory I on i.InventoryID = r.InventoryID
 	inner join group13proj.Movie m on m.MovieID = i.InventoryID
 go
+
+--used to check if a movie already exists in the database when being added.
+-- this currently doesn not work which means it cannot properly check the db, i need to sleep on it
+drop procedure if exists checkMovie
+go
+create procedure checkMovie
+@Title NvarChar(255),
+@Year int
+as
+Select m.MovieTitle
+from group13proj.Movie M
+where year(m.ReleaseYear) = @year
+group by m.movieTitle
+having @Title like m.MovieTitle
+go
+
+exec checkMovie 'Avatar', 2009
+
+
+drop procedure if exists AddInventory
+go
+create procedure AddInventory
+@Title NvarChar(255),
+@Year int
+as
+Insert group13proj.Inventory(MovieID)
+Select m.MovieID
+from group13proj.Movie M
+where m.MovieTitle = @Title and Year(m.ReleaseYear) = @Year
+go
+
+select *
+from group13proj.Movie i
+order by i.MovieID
