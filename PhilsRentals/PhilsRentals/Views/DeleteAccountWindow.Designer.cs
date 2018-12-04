@@ -42,10 +42,11 @@
             this.uxLabelCreateAccount.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.uxLabelCreateAccount.ForeColor = System.Drawing.Color.White;
             this.uxLabelCreateAccount.Location = new System.Drawing.Point(0, 0);
+            this.uxLabelCreateAccount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelCreateAccount.Name = "uxLabelCreateAccount";
-            this.uxLabelCreateAccount.Size = new System.Drawing.Size(779, 62);
+            this.uxLabelCreateAccount.Size = new System.Drawing.Size(584, 50);
             this.uxLabelCreateAccount.TabIndex = 6;
-            this.uxLabelCreateAccount.Text = "Create Account";
+            this.uxLabelCreateAccount.Text = "Delete Account";
             this.uxLabelCreateAccount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uxLabelEmail
@@ -53,9 +54,10 @@
             this.uxLabelEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelEmail.AutoSize = true;
             this.uxLabelEmail.Font = new System.Drawing.Font("Segoe UI", 20F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.uxLabelEmail.Location = new System.Drawing.Point(52, 154);
+            this.uxLabelEmail.Location = new System.Drawing.Point(39, 125);
+            this.uxLabelEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uxLabelEmail.Name = "uxLabelEmail";
-            this.uxLabelEmail.Size = new System.Drawing.Size(116, 46);
+            this.uxLabelEmail.Size = new System.Drawing.Size(94, 37);
             this.uxLabelEmail.TabIndex = 8;
             this.uxLabelEmail.Text = "Email:";
             // 
@@ -63,10 +65,10 @@
             // 
             this.uxTextboxEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextboxEmail.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.uxTextboxEmail.Location = new System.Drawing.Point(185, 151);
-            this.uxTextboxEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uxTextboxEmail.Location = new System.Drawing.Point(139, 123);
+            this.uxTextboxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.uxTextboxEmail.Name = "uxTextboxEmail";
-            this.uxTextboxEmail.Size = new System.Drawing.Size(546, 52);
+            this.uxTextboxEmail.Size = new System.Drawing.Size(410, 43);
             this.uxTextboxEmail.TabIndex = 9;
             this.uxTextboxEmail.TextChanged += new System.EventHandler(this.uxTextboxEmail_TextChanged);
             // 
@@ -75,10 +77,10 @@
             this.uxButtonAccept.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxButtonAccept.Enabled = false;
             this.uxButtonAccept.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.uxButtonAccept.Location = new System.Drawing.Point(246, 446);
-            this.uxButtonAccept.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.uxButtonAccept.Location = new System.Drawing.Point(184, 362);
+            this.uxButtonAccept.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.uxButtonAccept.Name = "uxButtonAccept";
-            this.uxButtonAccept.Size = new System.Drawing.Size(267, 62);
+            this.uxButtonAccept.Size = new System.Drawing.Size(200, 50);
             this.uxButtonAccept.TabIndex = 10;
             this.uxButtonAccept.Text = "Accept";
             this.uxButtonAccept.UseVisualStyleBackColor = true;
@@ -86,16 +88,15 @@
             // 
             // DeleteAccountWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.uxButtonAccept);
             this.Controls.Add(this.uxTextboxEmail);
             this.Controls.Add(this.uxLabelEmail);
             this.Controls.Add(this.uxLabelCreateAccount);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DeleteAccountWindow";
-            this.Size = new System.Drawing.Size(779, 690);
+            this.Size = new System.Drawing.Size(584, 561);
             this.ResumeLayout(false);
             this.PerformLayout();
 

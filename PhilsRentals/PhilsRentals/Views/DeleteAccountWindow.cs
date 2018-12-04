@@ -13,6 +13,11 @@ namespace PhilsRentals.Views
     public partial class DeleteAccountWindow : UserControl
     {
         /// <summary>
+        /// Handle to get the selected account from the MainWindow.
+        /// </summary>
+        AccountSelector _GetSelectedAccount;
+
+        /// <summary>
         /// Handle to the MainWindowController.
         ///
         /// This class will only use _mwc.DeleteAccount()
@@ -22,30 +27,39 @@ namespace PhilsRentals.Views
         /// </summary>
         IMainWindowController _mwc;
 
-        public DeleteAccountWindow(IMainWindowController mwc)
+        public DeleteAccountWindow(IMainWindowController mwc, AccountSelector GetSelectedAccount)
         {
             InitializeComponent();
             _mwc = mwc;
+            _GetSelectedAccount = GetSelectedAccount;
         }
 
         private void uxTextboxEmail_TextChanged(object sender, EventArgs e)
         {
-            if (uxTextboxEmail.Text == "")
-            {
-                uxButtonAccept.Enabled = false;
-            }
-            else
-                uxButtonAccept.Enabled = true;
+            uxButtonAccept.Enabled = uxTextboxEmail.TextLength > 0;
         }
 
         private void uxButtonAccept_Click(object sender, EventArgs e)
         {
             string email = uxTextboxEmail.Text;
-            if (_mwc.DeleteAccount(email))
-                MessageBox.Show("Account Deleted Successfully.");
+
+            if (uxTextboxEmail.Text.Equals(_GetSelectedAccount()))
+            {
+                MessageBox.Show("You cannot delete an account that is currently selected.", "Error");
+            }
             else
-                MessageBox.Show("There was an error deleting the account");
-            uxTextboxEmail.Text = "";
+            {
+                if (_mwc.DeleteAccount(email))
+                {
+                    MessageBox.Show("Account Deleted Successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("There was an error deleting the account");
+                }
+            }
+
+            uxTextboxEmail.Text = String.Empty;
             uxButtonAccept.Enabled = false;
         }
     }

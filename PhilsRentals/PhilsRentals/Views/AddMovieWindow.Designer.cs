@@ -37,11 +37,10 @@
             this.uxTextBoxMovieTitle = new System.Windows.Forms.TextBox();
             this.uxButtonAddMovie = new System.Windows.Forms.Button();
             this.uxNumericUpDownYear = new System.Windows.Forms.NumericUpDown();
-            this.uxNumericUpDownDuration = new System.Windows.Forms.NumericUpDown();
             this.uxCheckedListBoxMovieGenre = new System.Windows.Forms.CheckedListBox();
+            this.uxTextBoxDuration = new System.Windows.Forms.TextBox();
             this.uxNumericUpDownRating = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +104,7 @@
             this.uxLabelDuration.BackColor = System.Drawing.Color.White;
             this.uxLabelDuration.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.uxLabelDuration.ForeColor = System.Drawing.Color.Black;
-            this.uxLabelDuration.Location = new System.Drawing.Point(20, 357);
+            this.uxLabelDuration.Location = new System.Drawing.Point(20, 360);
             this.uxLabelDuration.Name = "uxLabelDuration";
             this.uxLabelDuration.Size = new System.Drawing.Size(286, 30);
             this.uxLabelDuration.TabIndex = 4;
@@ -132,7 +131,7 @@
             this.uxTextBoxMovieTitle.Multiline = true;
             this.uxTextBoxMovieTitle.Name = "uxTextBoxMovieTitle";
             this.uxTextBoxMovieTitle.Size = new System.Drawing.Size(404, 37);
-            this.uxTextBoxMovieTitle.TabIndex = 6;
+            this.uxTextBoxMovieTitle.TabIndex = 1;
             this.uxTextBoxMovieTitle.TextChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxButtonAddMovie
@@ -143,7 +142,7 @@
             this.uxButtonAddMovie.Location = new System.Drawing.Point(192, 501);
             this.uxButtonAddMovie.Name = "uxButtonAddMovie";
             this.uxButtonAddMovie.Size = new System.Drawing.Size(200, 50);
-            this.uxButtonAddMovie.TabIndex = 12;
+            this.uxButtonAddMovie.TabIndex = 6;
             this.uxButtonAddMovie.Text = "Add Movie";
             this.uxButtonAddMovie.UseVisualStyleBackColor = true;
             this.uxButtonAddMovie.Click += new System.EventHandler(this.uxButtonAddMovie_Click);
@@ -165,27 +164,12 @@
             0});
             this.uxNumericUpDownYear.Name = "uxNumericUpDownYear";
             this.uxNumericUpDownYear.Size = new System.Drawing.Size(120, 32);
-            this.uxNumericUpDownYear.TabIndex = 13;
+            this.uxNumericUpDownYear.TabIndex = 3;
             this.uxNumericUpDownYear.Value = new decimal(new int[] {
             2018,
             0,
             0,
             0});
-            // 
-            // uxNumericUpDownDuration
-            // 
-            this.uxNumericUpDownDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.uxNumericUpDownDuration.Location = new System.Drawing.Point(322, 357);
-            this.uxNumericUpDownDuration.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
-            this.uxNumericUpDownDuration.Size = new System.Drawing.Size(120, 32);
-            this.uxNumericUpDownDuration.TabIndex = 14;
-            this.uxNumericUpDownDuration.ValueChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxCheckedListBoxMovieGenre
             // 
@@ -219,8 +203,19 @@
             this.uxCheckedListBoxMovieGenre.Name = "uxCheckedListBoxMovieGenre";
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
             this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 82);
-            this.uxCheckedListBoxMovieGenre.TabIndex = 15;
+            this.uxCheckedListBoxMovieGenre.TabIndex = 2;
             this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxFieldsChanged);
+            // 
+            // uxTextBoxDuration
+            // 
+            this.uxTextBoxDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxTextBoxDuration.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.uxTextBoxDuration.Location = new System.Drawing.Point(312, 357);
+            this.uxTextBoxDuration.Multiline = true;
+            this.uxTextBoxDuration.Name = "uxTextBoxDuration";
+            this.uxTextBoxDuration.Size = new System.Drawing.Size(250, 37);
+            this.uxTextBoxDuration.TabIndex = 4;
+            this.uxTextBoxDuration.TextChanged += new System.EventHandler(this.uxFieldsChanged);
             // 
             // uxNumericUpDownRating
             // 
@@ -240,16 +235,16 @@
             0});
             this.uxNumericUpDownRating.Name = "uxNumericUpDownRating";
             this.uxNumericUpDownRating.Size = new System.Drawing.Size(120, 32);
-            this.uxNumericUpDownRating.TabIndex = 16;
+            this.uxNumericUpDownRating.TabIndex = 5;
             // 
             // AddMovieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.uxTextBoxDuration);
             this.Controls.Add(this.uxNumericUpDownRating);
             this.Controls.Add(this.uxCheckedListBoxMovieGenre);
-            this.Controls.Add(this.uxNumericUpDownDuration);
             this.Controls.Add(this.uxNumericUpDownYear);
             this.Controls.Add(this.uxButtonAddMovie);
             this.Controls.Add(this.uxTextBoxMovieTitle);
@@ -262,7 +257,6 @@
             this.Name = "AddMovieWindow";
             this.Size = new System.Drawing.Size(584, 561);
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -280,8 +274,8 @@
         private System.Windows.Forms.TextBox uxTextBoxMovieTitle;
         private System.Windows.Forms.Button uxButtonAddMovie;
         private System.Windows.Forms.NumericUpDown uxNumericUpDownYear;
-        private System.Windows.Forms.NumericUpDown uxNumericUpDownDuration;
         private System.Windows.Forms.CheckedListBox uxCheckedListBoxMovieGenre;
+        private System.Windows.Forms.TextBox uxTextBoxDuration;
         private System.Windows.Forms.NumericUpDown uxNumericUpDownRating;
     }
 }

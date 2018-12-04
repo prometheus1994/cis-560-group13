@@ -31,7 +31,20 @@ namespace PhilsRentals.Views
 
         private void uxFieldsChanged(object sender, EventArgs e)
         {
-            uxButtonAddMovie.Enabled = uxTextBoxMovieTitle.TextLength > 0 && uxCheckedListBoxMovieGenre.CheckedIndices.Count > 0 && uxNumericUpDownDuration.Value != 0;
+            if (sender is TextBox && ((TextBox)sender).Name.Equals("uxTextBoxDuration"))
+            {
+                TextBox box = (TextBox)sender;
+
+                if (box.Name.Equals("uxTextBoxDuration"))
+                {
+                    box.Text = new string(box.Text.Where(char.IsDigit).ToArray());
+                }
+            }
+
+            uxButtonAddMovie.Enabled = uxTextBoxMovieTitle.TextLength > 0 
+                && uxCheckedListBoxMovieGenre.CheckedIndices.Count > 0 
+                && uxTextBoxDuration.TextLength > 0 
+                && Convert.ToInt32(uxTextBoxDuration.Text) > 0;
         }
 
         //Ignore the formatting for all of this. Waiting to learn how Rida needs the data.
@@ -40,7 +53,7 @@ namespace PhilsRentals.Views
         {
             string movieTitle = uxTextBoxMovieTitle.Text;
             int movieYear = Convert.ToInt32(uxNumericUpDownYear.Value);
-            int movieDuration = Convert.ToInt32(uxNumericUpDownDuration.Value);
+            int movieDuration = Convert.ToInt32(uxTextBoxDuration.Text);
             double movieRating = Convert.ToDouble(uxNumericUpDownRating.Value);
 
             string movieGenres = "";
