@@ -134,6 +134,7 @@
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
             this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 76);
             this.uxCheckedListBoxMovieGenre.TabIndex = 17;
+            this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxCheckedListBoxMovieGenre_SelectedIndexChanged);
             // 
             // uxLabelMovieGenre
             // 
@@ -228,9 +229,9 @@
             this.uxLabelDuration.ForeColor = System.Drawing.Color.Black;
             this.uxLabelDuration.Location = new System.Drawing.Point(298, 150);
             this.uxLabelDuration.Name = "uxLabelDuration";
-            this.uxLabelDuration.Size = new System.Drawing.Size(82, 21);
+            this.uxLabelDuration.Size = new System.Drawing.Size(67, 21);
             this.uxLabelDuration.TabIndex = 19;
-            this.uxLabelDuration.Text = "Duration:";
+            this.uxLabelDuration.Text = "Length:";
             // 
             // uxLabelReleaseDate
             // 
@@ -299,7 +300,7 @@
             // 
             // Duration
             // 
-            this.Duration.HeaderText = "Duration";
+            this.Duration.HeaderText = "Length";
             this.Duration.Name = "Duration";
             this.Duration.ReadOnly = true;
             this.Duration.Width = 108;
