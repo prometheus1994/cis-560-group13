@@ -13,16 +13,21 @@ namespace PhilsRentals.Views
 {
     public partial class ModifyAccountWindow : UserControl
     {
-        private int cnt = 0;
+        /// <summary>
+        /// Handle to get the selected account from the MainWindow.
+        /// </summary>
+        AccountSelector _GetSelectedAccount;
+
         /// <summary>
         /// Handle to the MainWindowController.
         /// </summary>
         IMainWindowController _mwc;
 
-        public ModifyAccountWindow(IMainWindowController mwc)
+        public ModifyAccountWindow(IMainWindowController mwc, AccountSelector GetSelectedAccount)
         {
             InitializeComponent();
             _mwc = mwc;
+            _GetSelectedAccount = GetSelectedAccount;
         }
 
         private void uxTextBoxTextChanged(object sender, EventArgs e)
@@ -54,11 +59,11 @@ namespace PhilsRentals.Views
             {
                 MessageBox.Show("Error With Update");
             }
-            uxTextBoxFirstName.Text = "";
-            uxTextBoxLastName.Text = "";
-            uxTextBoxNewEmail.Text = "";
-            uxTextBoxPhoneNumber.Text = "";
-            uxTextBoxSearchEmail.Text = "";
+            uxTextBoxFirstName.Text = String.Empty;
+            uxTextBoxLastName.Text = String.Empty;
+            uxTextBoxNewEmail.Text = String.Empty;
+            uxTextBoxPhoneNumber.Text = String.Empty;
+            uxTextBoxSearchEmail.Text = String.Empty;
             uxTextBoxSearchEmail.Enabled = true;
             uxTextBoxPhoneNumber.Enabled = false;
             uxTextBoxNewEmail.Enabled = false;
@@ -86,35 +91,35 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonSearchEmail_Click(object sender, EventArgs e)
         {
-            string email = "";
-            // [0] = AccountID
-            // [1] = FirstName
-            // ...
-            // [4] = Email
-                email = uxTextBoxSearchEmail.Text;
-            string[] account_info = _mwc.GetAccountInformation(email);
-            if (account_info[0].Equals("error"))
+            string email = String.Empty;
+            email = uxTextBoxSearchEmail.Text;
+            
+            if (!email.Equals(_GetSelectedAccount()))
             {
-                MessageBox.Show("Account not in system. Please try a different Email address.");
+                string[] account_info = _mwc.GetAccountInformation(email);
+                if (account_info[0].Equals("error"))
+                {
+                    MessageBox.Show("Account not in system. Please try a different Email address.");
+                }
+                else
+                {
+                    uxTextBoxFirstName.Enabled = true;
+                    uxTextBoxPhoneNumber.Enabled = true;
+                    uxTextBoxNewEmail.Enabled = true;
+                    uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
+                    uxTextBoxLastName.Enabled = true;
+                    uxTextBoxSearchEmail.Enabled = false;
+                    uxButtonSearchEmail.Enabled = false;
+                    uxTextBoxNewEmail.Text = account_info[0];
+                    uxTextBoxLastName.Text = account_info[3];
+                    uxTextBoxFirstName.Text = account_info[2];
+                    uxTextBoxPhoneNumber.Text = account_info[1];
+                }
             }
             else
             {
-
-
-                uxTextBoxFirstName.Enabled = true;
-                uxTextBoxPhoneNumber.Enabled = true;
-                uxTextBoxNewEmail.Enabled = true;
-                uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
-                uxTextBoxLastName.Enabled = true;
-                uxTextBoxSearchEmail.Enabled = false;
-                uxButtonSearchEmail.Enabled = false;
-                uxTextBoxNewEmail.Text = account_info[0];
-                uxTextBoxLastName.Text = account_info[3];
-                uxTextBoxFirstName.Text = account_info[2];
-                uxTextBoxPhoneNumber.Text = account_info[1];
-                // grab the existing email from the TextBoxSearchEmail
-                // uxTextBoxNewEmail.Text = uxTextBoxSearchEmail.Text;
+                MessageBox.Show("You cannot modify an account that is currently selected", "Error");
             }
-            }
+        }
     }
 }

@@ -54,8 +54,8 @@ namespace PhilsRentals
             _windows.Add("Rent Movies", new RentMovieWindow(_mwc, this.GetSelectedAccount));
             _windows.Add("Return Movies", new ReturnMovieWindow(_mwc, this.GetSelectedAccount));
             _windows.Add("Create Account", new CreateAccountWindow(_mwc));
-            _windows.Add("Modify Account", new ModifyAccountWindow(_mwc));
-            _windows.Add("Delete Account", new DeleteAccountWindow(_mwc));
+            _windows.Add("Modify Account", new ModifyAccountWindow(_mwc, this.GetSelectedAccount));
+            _windows.Add("Delete Account", new DeleteAccountWindow(_mwc, this.GetSelectedAccount));
             _windows.Add("Add Movie", new AddMovieWindow(_mwc));
 
             /* Add menu selection panels to the dictionary of menu selection panels */
