@@ -43,6 +43,7 @@ namespace PhilsRentals.Views
         {
             List<Movie> movies = new List<Movie>();
             movies = _mwc.initDisp();
+            
             foreach (Movie movie in movies)
             {
                 uxDataGridViewMovies.Rows.Add(movie.Title, movie.Count);

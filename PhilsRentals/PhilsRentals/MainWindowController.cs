@@ -237,20 +237,10 @@ namespace PhilsRentals
 
                 SqlParameter param = new SqlParameter();
                 cmd.Parameters.AddWithValue("Email", email);
-                //param.ParameterName = "Email";
-                //param.Value = email;//email; // Get Value
-                //cmd.Parameters.Add(param);
+
 
                 conn.Open();
-                //int row_check
-                //SqlDataReader reader = cmd.ExecuteReader();
 
-                // if the number of rows returned is not 1, then the SQL procedure failed.
-                // we only need to grab 1 row because one row represents 1 account.
-                // if (row_check != 1)
-                //{
-                //  throw new Exception("Invalid Procedure Call");
-                //}
                 try
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -318,14 +308,6 @@ namespace PhilsRentals
             return true;
         }
 
-        /// <summary>
-        /// Gets all rentable movies in inventory.
-        /// </summary>
-        /// <returns>Rentable movies and their inventory counts</returns>
-        public List<string> GetRentableMovies()
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Rents a movie for a given account.
@@ -333,9 +315,39 @@ namespace PhilsRentals
         /// <param name="email">Email of the account</param>
         /// <param name="movieTitle">Title of movie rented</param>
         /// <returns>Whether the rent movie was successful or not</returns>
-        public bool RentMovie(string email, string movieTitle)
+        public string RentMovie(string email, string movieTitle)
         {
-            throw new NotImplementedException();
+            string returnDate = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+                    SqlCommand cmd = new SqlCommand("rentMovie", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("email", email);
+                    cmd.Parameters.AddWithValue("title", movieTitle);
+                    conn.Open();
+
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            returnDate = reader.GetString(reader.GetOrdinal("DueDate"));
+                        }
+                        else
+                            return "error";
+                                  
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return "error";
+            }
+            return returnDate;
         }
 
         
@@ -371,41 +383,137 @@ namespace PhilsRentals
                 conn.Close();
                 return movies;
             }
+
+            
         }
+
+        public bool checkSelectedAccount(string email)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = _connection;
+
+                // procedure to grab the account info
+                SqlCommand cmd = new SqlCommand("modAcctLookup", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter();
+                cmd.Parameters.AddWithValue("Email", email);
+
+
+                conn.Open();
+
+                try
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            conn.Close();
+                            return true;
+                        }
+                        else
+                        {
+                            conn.Close();
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    conn.Close();
+                    return false;
+                }
+                
+            }
+
+            
+        }
+
 
         /// <summary>
         /// Gets the rented movies of an account
         /// </summary>
         /// <param name="email">Email account to get rented movies for</param>
         /// <returns>List of rented movies, rented date and return date</returns>
-        public List<string> GetRentedMovies(string email)
+        public List<Movie> GetRentedMovies(string email)
         {
-            throw new NotImplementedException();
+
+            string temp = "";
+            List<Movie> movies = new List<Movie>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = _connection;
+
+
+                //  Do Work
+                SqlCommand cmd = new SqlCommand("acctRentals", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("email", email);
+
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        temp = (reader.GetString(reader.GetOrdinal("MovieTitle")));
+                        movies.Add(new Movie(temp, (reader.GetString(reader.GetOrdinal("DueDate")))));
+                    }
+                }
+
+                conn.Close();
+                return movies;
+            }
         }
 
-        /// <summary>
-        /// Returns a movie for a given account.
-        /// </summary>
-        /// <param name="email">Email of the account</param>
-        /// <param name="movieTitle">Title of the movie returned</param>
-        public void ReturnMovie(string email, string movieTitle)
-        {
-            throw new NotImplementedException();
-        }
+            /// <summary>
+            /// Returns a movie for a given account.
+            /// </summary>
+            /// <param name="email">Email of the account</param>
+            /// <param name="movieTitle">Title of the movie returned</param>
+            public bool ReturnMovie(string email, string movieTitle)
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection())
+                    {
+                        conn.ConnectionString = _connection;
+
+
+                        //  Do Work
+                        SqlCommand cmd = new SqlCommand("returnRental", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("Email", email);
+                        cmd.Parameters.AddWithValue("title", movieTitle);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception e)
+                {
+                
+                    return false;
+                }
+                return true;
+            }
     }
     //this class might be useful for showing the movies in the rental page or browse movie page, idk anymore though
     public class Movie
     {
         public string Title { get; set; }
         public int Count { get; set; }
+        public string DueDate { get; set; }
         public Movie(string t, int c)
         {
             Title = t;
             Count = c;
         }
-        public override string ToString()
+        public Movie(string t, string dd)
         {
-            return String.Concat(Title, String.Empty, Count);
+            Title = t;
+            DueDate = dd;
         }
     }
 
