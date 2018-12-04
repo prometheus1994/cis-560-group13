@@ -333,8 +333,9 @@ namespace PhilsRentals
                     using(SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
+                           
                         {
-                            returnDate = reader.GetString(reader.GetOrdinal("DueDate"));
+                            returnDate = reader.GetSqlDateTime(reader.GetOrdinal("DueDate")).ToString();
                         }
                         else
                             return "error";

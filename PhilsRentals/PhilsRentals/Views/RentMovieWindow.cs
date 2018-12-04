@@ -86,7 +86,16 @@ namespace PhilsRentals.Views
 
         private void uxButtonRentMovie_Click(object sender, EventArgs e)
         {
-
+            string ret = _mwc.RentMovie(_GetSelectedAccount(), uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value.ToString());
+            if(ret.Equals("error"))
+            {
+                MessageBox.Show("There was a problem renting the movie. Please try again.");
+            }
+            else
+            {
+                MessageBox.Show("Movie Successfully rented. You movie is due:" + ret);
+            }
+            AddMovies();
         }
     }
 }
