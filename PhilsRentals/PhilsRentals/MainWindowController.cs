@@ -317,7 +317,7 @@ namespace PhilsRentals
         /// <returns>Whether the rent movie was successful or not</returns>
         public string RentMovie(string email, string movieTitle)
         {
-            string returnDate = "";
+            string returnDate = String.Empty;
             try
             {
                 using (SqlConnection conn = new SqlConnection())
@@ -358,7 +358,7 @@ namespace PhilsRentals
         /// <returns>List of movie objects</returns>
         public List<Movie> initDisp()
         {
-            string temp = "";
+            string temp = String.Empty;
             List<Movie> movies = new List<Movie>();
             using (SqlConnection conn = new SqlConnection())
             {
@@ -441,7 +441,7 @@ namespace PhilsRentals
         public List<Movie> GetRentedMovies(string email)
         {
 
-            string temp = "";
+            string temp = String.Empty;
             List<Movie> movies = new List<Movie>();
             using (SqlConnection conn = new SqlConnection())
             {

@@ -48,7 +48,7 @@ namespace PhilsRentals.Views
             {
                 uxDataGridViewMovies.Rows.Add(movie.Title, movie.Count);
             }
-            uxDataGridViewMovies.CurrentCell = null;
+            uxDataGridViewMovies.ClearSelection();
         }
 
         private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)

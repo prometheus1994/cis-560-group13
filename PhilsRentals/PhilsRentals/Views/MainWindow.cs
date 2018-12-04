@@ -163,7 +163,6 @@ namespace PhilsRentals
         {
             Form prompt = new Form() {
                 BackColor = System.Drawing.Color.White, Width = 350, Height = 150, Text = "Select Account", MaximizeBox = false
-
             };
 
             Label textLabel = new Label() { Left = 15, Top = 30, Text = "Email Address:" };
