@@ -302,7 +302,7 @@
             this.Duration.HeaderText = "Duration";
             this.Duration.Name = "Duration";
             this.Duration.ReadOnly = true;
-            this.Duration.Width = 110;
+            this.Duration.Width = 108;
             // 
             // BrowseMovieWindow
             // 
