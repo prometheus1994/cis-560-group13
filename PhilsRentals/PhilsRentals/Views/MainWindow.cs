@@ -109,6 +109,11 @@ namespace PhilsRentals
                 {
                     window.Dock = DockStyle.Fill;
                     uxPanelMain.Controls.Add(window);
+
+                    if (window is RentMovieWindow)
+                    {
+                        ((RentMovieWindow)window).AddMovies();
+                    }
                 }
             }
             else
