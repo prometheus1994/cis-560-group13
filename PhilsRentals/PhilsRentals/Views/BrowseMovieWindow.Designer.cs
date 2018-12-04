@@ -31,7 +31,6 @@
             this.uxLabelMovieTitle = new System.Windows.Forms.Label();
             this.uxTextBoxMovieTitle = new System.Windows.Forms.TextBox();
             this.uxLabelTitle = new System.Windows.Forms.Label();
-            this.uxListBoxMovies = new System.Windows.Forms.ListBox();
             this.uxButtonGetMovie = new System.Windows.Forms.Button();
             this.uxCheckedListBoxMovieGenre = new System.Windows.Forms.CheckedListBox();
             this.uxLabelMovieGenre = new System.Windows.Forms.Label();
@@ -41,9 +40,16 @@
             this.uxLabelStarRating = new System.Windows.Forms.Label();
             this.uxLabelDuration = new System.Windows.Forms.Label();
             this.uxLabelReleaseDate = new System.Windows.Forms.Label();
+            this.uxDataGridViewMovies = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReleaseYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridViewMovies)).BeginInit();
             this.SuspendLayout();
             // 
             // uxLabelMovieTitle
@@ -81,23 +87,6 @@
             this.uxLabelTitle.TabIndex = 6;
             this.uxLabelTitle.Text = "Browse Movie";
             this.uxLabelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uxListBoxMovies
-            // 
-            this.uxListBoxMovies.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxListBoxMovies.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.uxListBoxMovies.Enabled = false;
-            this.uxListBoxMovies.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.uxListBoxMovies.ForeColor = System.Drawing.Color.White;
-            this.uxListBoxMovies.FormattingEnabled = true;
-            this.uxListBoxMovies.HorizontalScrollbar = true;
-            this.uxListBoxMovies.ItemHeight = 17;
-            this.uxListBoxMovies.Location = new System.Drawing.Point(3, 244);
-            this.uxListBoxMovies.MultiColumn = true;
-            this.uxListBoxMovies.Name = "uxListBoxMovies";
-            this.uxListBoxMovies.Size = new System.Drawing.Size(577, 310);
-            this.uxListBoxMovies.TabIndex = 8;
-            this.uxListBoxMovies.DoubleClick += new System.EventHandler(this.uxListBoxMovies_DoubleClick);
             // 
             // uxButtonGetMovie
             // 
@@ -256,11 +245,71 @@
             this.uxLabelReleaseDate.TabIndex = 18;
             this.uxLabelReleaseDate.Text = "Release Year:";
             // 
+            // uxDataGridViewMovies
+            // 
+            this.uxDataGridViewMovies.AllowUserToAddRows = false;
+            this.uxDataGridViewMovies.AllowUserToDeleteRows = false;
+            this.uxDataGridViewMovies.AllowUserToOrderColumns = true;
+            this.uxDataGridViewMovies.AllowUserToResizeColumns = false;
+            this.uxDataGridViewMovies.AllowUserToResizeRows = false;
+            this.uxDataGridViewMovies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uxDataGridViewMovies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uxDataGridViewMovies.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Title,
+            this.Rating,
+            this.Genre,
+            this.ReleaseYear,
+            this.Duration});
+            this.uxDataGridViewMovies.Location = new System.Drawing.Point(17, 244);
+            this.uxDataGridViewMovies.MultiSelect = false;
+            this.uxDataGridViewMovies.Name = "uxDataGridViewMovies";
+            this.uxDataGridViewMovies.ReadOnly = true;
+            this.uxDataGridViewMovies.RowHeadersVisible = false;
+            this.uxDataGridViewMovies.Size = new System.Drawing.Size(552, 304);
+            this.uxDataGridViewMovies.TabIndex = 24;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.Width = 110;
+            // 
+            // Rating
+            // 
+            this.Rating.HeaderText = "Rating";
+            this.Rating.Name = "Rating";
+            this.Rating.ReadOnly = true;
+            this.Rating.Width = 110;
+            // 
+            // Genre
+            // 
+            this.Genre.HeaderText = "Genre";
+            this.Genre.Name = "Genre";
+            this.Genre.ReadOnly = true;
+            this.Genre.Width = 110;
+            // 
+            // ReleaseYear
+            // 
+            this.ReleaseYear.HeaderText = "ReleaseYear";
+            this.ReleaseYear.Name = "ReleaseYear";
+            this.ReleaseYear.ReadOnly = true;
+            this.ReleaseYear.Width = 110;
+            // 
+            // Duration
+            // 
+            this.Duration.HeaderText = "Duration";
+            this.Duration.Name = "Duration";
+            this.Duration.ReadOnly = true;
+            this.Duration.Width = 110;
+            // 
             // BrowseMovieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.uxDataGridViewMovies);
             this.Controls.Add(this.uxNumericUpDownRating);
             this.Controls.Add(this.uxNumericUpDownDuration);
             this.Controls.Add(this.uxNumericUpDownYear);
@@ -270,7 +319,6 @@
             this.Controls.Add(this.uxCheckedListBoxMovieGenre);
             this.Controls.Add(this.uxLabelMovieGenre);
             this.Controls.Add(this.uxButtonGetMovie);
-            this.Controls.Add(this.uxListBoxMovies);
             this.Controls.Add(this.uxLabelTitle);
             this.Controls.Add(this.uxTextBoxMovieTitle);
             this.Controls.Add(this.uxLabelMovieTitle);
@@ -279,6 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridViewMovies)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,7 +337,6 @@
         private System.Windows.Forms.Label uxLabelMovieTitle;
         private System.Windows.Forms.TextBox uxTextBoxMovieTitle;
         private System.Windows.Forms.Label uxLabelTitle;
-        private System.Windows.Forms.ListBox uxListBoxMovies;
         private System.Windows.Forms.Button uxButtonGetMovie;
         private System.Windows.Forms.CheckedListBox uxCheckedListBoxMovieGenre;
         private System.Windows.Forms.Label uxLabelMovieGenre;
@@ -298,5 +346,11 @@
         private System.Windows.Forms.Label uxLabelStarRating;
         private System.Windows.Forms.Label uxLabelDuration;
         private System.Windows.Forms.Label uxLabelReleaseDate;
+        private System.Windows.Forms.DataGridView uxDataGridViewMovies;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseYear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
     }
 }

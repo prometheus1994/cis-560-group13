@@ -35,7 +35,6 @@ namespace PhilsRentals.Views
 
         private void uxButtonGetMovie_Click(object sender, EventArgs e)
         {
-            uxListBoxMovies.Enabled = GetMovies();
             uxTextBoxMovieTitle.Text = "";
         }
 
