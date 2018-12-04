@@ -118,11 +118,18 @@ namespace PhilsRentals
                     string email = ObtainAccount();
                     if (email.Length > 0 && email.Contains("@"))
                     {
-                        uxPanelSelectAccount.Visible = true;
-                        uxButtonSelectAccount.Text = email;
-                        _account = email;
-                        uxButtonRentMovie.Enabled = true;
-                        uxButtonReturnMovie.Enabled = true;
+                        if (_mwc.checkSelectedAccount(email))
+                        {
+                            uxPanelSelectAccount.Visible = true;
+                            uxButtonSelectAccount.Text = email;
+                            _account = email;
+                            uxButtonRentMovie.Enabled = true;
+                            uxButtonReturnMovie.Enabled = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Account does not exist in the system. Please try a different Email or create an account.");
+                        }
                     }
                     else
                     {

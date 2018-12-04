@@ -9,12 +9,7 @@ namespace PhilsRentals
 {
     public interface IMainWindowController
     {
-        /// <summary>
-        /// Gets the form window for a given operation.
-        /// </summary>
-        /// <param name="operation">Operation name</param>
-        /// <returns>Form window to display</returns>
-        //IWindow GetOperationWindow(string operation);    just commenting out to test
+
 
         /// <summary>
         /// calls the stored procedure to add a movie to the inventory.
@@ -94,11 +89,6 @@ namespace PhilsRentals
         /// <returns>Whether the modification was successful or not</returns>
         bool ModifyAccountInformation(string OldEmail, string NewEmail, string phoneNumber, string firstName, string lastName);
 
-        /// <summary>
-        /// Gets all rentable movies in inventory.
-        /// </summary>
-        /// <returns>Rentable movies and their inventory counts</returns>
-        List<string> GetRentableMovies();
 
         /// <summary>
         /// Rents a movie for a given account.
@@ -106,7 +96,7 @@ namespace PhilsRentals
         /// <param name="email">Email of the account</param>
         /// <param name="movieTitle">Title of movie rented</param>
         /// <returns>Whether the rent movie was successful or not</returns>
-        bool RentMovie(string email, string movieTitle);
+        string RentMovie(string email, string movieTitle);
 
         /// <summary>
         /// Gets the rented movies of an account
@@ -121,5 +111,7 @@ namespace PhilsRentals
         /// <param name="email">Email of the account</param>
         /// <param name="movieTitle">Title of the movie returned</param>
         void ReturnMovie(string email, string movieTitle);
+
+        bool checkSelectedAccount(string email);
     }
 }

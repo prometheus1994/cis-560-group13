@@ -45,7 +45,7 @@ namespace PhilsRentals.Views
             movies = _mwc.initDisp();
             uxListBoxMovies.DataSource = movies;
             uxListBoxMovies.DisplayMember = "title";
-            uxListBoxMovies.DisplayMember = "count";
+            //uxListBoxMovies.DisplayMember = "count";
             uxListBoxMovies.ValueMember = "count";
 
         }

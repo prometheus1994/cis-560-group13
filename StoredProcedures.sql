@@ -55,7 +55,8 @@ select * from group13proj.Account
 drop procedure if exists ModifyAccount
 go
 create procedure ModifyAccount
-@Email nvarchar(64),
+@OldEmail nvarchar(64),
+@NewEmail nvarchar(64),
 @FirstName nvarchar(256)= null,
 @LastName NVARCHAR(32) =null,
 @PhoneNumber NVARCHAR(15) =null
@@ -63,8 +64,9 @@ AS
 update group13proj.Account
 set FirstName = Coalesce(@FirstName, FirstName),
     LastName = Coalesce(@LastName, LastName),
-	PhoneNumber = Coalesce(@PhoneNumber, PhoneNumber)
-where Email = @Email
+	PhoneNumber = Coalesce(@PhoneNumber, PhoneNumber),
+	Email = Coalesce(@NewEmail, email)
+where Email = @OldEmail
 go
 --example execution
 exec CreateAccount 'John', 'Doe','(373) 234-1333', 'john@idk.com'
@@ -388,7 +390,7 @@ from group13proj.Account A
 where a.Email = @email
 go
 
-exec modAcctLookup 'uncle@yahoo.com'
+exec modAcctLookup 'uncle@gmail.com'
 go
 
 --summary of account's rentals to be displayed (don't know if it works yet, need to finish rental)
@@ -442,3 +444,6 @@ order by i.MovieID
 select *
 from group13proj.Inventory i
 where i.MovieID = 996
+
+select *
+from group13proj.Account
