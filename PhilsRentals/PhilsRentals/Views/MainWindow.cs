@@ -91,19 +91,18 @@ namespace PhilsRentals
             string selectedMenu = selectedButton.Text; // Get selected menu text
 
             /* Display the selection menu indicator on the selected menu and hide the others */
-            foreach (KeyValuePair<string, Panel> kvp in _menuPanels)
+            if (!selectedButton.Name.Equals("uxButtonSelectAccount"))
             {
-                kvp.Value.Visible = kvp.Key.Equals(selectedMenu);
-            }
+                foreach (KeyValuePair<string, Panel> kvp in _menuPanels)
+                {
+                    kvp.Value.Visible = kvp.Key.Equals(selectedMenu);
+                }
 
-            // Call _operate with operation that needs to be done.
-            if (uxPanelMain.Controls.Count > 0)
-            {
-                uxPanelMain.Controls.RemoveAt(0);
-            }
+                if (uxPanelMain.Controls.Count > 0)
+                {
+                    uxPanelMain.Controls.RemoveAt(0);
+                }
 
-            if (!selectedMenu.Equals(_account))
-            {
                 Control window = _windows[selectedMenu];
                 if (window != null)
                 {
@@ -143,8 +142,6 @@ namespace PhilsRentals
                             MessageBox.Show("Invalid Email");
                         }
                     }
-
-                    uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
                 }
                 else
                 {
@@ -153,9 +150,7 @@ namespace PhilsRentals
                     _account = "Select Account";
                     uxButtonRentMovie.Enabled = false;
                     uxButtonReturnMovie.Enabled = false;
-                    uxMenuHandler(uxButtonBrowseMovie, new EventArgs()); // Open default menu
                 }
-                
             }
         }
 
@@ -169,14 +164,16 @@ namespace PhilsRentals
             TextBox inputBox = new TextBox() { Left = 120, Top = 28, Width = 200 };
             Button confirmation = new Button() { Text = "Ok", Left = 222, Width = 100, Top = 70 };
             
-            confirmation.Click += (sender, e) => { prompt.Close(); };
+            confirmation.Click += (sender, e) => { prompt.Close(); prompt.DialogResult = DialogResult.OK; };
+            confirmation.Enabled = false;
+            inputBox.TextChanged += (sender, e) => { confirmation.Enabled = inputBox.TextLength > 0; };
             prompt.AcceptButton = confirmation;
             prompt.Controls.Add(confirmation);
             prompt.Controls.Add(textLabel);
             prompt.Controls.Add(inputBox);
 
             DialogResult result = prompt.ShowDialog();
-            return (result == DialogResult.Abort) ? String.Empty : inputBox.Text;
+            return (result == DialogResult.Cancel) ? String.Empty : inputBox.Text;
         }
     }
 }
