@@ -39,7 +39,7 @@
             // 
             this.uxLabelMovieTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxLabelMovieTitle.AutoSize = true;
-            this.uxLabelMovieTitle.Font = new System.Drawing.Font("Segoe UI", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.uxLabelMovieTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxLabelMovieTitle.ForeColor = System.Drawing.Color.Black;
             this.uxLabelMovieTitle.Location = new System.Drawing.Point(3, 57);
             this.uxLabelMovieTitle.Name = "uxLabelMovieTitle";
