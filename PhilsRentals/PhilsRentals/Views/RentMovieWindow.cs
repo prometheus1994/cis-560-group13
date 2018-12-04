@@ -43,26 +43,45 @@ namespace PhilsRentals.Views
         {
             List<Movie> movies = new List<Movie>();
             movies = _mwc.initDisp();
-            uxListBoxMovies.DataSource = movies;
-            uxListBoxMovies.DisplayMember = "title";
-            //uxListBoxMovies.DisplayMember = "count";
-            uxListBoxMovies.ValueMember = "count";
-
+            
+            foreach (Movie movie in movies)
+            {
+                uxDataGridViewMovies.Rows.Add(movie.Title, movie.Count);
+            }
+            uxDataGridViewMovies.CurrentCell = null;
         }
 
-        private void uxListBoxMovies_SelectedIndexChanged(object sender, EventArgs e)
+        private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            uxNumericUpDownRentCount.Enabled = uxListBoxMovies.SelectedItem != null;
+            uxButtonRentMovie.Enabled = uxDataGridViewMovies.SelectedRows != null;
         }
 
-        private void uxListBoxMovies_DoubleClick(object sender, EventArgs e)
+        private void uxTextBoxMovieTitle_TextChanged(object sender, EventArgs e)
         {
+            string search = uxTextBoxMovieTitle.Text.ToLower();
+            if (!String.IsNullOrEmpty(search.Trim()))
+            {
+                for (int i = (uxDataGridViewMovies.Rows.Count - 1); i >= 0; i--)
+                {
+                    DataGridViewRow row = uxDataGridViewMovies.Rows[i];
+                    row.Visible = row.Cells["MovieTitle"].Value.ToString().ToLower().Contains(search);
+                    if (row.Visible)
+                    {
+                        uxDataGridViewMovies.FirstDisplayedScrollingRowIndex = i;
+                    }
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in uxDataGridViewMovies.Rows)
+                {
+                    row.Visible = true;
+                }
+                uxDataGridViewMovies.FirstDisplayedScrollingRowIndex = 0;
+            }
 
-        }
-
-        private void uxNumericUpDownRentCount_ValueChanged(object sender, EventArgs e)
-        {
-            uxButtonRentMovie.Enabled = uxNumericUpDownRentCount.Value > 0;
+            uxDataGridViewMovies.ClearSelection();
+            uxButtonRentMovie.Enabled = false;
         }
 
         private void uxButtonRentMovie_Click(object sender, EventArgs e)

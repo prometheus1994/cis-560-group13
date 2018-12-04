@@ -502,18 +502,18 @@ namespace PhilsRentals
     //this class might be useful for showing the movies in the rental page or browse movie page, idk anymore though
     public class Movie
     {
-        public string title { get; set; }
-        public int count { get; set; }
-        public string dueDate { get; set; }
+        public string Title { get; set; }
+        public int Count { get; set; }
+        public string DueDate { get; set; }
         public Movie(string t, int c)
         {
-            title = t;
-            count = c;
+            Title = t;
+            Count = c;
         }
         public Movie(string t, string dd)
         {
-            title = t;
-            dueDate = dd;
+            Title = t;
+            DueDate = dd;
         }
     }
 
