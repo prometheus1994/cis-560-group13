@@ -103,14 +103,14 @@ namespace PhilsRentals
         /// </summary>
         /// <param name="email">Email account to get rented movies for</param>
         /// <returns>List of rented movies, rented date and return date</returns>
-        List<string> GetRentedMovies(string email);
+        List<Movie> GetRentedMovies(string email);
 
         /// <summary>
         /// Returns a movie for a given account.
         /// </summary>
         /// <param name="email">Email of the account</param>
         /// <param name="movieTitle">Title of the movie returned</param>
-        void ReturnMovie(string email, string movieTitle);
+        bool ReturnMovie(string email, string movieTitle);
 
         bool checkSelectedAccount(string email);
     }
