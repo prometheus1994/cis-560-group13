@@ -447,3 +447,31 @@ where i.MovieID = 996
 
 select *
 from group13proj.Account
+    
+    
+drop procedure if exists returnRental
+go
+create procedure returnRental
+@movieTitle nvarchar(255),
+@email nvarchar(150)
+as
+update I
+set Rented = 0
+from group13proj.Inventory I
+inner join group13proj.Account A on A.Email=@email
+inner join group13proj.Movie M on M.MovieTitle=@movieTitle
+where I.MovieID= M.MovieID
+go
+select * from group13proj.Rental
+exec acctRentals 'uncle@yahoo.com'
+exec returnRental 'Avatar', 'uncle@yahoo.com'
+
+DROP TRIGGER IF EXISTS group13proj.tr_DeletingRentals;
+GO
+CREATE TRIGGER group13proj.tr_DeletingRentals ON group13proj.Inventory
+AFTER update
+AS
+delete R
+from group13proj.Rental R
+inner join group13proj.Inventory I on I.InventoryID = R.InventoryID
+GO
