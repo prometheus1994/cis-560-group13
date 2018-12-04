@@ -476,6 +476,7 @@ from group13proj.Rental R
 inner join group13proj.Inventory I on I.InventoryID = R.InventoryID
 GO
 
+    
 DROP TRIGGER IF EXISTS group13proj.tr_InsertingRentals;
 GO
 CREATE TRIGGER group13proj.tr_InsertingRentals ON group13proj.Rental
@@ -490,3 +491,15 @@ where InventoryID = ( select ins.InventoryID
 					  inner join group13proj.Rental i on ins.InventoryID = i.InventoryID
 					  order by i.RentalID desc)
 GO
+    
+exec rentMovie 'Tangled', 'uncle@yahoo.com'
+exec rentMovie 'Avatar', 'uncle@yahoo.com'
+exec rentMovie '2 Guns', 'uncle@yahoo.com'
+exec rentMovie 'Avatar', 'uncle@yahoo.com'
+exec rentMovie 'Spectre', 'uncle@yahoo.com'
+exec rentMovie 'John Carter', 'uncle@yahoo.com'
+exec rentMovie 'John Carter', 'kmiller@me.com'
+select * from group13proj.Rental
+select * from group13proj.Account 
+select* from group13proj.Movie M where M.MovieTitle='John Carter'
+select* from group13proj.Inventory I where I.MovieID=5
