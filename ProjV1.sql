@@ -75,32 +75,27 @@ create table group13proj.Rental
 	RentalDate date not null default convert(date, getdate()) ,
 	DueDate date not null default convert(date, getdate()+5),
 	AccountID int not null foreign key references group13proj.Account(AccountID),
-	)
-
-
-/*insert group13proj.Rental(InventoryID, RentalDate, DueDate, AccountID)
-select I.InventoryID, T.RentalDate, T.DueDate, A.AccountID
-from
-	(
-	values
-	('2018-02-21', '2018-02-28', N'Heather', N'Wright', N'Avatar'),
-	('2018-04-21', '2018-04-28', N'Evan', N'Bower', N'Spectre'),
-	('2018-01-12', '2018-01-28', N'Eric', N'Martin', N'Minions'),
-	('2018-07-11', '2018-07-21', N'Olivia', N'Sanderson', N'Unbreakable'),
-	('2018-06-21', '2018-06-28', N'Diane', N'Lambert', N'Carriers'),
-	('2018-03-03', '2018-03-12', N'Robert', N'Underwood', N'Shaft'),
-	('2018-04-21', '2018-04-23', N'Jennifer', N'Baker', N'Black Mass'),
-	('2018-05-23', '2018-06-03', N'Oliver', N'Wallace', N'Anastasia'),
-	('2018-03-23', '2018-03-28', N'Lisa', N'Avery', N'Domestic Disturbance'),
-	('2018-04-23', '2018-04-24', N'Vanessa', N'Marshall', N'Eye See You')
-	) T(RentalDate, DueDate, FirstName, LastName, MovieName)
-	inner join group13proj.Account A on A.FirstName=T.FirstName and A.LastName=T.LastName
-	inner join group13proj.Movie M on M.MovieTitle=T.MovieName
-	inner join group13proj.Inventory I on I.MovieID= M.MovieID
-go*/
+)
+	
 select* from group13proj.Rental
-
-select* from group13proj.Movie
+--inserting multiple copies
+drop procedure if exists createDuplicates
+go
+create procedure createDuplicates
+as
+declare @movieIndex int = 0;
+while @movieIndex<=993
+begin
+insert group13proj.Inventory(MovieID, Rented)
+select M.MovieID, 0
+from group13proj.Movie M
+where M.MovieID=@movieIndex
+set @movieIndex= @movieIndex+6
+end;
+go
+select * from group13proj.Inventory I
+exec createDuplicates 
+select * from group13proj.Inventory I where I.MovieID=6
 --idk what interesting cases would be,
 --maybe we can show what happens if 2 accounts have the same phone or email
 --Or if the due date is before the rentaldate
