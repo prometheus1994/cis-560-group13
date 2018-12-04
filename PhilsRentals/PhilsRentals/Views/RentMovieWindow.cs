@@ -35,12 +35,12 @@ namespace PhilsRentals.Views
             InitializeComponent();
             _mwc = mwc;
             _GetSelectedAccount = GetSelectedAccount;
-            AddMovies();
         }
 
         //not working yet, the information is coming in from the database but not being displayed right within the listbox
-        private void AddMovies()
+        public void AddMovies()
         {
+            uxDataGridViewMovies.Rows.Clear();
             List<Movie> movies = new List<Movie>();
             movies = _mwc.initDisp();
             
