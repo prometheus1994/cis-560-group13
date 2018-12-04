@@ -475,3 +475,18 @@ delete R
 from group13proj.Rental R
 inner join group13proj.Inventory I on I.InventoryID = R.InventoryID
 GO
+
+DROP TRIGGER IF EXISTS group13proj.tr_InsertingRentals;
+GO
+CREATE TRIGGER group13proj.tr_InsertingRentals ON group13proj.Rental
+AFTER insert
+AS
+update group13proj.Inventory 
+set 
+rented = 1
+
+where InventoryID = ( select ins.InventoryID
+					  from inserted ins
+					  inner join group13proj.Rental i on ins.InventoryID = i.InventoryID
+					  order by i.RentalID desc)
+GO
