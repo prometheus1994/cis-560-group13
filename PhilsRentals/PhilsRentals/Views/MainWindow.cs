@@ -163,18 +163,21 @@ namespace PhilsRentals
         {
             Form prompt = new Form() {
                 BackColor = System.Drawing.Color.White, Width = 350, Height = 150, Text = "Select Account", MaximizeBox = false
+
             };
 
             Label textLabel = new Label() { Left = 15, Top = 30, Text = "Email Address:" };
             TextBox inputBox = new TextBox() { Left = 120, Top = 28, Width = 200 };
             Button confirmation = new Button() { Text = "Ok", Left = 222, Width = 100, Top = 70 };
+            
             confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.AcceptButton = confirmation;
             prompt.Controls.Add(confirmation);
             prompt.Controls.Add(textLabel);
             prompt.Controls.Add(inputBox);
 
             DialogResult result = prompt.ShowDialog();
-            return (result == DialogResult.Abort) ? "" : inputBox.Text;
+            return (result == DialogResult.Abort) ? String.Empty : inputBox.Text;
         }
     }
 }
