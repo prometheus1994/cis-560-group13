@@ -264,7 +264,7 @@ create procedure filterGenres
 as
 select *
 from group13proj.Movie M 
-where M.GenreID like '%'+', '+@id+','+'%'
+where M.GenreID like '%'+', '+@id+','+'%' or M.GenreID like '%'+ ', '+ @id or M.GenreID like @id+'%'
 --where M.GenreID in( string_split (@listofIds, ',')as N on '%'+N.value+'%' like M.GenreID
 
 exec filterGenres '2'
