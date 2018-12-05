@@ -208,7 +208,6 @@ from group13proj.Account
 
 drop procedure if exists rentMovie
 go
-
 create procedure rentMovie
 @title NVarChar(255), @email NvarChar(64)
 as
@@ -236,14 +235,15 @@ rented = 1
 from group13proj.Inventory i
 where i.InventoryID = ( select top 1 i.InventoryID
 					  from inserted ins
-					  inner join group13proj.Rental i on ins.InventoryID = i.InventoryID
+					  inner join group13proj.Inventory i on ins.InventoryID = i.InventoryID
 					  order by ins.RentalID desc
 					 )
 GO
-    
+select * from group13proj.Inventory where MovieID =1
+
 exec rentMovie 'Tangled', 'uncle@yahoo.com'
 exec rentMovie 'Avatar', 'uncle@yahoo.com'
-exec rentMovie 'Avatar', 'xtang@yahoo.com'
+exec rentMovie 'Avatar', 'uncle@yahoo.com'
 exec rentMovie 'Blackhat', 'kmiller@me.com'
 select * from group13proj.Rental
 select* from group13proj.Inventory where InventoryID=62
@@ -261,18 +261,21 @@ create procedure returnRental
 @movieTitle nvarchar(255),
 @email nvarchar(150)
 as
-update I
+update top (1) I
 set Rented = 0
 from group13proj.Inventory I
 inner join group13proj.Movie M on M.MovieTitle=@movieTitle
 where I.MovieID= M.MovieID;
-delete R
+delete top (1) R
 from group13proj.Rental R
 inner join group13proj.Account A on A.Email=@email
 inner join group13proj.Movie M on M.MovieTitle=@movieTitle 
 inner join group13proj.Inventory I on I.MovieID=M.MovieID 
 where R.AccountID=A.AccountID and R.InventoryID=I.InventoryID
 go
+insert group13proj.Inventory(MovieID, Rented)
+values(1,1), (1,1);
+select* from group13proj.Inventory where MovieID=1
 select * from group13proj.Rental
 select movieID from group13proj.Movie where MovieTitle='Avatar'
 select* from group13proj.Inventory I where I.MovieID=1
