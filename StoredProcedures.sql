@@ -306,28 +306,6 @@ exec allFilters
 
 
 
-drop procedure if exists rentMovie
-go
-
-create procedure rentMovie
-@title NVarChar(255), @email NvarChar(64)
-as
-Insert group13proj.Rental(InventoryID, AccountID)
-Select Top(1)
-	    I.InventoryID, a.AccountID
-from group13proj.Movie M
-	inner join group13proj.Inventory I on I.MovieID = M.MovieID and i.Rented = 0
-	inner join group13proj.Account A on a.Email = @email
-where M.MovieTitle = @title;
-
-
-declare @rID int = Scope_Identity();
-
-select r.DueDate
-from group13proj.Rental r
-where r.RentalID = @rID
-go
-
 
 --This is the initial display for the rental window, only displays the name of the movie and the number of available copies we have
 drop procedure if exists initDispRental
@@ -367,11 +345,6 @@ select r.DueDate
 from group13proj.Rental r
 where r.RentalID = @rID
 go
-
-
-
-
-
 
 
 -- in process
