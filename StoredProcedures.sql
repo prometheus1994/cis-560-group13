@@ -279,6 +279,7 @@ exec returnRental 'Avatar', 'uncle@yahoo.com'
 select* from group13proj.Inventory where InventoryID=62
 select*from group13proj.Rental
 
+--dont think we need this trigger
 DROP TRIGGER IF EXISTS group13proj.tr_DeletingRentals;
 GO
 CREATE TRIGGER group13proj.tr_DeletingRentals ON group13proj.Rental
@@ -405,8 +406,7 @@ create procedure filterGenres
 as
 select *
 from group13proj.Movie M
-where M.GenreID like '%'+', '+@id+','+'%'
---where M.GenreID in( string_split (@listofIds, ',')as N on '%'+N.value+'%' like M.GenreID
+where M.GenreID like '%'+', '+@id+','+'%' or M.GenreID like '%'+ ', '+ @id or M.GenreID like @id+'%'
 
 exec filterGenres '2'
 
@@ -441,4 +441,4 @@ exec allFilters
 @year =2000,
 @yoperator ='>',
 @movietitle='vat'
-
+ 
