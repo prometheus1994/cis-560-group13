@@ -75,7 +75,7 @@ namespace PhilsRentals.Views
 
         private void uxDataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+             
         }
     }
 }
