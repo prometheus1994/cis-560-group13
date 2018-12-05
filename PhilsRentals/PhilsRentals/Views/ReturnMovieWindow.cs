@@ -36,6 +36,23 @@ namespace PhilsRentals.Views
             _GetSelectedAccount = GetSelectedAccount;
         }
 
+
+
+        public void AddMovies()
+        {
+            uxDataGridViewMovies.Rows.Clear();
+            List<Movie> movies = new List<Movie>();
+            movies = _mwc.GetRentedMovies(_GetSelectedAccount());
+
+            foreach (Movie movie in movies)
+            {
+                uxDataGridViewMovies.Rows.Add(movie.Title, movie.DueDate);
+            }
+            uxDataGridViewMovies.ClearSelection();
+        }
+
+
+
         /// <summary>
         /// Handles Returning selected movie(s) from user
         /// </summary>
@@ -44,6 +61,21 @@ namespace PhilsRentals.Views
         private void uxButtonReturnMovie_Click(object sender, EventArgs e)
         {
             
+        }
+
+
+        private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            uxButtonReturnMovie.Enabled = uxDataGridViewMovies.SelectedRows != null;
+        }
+
+
+
+
+
+        private void uxDataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
