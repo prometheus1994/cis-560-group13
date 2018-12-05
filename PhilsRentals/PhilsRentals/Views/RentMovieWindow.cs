@@ -97,5 +97,6 @@ namespace PhilsRentals.Views
             }
             AddMovies();
         }
+
     }
 }
