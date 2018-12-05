@@ -30,7 +30,6 @@ create table group13Proj.Movie(
 	Duration int null,
 	Rating float,
 	GenreID nvarchar(100)  null,
-	--NumberOfCopies int not null
 	unique(MovieTitle, ReleaseYear)
 )
 
