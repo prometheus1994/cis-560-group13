@@ -113,6 +113,10 @@ namespace PhilsRentals
                     {
                         ((RentMovieWindow)window).AddMovies();
                     }
+                    else if(window is ReturnMovieWindow)
+                    {
+                        ((ReturnMovieWindow)window).AddMovies();
+                    }
                 }
             }
             else
