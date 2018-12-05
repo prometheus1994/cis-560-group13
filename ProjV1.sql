@@ -49,7 +49,7 @@ create table group13proj.Inventory
 	MovieID int not null foreign key references group13Proj.movie(movieID),
 	Rented int not null default 0
 )
---inserting 4 sample rows in the inventory table
+--populating the inventory table
 insert group13proj.Inventory(MovieID)
 select M.MovieID
 from group13proj.Movie M
@@ -83,7 +83,7 @@ go
 create procedure createDuplicates
 as
 declare @movieIndex int = 0;
-while @movieIndex<=993
+while @movieIndex<=967
 begin
 insert group13proj.Inventory(MovieID, Rented)
 select M.MovieID, 0
