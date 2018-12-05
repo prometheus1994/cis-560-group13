@@ -500,7 +500,9 @@ namespace PhilsRentals
                 return true;
             }
     }
-    //this class might be useful for showing the movies in the rental page or browse movie page, idk anymore though
+    /// <summary>
+    /// This is a class used for displaying information about the movies into the gui
+    /// </summary>
     public class Movie
     {
         public string Title { get; set; }

@@ -230,12 +230,14 @@ GO
 CREATE TRIGGER group13proj.tr_InsertingRentals ON group13proj.Rental
 AFTER insert
 AS
-update group13proj.Inventory 
+update group13proj.Inventory
 set 
 rented = 1
-where InventoryID = ( select i.InventoryID
+from group13proj.Inventory i
+where i.InventoryID = ( select top 1 i.InventoryID
 					  from inserted ins
-					  inner join group13proj.Inventory i on ins.InventoryID = i.InventoryID
+					  inner join group13proj.Rental i on ins.InventoryID = i.InventoryID
+					  order by ins.RentalID desc
 					 )
 GO
     
@@ -446,3 +448,5 @@ exec allFilters
 
  select *
  from group13proj.Rental
+ select*
+ from group13proj.Inventory
