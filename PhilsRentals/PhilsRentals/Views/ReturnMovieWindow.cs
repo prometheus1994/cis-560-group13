@@ -49,7 +49,15 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonReturnMovie_Click(object sender, EventArgs e)
         {
-            
+            if(_mwc.ReturnMovie(_GetSelectedAccount(), uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value.ToString()))
+            {
+                MessageBox.Show("Movies Successfully returned! Thank you!");
+            }
+            else
+            {
+                MessageBox.Show("An error occured while returning your movie please try again.");
+            }
+            InitWindow();
         }
 
         private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)

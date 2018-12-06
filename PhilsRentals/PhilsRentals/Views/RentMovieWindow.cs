@@ -90,6 +90,12 @@ namespace PhilsRentals.Views
                 }
             }
 
+            if(rentedMovies.Count >= 3)
+            {
+                MessageBox.Show("Customers may only rent 3 movies at a time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string returnDate = _mwc.RentMovie(_GetSelectedAccount(), uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value.ToString());
             if (returnDate != null)
             {

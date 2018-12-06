@@ -492,7 +492,7 @@ namespace PhilsRentals
                         SqlCommand cmd = new SqlCommand("returnRental", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Email", email);
-                        cmd.Parameters.AddWithValue("title", movieTitle);
+                        cmd.Parameters.AddWithValue("movieTitle", movieTitle);
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
