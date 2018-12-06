@@ -19,11 +19,6 @@ namespace PhilsRentals.Views
 
         /// <summary>
         /// Handle to the MainWindowController.
-        ///
-        /// This class will only use _mwc.DeleteAccount()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
         /// </summary>
         IMainWindowController _mwc;
 
@@ -51,16 +46,24 @@ namespace PhilsRentals.Views
             {
                 if (_mwc.DeleteAccount(email))
                 {
-                    MessageBox.Show("Account Deleted Successfully.");
+                    MessageBox.Show("Account Deleted Successfully.", "Success");
                 }
                 else
                 {
-                    MessageBox.Show("There was an error deleting the account");
+                    MessageBox.Show("There was an error deleting the account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             uxTextboxEmail.Text = String.Empty;
             uxButtonAccept.Enabled = false;
+        }
+
+        private void uxTextboxEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && MainWindowController.RegexEmail.IsMatch(uxTextboxEmail.Text))
+            {
+                uxButtonAccept_Click(this, new EventArgs());
+            }
         }
     }
 }

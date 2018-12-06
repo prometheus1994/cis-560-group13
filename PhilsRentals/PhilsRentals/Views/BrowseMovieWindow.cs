@@ -14,18 +14,13 @@ namespace PhilsRentals.Views
     {
         /// <summary>
         /// Handle to the MainWindowController.
-        /// 
-        /// This class will only use _mwc.GetMovies()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
         /// </summary>
         IMainWindowController _mwc;
 
         /// <summary>
         /// The title of the movie if they know it
         /// </summary>
-        private string _title = "";
+        private string _title = String.Empty;
 
         /// <summary>
         /// The genre from the checked list box
@@ -35,7 +30,7 @@ namespace PhilsRentals.Views
         /// <summary>
         /// The compiled genres
         /// </summary>
-        private string _compiledGenres = "";
+        private string _compiledGenres = String.Empty;
 
         /// <summary>
         /// The rating of the movie 
@@ -83,13 +78,10 @@ namespace PhilsRentals.Views
             _length = Convert.ToInt32(uxNumericUpDownDuration.Value);
             
             FormatData();
-            
-            
         }
 
         private bool GetMovies()
         {
-
             return false;
         }
 
@@ -120,16 +112,15 @@ namespace PhilsRentals.Views
 
         }
 
-
-        /* Can disregard these methods */
-        private void uxListBoxMovies_DoubleClick(object sender, EventArgs e)
+        private void uxCheckedListBoxMovieGenre_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-
-        }
-
-        private void uxCheckedListBoxMovieGenre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            for (int i = 0; i < uxCheckedListBoxMovieGenre.Items.Count; ++i)
+            {
+                if (i != e.Index)
+                {
+                    uxCheckedListBoxMovieGenre.SetItemChecked(i, false);
+                }
+            }
         }
     }
 }

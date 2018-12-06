@@ -6,12 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Text.RegularExpressions;
 
 namespace PhilsRentals
 {
     public class MainWindowController : IMainWindowController
     {
+        /// <summary>
+        /// Regex for email validation
+        /// </summary>
+        public static readonly Regex RegexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+
         /// <summary>
         /// Connection string for accessing the database.
         /// </summary>
@@ -317,9 +322,10 @@ namespace PhilsRentals
         /// <returns>Whether the rent movie was successful or not</returns>
         public string RentMovie(string email, string movieTitle)
         {
-            string returnDate = String.Empty;
             try
             {
+                string returnDate = String.Empty;
+
                 using (SqlConnection conn = new SqlConnection())
                 {
                     conn.ConnectionString = _connection;
@@ -333,22 +339,22 @@ namespace PhilsRentals
                     using(SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                           
                         {
                             returnDate = reader.GetSqlDateTime(reader.GetOrdinal("DueDate")).ToString();
                         }
                         else
-                            return "error";
-                                  
+                        {
+                            return null;
+                        }    
                     }
                     conn.Close();
+                    return returnDate;
                 }
             }
             catch (Exception e)
             {
-                return "error";
+                return null;
             }
-            return returnDate;
         }
 
         
@@ -459,7 +465,7 @@ namespace PhilsRentals
                     while (reader.Read())
                     {
                         temp = (reader.GetString(reader.GetOrdinal("MovieTitle")));
-                        movies.Add(new Movie(temp, (reader.GetString(reader.GetOrdinal("DueDate")))));
+                        movies.Add(new Movie(temp, ((DateTime)reader["DueDate"]).ToString("MM/d/yyyy")));
                     }
                 }
 

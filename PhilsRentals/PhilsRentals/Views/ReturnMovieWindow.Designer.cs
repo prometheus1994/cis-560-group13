@@ -86,7 +86,6 @@
             this.uxDataGridViewMovies.Size = new System.Drawing.Size(578, 431);
             this.uxDataGridViewMovies.TabIndex = 17;
             this.uxDataGridViewMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uxDataGridViewMovies_CellClick);
-            this.uxDataGridViewMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.uxDataGridViewMovies_CellContentClick);
             // 
             // MovieTitle
             // 

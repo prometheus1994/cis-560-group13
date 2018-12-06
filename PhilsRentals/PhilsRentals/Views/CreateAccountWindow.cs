@@ -14,23 +14,22 @@ namespace PhilsRentals.Views
     {
         /// <summary>
         /// Handle to the MainWindowController.
-        ///
-        /// This class will only use _mwc.CreateAccount()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
         /// </summary>
         IMainWindowController _mwc;
-
-        string firstName;
-        string lastName;
-        string email;
-        string phoneNumber;
 
         public CreateAccountWindow(IMainWindowController mwc)
         {
             InitializeComponent();
             _mwc = mwc;
+        }
+
+        public void InitWindow()
+        {
+            uxTextboxEmail.Text = String.Empty;
+            uxTextboxFirstName.Text = String.Empty;
+            uxTextboxLastName.Text = String.Empty;
+            uxTextboxPhoneNumber.Text = String.Empty;
+            uxButtonAccept.Enabled = false;
         }
 
         /// <summary>
@@ -40,21 +39,28 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonAccept_Click(object sender, EventArgs e)
         {
-            firstName = uxTextboxFirstName.Text;
-            lastName = uxTextboxLastName.Text;
-            email = uxTextboxEmail.Text;
-            phoneNumber = String.Format("{0:(###) ###-####}", Convert.ToDouble(uxTextboxPhoneNumber.Text));
-            //MessageBox.Show(phoneNumber);
-            bool ret = _mwc.CreateAccount(firstName, lastName, phoneNumber, email);
-            if (ret)
-                MessageBox.Show("Account Created Successfully");
+            if (MainWindowController.RegexEmail.IsMatch(uxTextboxEmail.Text))
+            {
+                string firstName = uxTextboxFirstName.Text;
+                string lastName = uxTextboxLastName.Text;
+                string email = uxTextboxEmail.Text;
+                string phoneNumber = String.Format("{0:(###) ###-####}", Convert.ToDouble(uxTextboxPhoneNumber.Text));
+
+                if (_mwc.CreateAccount(firstName, lastName, phoneNumber, email))
+                {
+                    MessageBox.Show("Account Created Successfully", "Success");
+                }
+                else
+                {
+                    MessageBox.Show("There was a problem creating the account. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }    
+            }
             else
-                MessageBox.Show("There was a problem creating the account. Please try again.");
-            uxTextboxEmail.Text = "";
-            uxTextboxFirstName.Text = "";
-            uxTextboxLastName.Text = "";
-            uxTextboxPhoneNumber.Text = "";
-            uxButtonAccept.Enabled = false;
+            {
+                MessageBox.Show("You have entered an invalid email format. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            InitWindow();
     }
 
         private void uxTextboxTextChanged(object sender, EventArgs e)

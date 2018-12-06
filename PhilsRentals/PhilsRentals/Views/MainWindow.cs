@@ -111,11 +111,11 @@ namespace PhilsRentals
 
                     if (window is RentMovieWindow)
                     {
-                        ((RentMovieWindow)window).AddMovies();
+                        ((RentMovieWindow)window).InitWindow();
                     }
                     else if(window is ReturnMovieWindow)
                     {
-                        ((ReturnMovieWindow)window).AddMovies();
+                        ((ReturnMovieWindow)window).InitWindow();
                     }
                 }
             }
@@ -136,14 +136,14 @@ namespace PhilsRentals
                         }
                         else
                         {
-                            MessageBox.Show("Account does not exist in the system. Please try a different Email or create an account.");
+                            MessageBox.Show("Account does not exist in the system. Please try a different Email or create an account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
                         if (email.Length != 0)
                         {
-                            MessageBox.Show("Invalid Email");
+                            MessageBox.Show("Invalid Email", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

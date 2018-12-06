@@ -66,11 +66,12 @@
             this.uxTextboxEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxTextboxEmail.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.uxTextboxEmail.Location = new System.Drawing.Point(139, 123);
-            this.uxTextboxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.uxTextboxEmail.Margin = new System.Windows.Forms.Padding(2);
             this.uxTextboxEmail.Name = "uxTextboxEmail";
             this.uxTextboxEmail.Size = new System.Drawing.Size(410, 43);
             this.uxTextboxEmail.TabIndex = 9;
             this.uxTextboxEmail.TextChanged += new System.EventHandler(this.uxTextboxEmail_TextChanged);
+            this.uxTextboxEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uxTextboxEmail_KeyDown);
             // 
             // uxButtonAccept
             // 
@@ -78,7 +79,7 @@
             this.uxButtonAccept.Enabled = false;
             this.uxButtonAccept.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.uxButtonAccept.Location = new System.Drawing.Point(184, 362);
-            this.uxButtonAccept.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.uxButtonAccept.Margin = new System.Windows.Forms.Padding(2);
             this.uxButtonAccept.Name = "uxButtonAccept";
             this.uxButtonAccept.Size = new System.Drawing.Size(200, 50);
             this.uxButtonAccept.TabIndex = 10;
