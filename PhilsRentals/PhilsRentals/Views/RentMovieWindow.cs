@@ -92,7 +92,7 @@ namespace PhilsRentals.Views
 
             if(rentedMovies.Count >= 4)
             {
-                MessageBox.Show("Customers may only rent 3 movies at a time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Customers may only rent 4 movies at a time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
