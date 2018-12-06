@@ -15,11 +15,6 @@ namespace PhilsRentals.Views
     {
         /// <summary>
         /// Handle to the MainWindowController.
-        ///
-        /// This class will only use _mwc.AddMovie()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
         /// </summary>
         IMainWindowController _mwc;
 
@@ -47,8 +42,6 @@ namespace PhilsRentals.Views
                 && Convert.ToInt32(uxTextBoxDuration.Text) > 0;
         }
 
-        //Ignore the formatting for all of this. Waiting to learn how Rida needs the data.
-        //this part should work now but the sql needs to be fixed in order to test
         private void uxButtonAddMovie_Click(object sender, EventArgs e)
         {
             string movieTitle = uxTextBoxMovieTitle.Text;
@@ -72,9 +65,9 @@ namespace PhilsRentals.Views
                 ret = _mwc.AddMovie(movieTitle, movieGenres, movieYear, movieDuration, movieRating);
             }
             if (ret)
-                MessageBox.Show("Process Complete.");
+                MessageBox.Show("Process Complete.", "Success");
             else
-                MessageBox.Show("Process Failed");
+                MessageBox.Show("Process Failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

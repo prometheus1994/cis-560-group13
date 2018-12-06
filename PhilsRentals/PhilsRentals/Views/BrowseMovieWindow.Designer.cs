@@ -134,7 +134,7 @@
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
             this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 76);
             this.uxCheckedListBoxMovieGenre.TabIndex = 17;
-            this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxCheckedListBoxMovieGenre_SelectedIndexChanged);
+            this.uxCheckedListBoxMovieGenre.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.uxCheckedListBoxMovieGenre_ItemCheck);
             // 
             // uxLabelMovieGenre
             // 

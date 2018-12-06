@@ -19,13 +19,6 @@ namespace PhilsRentals.Views
 
         /// <summary>
         /// Handle to the MainWindowController.
-        /// 
-        /// This class will only use _mwc.GetRentedMovies() and _mwc.ReturnMovie()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
-        /// 
-        /// Use _GetSelectedAccount to get selected email
         /// </summary>
         IMainWindowController _mwc;
 
@@ -36,22 +29,18 @@ namespace PhilsRentals.Views
             _GetSelectedAccount = GetSelectedAccount;
         }
 
-
-
-        public void AddMovies()
+        public void InitWindow()
         {
             uxDataGridViewMovies.Rows.Clear();
-            List<Movie> movies = new List<Movie>();
-            movies = _mwc.GetRentedMovies(_GetSelectedAccount());
+            List<Movie> movies = _mwc.GetRentedMovies(_GetSelectedAccount());
 
             foreach (Movie movie in movies)
             {
                 uxDataGridViewMovies.Rows.Add(movie.Title, movie.DueDate);
             }
             uxDataGridViewMovies.ClearSelection();
+            uxButtonReturnMovie.Enabled = false;
         }
-
-
 
         /// <summary>
         /// Handles Returning selected movie(s) from user
@@ -63,19 +52,9 @@ namespace PhilsRentals.Views
             
         }
 
-
         private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             uxButtonReturnMovie.Enabled = uxDataGridViewMovies.SelectedRows != null;
-        }
-
-
-
-
-
-        private void uxDataGridViewMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

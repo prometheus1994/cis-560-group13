@@ -30,6 +30,22 @@ namespace PhilsRentals.Views
             _GetSelectedAccount = GetSelectedAccount;
         }
 
+        public void InitWindow()
+        {
+            uxTextBoxFirstName.Text = String.Empty;
+            uxTextBoxLastName.Text = String.Empty;
+            uxTextBoxNewEmail.Text = String.Empty;
+            uxTextBoxPhoneNumber.Text = String.Empty;
+            uxTextBoxSearchEmail.Text = String.Empty;
+            uxTextBoxSearchEmail.Enabled = true;
+            uxTextBoxPhoneNumber.Enabled = false;
+            uxTextBoxNewEmail.Enabled = false;
+            uxTextBoxFirstName.Enabled = false;
+            uxTextBoxLastName.Enabled = false;
+            uxButtonSearchEmail.Enabled = true;
+            uxButtonUpdateInfo.Enabled = false;
+        }
+
         private void uxTextBoxTextChanged(object sender, EventArgs e)
         {
             if (((TextBox)sender).Name.Equals(uxTextBoxSearchEmail.Name))
@@ -53,37 +69,15 @@ namespace PhilsRentals.Views
             bool ret = _mwc.ModifyAccountInformation(uxTextBoxSearchEmail.Text, uxTextBoxNewEmail.Text, uxTextBoxPhoneNumber.Text, uxTextBoxFirstName.Text, uxTextBoxLastName.Text);
             if(ret)
             {
-                MessageBox.Show("Update processed successfully");
+                MessageBox.Show("Update processed successfully", "Success");
             }
             else
             {
-                MessageBox.Show("Error With Update");
+                MessageBox.Show("Error With Update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            uxTextBoxFirstName.Text = String.Empty;
-            uxTextBoxLastName.Text = String.Empty;
-            uxTextBoxNewEmail.Text = String.Empty;
-            uxTextBoxPhoneNumber.Text = String.Empty;
-            uxTextBoxSearchEmail.Text = String.Empty;
-            uxTextBoxSearchEmail.Enabled = true;
-            uxTextBoxPhoneNumber.Enabled = false;
-            uxTextBoxNewEmail.Enabled = false;
-            uxTextBoxFirstName.Enabled = false;
-            uxTextBoxLastName.Enabled = false;
-            uxButtonSearchEmail.Enabled = true;
-            uxButtonUpdateInfo.Enabled = false;
+            InitWindow();
         }
 
-        /*
-         * create table group13proj.Account
-         *
-         * (
-	            AccountID int not null identity(1,1) primary key,
-	            FirstName NVARCHAR(32) not null,
-	            LastName NVARCHAR(32) not null,
-	            PhoneNumber NVARCHAR(15) not null,
-	            Email NVARCHAR(64) not null unique
-            )
-         */
         /// <summary>
         /// Looks for the email in the Account table
         /// </summary>
@@ -91,15 +85,15 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonSearchEmail_Click(object sender, EventArgs e)
         {
-            string email = String.Empty;
-            email = uxTextBoxSearchEmail.Text;
+            string email = uxTextBoxSearchEmail.Text;
             
             if (!email.Equals(_GetSelectedAccount()))
             {
                 string[] account_info = _mwc.GetAccountInformation(email);
                 if (account_info[0].Equals("error"))
                 {
-                    MessageBox.Show("Account not in system. Please try a different Email address.");
+                    MessageBox.Show("Account not in system. Please try a different Email address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    InitWindow();
                 }
                 else
                 {
@@ -118,7 +112,8 @@ namespace PhilsRentals.Views
             }
             else
             {
-                MessageBox.Show("You cannot modify an account that is currently selected", "Error");
+                MessageBox.Show("You cannot modify an account that is currently selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                InitWindow();
             }
         }
     }

@@ -20,13 +20,6 @@ namespace PhilsRentals.Views
 
         /// <summary>
         /// Handle to the MainWindowController.
-        ///
-        /// This class will only use _mwc.GetRentableMovies() and _mwc.RentMovie()
-        /// Refer to these methods in the controller for their parameters
-        /// These methods need to be implemented
-        /// The return types may need to be changed (If you change them you must also change them in the interface)
-        ///
-        /// Use _GetSelectedAccount to get selected email
         /// </summary>
         IMainWindowController _mwc;
 
@@ -38,7 +31,7 @@ namespace PhilsRentals.Views
         }
 
         //not working yet, the information is coming in from the database but not being displayed right within the listbox
-        public void AddMovies()
+        public void InitWindow()
         {
             uxDataGridViewMovies.Rows.Clear();
             List<Movie> movies = new List<Movie>();
@@ -49,6 +42,7 @@ namespace PhilsRentals.Views
                 uxDataGridViewMovies.Rows.Add(movie.Title, movie.Count);
             }
             uxDataGridViewMovies.ClearSelection();
+            uxButtonRentMovie.Enabled = false;
         }
 
         private void uxDataGridViewMovies_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,17 +80,27 @@ namespace PhilsRentals.Views
 
         private void uxButtonRentMovie_Click(object sender, EventArgs e)
         {
-            string ret = _mwc.RentMovie(_GetSelectedAccount(), uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value.ToString());
-            if(ret.Equals("error"))
+            List<Movie> rentedMovies = _mwc.GetRentedMovies(_GetSelectedAccount());
+            foreach (Movie movie in rentedMovies)
             {
-                MessageBox.Show("There was a problem renting the movie. Please try again.");
+                if (movie.Title.Equals(uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value))
+                {
+                    MessageBox.Show("You have already rented this movie! Limit 1 per customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            string returnDate = _mwc.RentMovie(_GetSelectedAccount(), uxDataGridViewMovies.SelectedRows[0].Cells["MovieTitle"].Value.ToString());
+            if (returnDate != null)
+            {
+                MessageBox.Show("Movie Successfully rented. You movie is due: " + returnDate, "Success");
             }
             else
             {
-                MessageBox.Show("Movie Successfully rented. You movie is due:" + ret);
+                
+                MessageBox.Show("There was a problem renting the movie. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            AddMovies();
+            InitWindow();
         }
-
     }
 }
