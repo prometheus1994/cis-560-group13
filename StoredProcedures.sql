@@ -563,55 +563,50 @@ as
 
 drop table if exists #yTable
 create table #yTable(
-	MovieID int not null identity(1,1) primary key,
+	MovieID int not null identity(1,1) ,
 	MovieTitle NVARCHAR(255) not null,
 	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100)  null,
-	unique(MovieTitle, ReleaseYear)
+	GenreID nvarchar(100)  null
 );
 drop table if exists #rTable
 create table #rTable(
-	MovieID int not null identity(1,1) primary key,
+	MovieID int not null identity(1,1),
 	MovieTitle NVARCHAR(255) not null,
 	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100)  null,
-	unique(MovieTitle, ReleaseYear)
+	GenreID nvarchar(100)  null
 );
 drop table if exists #dTable
 create table #dTable(
-	MovieID int not null identity(1,1) primary key,
+	MovieID int not null identity(1,1) ,
 	MovieTitle NVARCHAR(255) not null,
 	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100)  null,
-	unique(MovieTitle, ReleaseYear)
+	GenreID nvarchar(100)  null
 );
 /*
 drop table if exists #gTable
 create table #gTable(
-	MovieID int not null identity(1,1) primary key,
+	MovieID int not null identity(1,1) ,
 	MovieTitle NVARCHAR(255) not null,
 	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100)  null,
-	unique(MovieTitle, ReleaseYear)
+	GenreID nvarchar(100)  null
 );
 */
 drop table if exists #tTable
 create table #tTable(
-	MovieID int not null identity(1,1) primary key,
+	MovieID int not null identity(1,1) ,
 	MovieTitle NVARCHAR(255) not null,
 	ReleaseYear int not null,
 	Duration int null,
 	Rating float,
-	GenreID nvarchar(100)  null,
-	unique(MovieTitle, ReleaseYear)
+	GenreID nvarchar(100)  null
 );
 
 if(@yG is null and @yoG is null and @yL is not null and @yoL is not null)
