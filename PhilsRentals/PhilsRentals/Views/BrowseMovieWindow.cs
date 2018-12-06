@@ -10,13 +10,19 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
+    public enum OperatorValue 
+    {
+        Equals = '=',
+        LessThan = '<'
+    };
+
     public partial class BrowseMovieWindow : UserControl
     {
         /// <summary>
         /// Handle to the MainWindowController.
         /// </summary>
         IMainWindowController _mwc;
-
+        
         /// <summary>
         /// The title of the movie if they know it
         /// </summary>
@@ -121,6 +127,70 @@ namespace PhilsRentals.Views
                     uxCheckedListBoxMovieGenre.SetItemChecked(i, false);
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles changing the operator displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxNumericUpDownRatingOperator_Click(object sender, EventArgs e)
+        {
+            string operate = SetOperatorValue(uxNumericUpDownRatingOperator.Text[0]);
+            uxNumericUpDownRatingOperator.Text = operate;
+        }
+
+        /// <summary>
+        /// Handles changing the operator displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxNumericUpDownYearOperator_Click(object sender, EventArgs e)
+        {
+            string operate = SetOperatorValue(uxNumericUpDownYearOperator.Text[0]);
+            uxNumericUpDownYearOperator.Text = operate;
+        }
+
+        /// <summary>
+        /// Handles changing the operator displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxNumericUpDownDurationOperator_Click(object sender, EventArgs e)
+        {
+            string operate = SetOperatorValue(uxNumericUpDownDurationOperator.Text[0]);
+            uxNumericUpDownDurationOperator.Text = operate;
+
+            if (operate.Equals("="))
+            {
+                uxNumericUpDownDurationTwo.Value = uxNumericUpDownDuration.Value;
+            }
+        }
+
+        /// <summary>
+        /// Takes in the current operator value and sets it to the next possible value.
+        /// </summary>
+        /// <param name="current_operator"></param>
+        /// <returns></returns>
+        private string SetOperatorValue(char current_operator)
+        {
+            if (current_operator.Equals("="))
+            {
+                return "<";
+            }
+            else
+            {
+                return "=";
+            }
+        }
+
+        private string SetUpperRangeValue(string current_operator)
+        {
+            if (current_operator.Equals("="))
+            {
+                
+            }
+            return "";
         }
     }
 }

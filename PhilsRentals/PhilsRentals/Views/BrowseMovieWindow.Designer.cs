@@ -46,10 +46,19 @@
             this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReleaseYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uxNumericUpDownRatingTwo = new System.Windows.Forms.NumericUpDown();
+            this.uxNumericUpDownRatingOperator = new System.Windows.Forms.Button();
+            this.uxNumericUpDownYearTwo = new System.Windows.Forms.NumericUpDown();
+            this.uxNumericUpDownYearOperator = new System.Windows.Forms.Button();
+            this.uxNumericUpDownDurationOperator = new System.Windows.Forms.Button();
+            this.uxNumericUpDownDurationTwo = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridViewMovies)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRatingTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYearTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDurationTwo)).BeginInit();
             this.SuspendLayout();
             // 
             // uxLabelMovieTitle
@@ -159,7 +168,7 @@
             0,
             0,
             65536});
-            this.uxNumericUpDownRating.Location = new System.Drawing.Point(414, 60);
+            this.uxNumericUpDownRating.Location = new System.Drawing.Point(368, 61);
             this.uxNumericUpDownRating.Maximum = new decimal(new int[] {
             10,
             0,
@@ -172,8 +181,9 @@
             // uxNumericUpDownDuration
             // 
             this.uxNumericUpDownDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownDuration.DecimalPlaces = 2;
             this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.uxNumericUpDownDuration.Location = new System.Drawing.Point(414, 148);
+            this.uxNumericUpDownDuration.Location = new System.Drawing.Point(368, 148);
             this.uxNumericUpDownDuration.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -182,19 +192,24 @@
             this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
             this.uxNumericUpDownDuration.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownDuration.TabIndex = 22;
+            this.uxNumericUpDownDuration.Value = new decimal(new int[] {
+            140,
+            0,
+            0,
+            131072});
             // 
             // uxNumericUpDownYear
             // 
             this.uxNumericUpDownYear.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxNumericUpDownYear.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.uxNumericUpDownYear.Location = new System.Drawing.Point(414, 104);
+            this.uxNumericUpDownYear.Location = new System.Drawing.Point(368, 104);
             this.uxNumericUpDownYear.Maximum = new decimal(new int[] {
-            5000,
+            2019,
             0,
             0,
             0});
             this.uxNumericUpDownYear.Minimum = new decimal(new int[] {
-            1500,
+            1888,
             0,
             0,
             0});
@@ -202,7 +217,7 @@
             this.uxNumericUpDownYear.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownYear.TabIndex = 21;
             this.uxNumericUpDownYear.Value = new decimal(new int[] {
-            2018,
+            1888,
             0,
             0,
             0});
@@ -242,9 +257,9 @@
             this.uxLabelReleaseDate.ForeColor = System.Drawing.Color.Black;
             this.uxLabelReleaseDate.Location = new System.Drawing.Point(298, 106);
             this.uxLabelReleaseDate.Name = "uxLabelReleaseDate";
-            this.uxLabelReleaseDate.Size = new System.Drawing.Size(110, 21);
+            this.uxLabelReleaseDate.Size = new System.Drawing.Size(48, 21);
             this.uxLabelReleaseDate.TabIndex = 18;
-            this.uxLabelReleaseDate.Text = "Release Year:";
+            this.uxLabelReleaseDate.Text = "Year:";
             // 
             // uxDataGridViewMovies
             // 
@@ -305,11 +320,111 @@
             this.Duration.ReadOnly = true;
             this.Duration.Width = 108;
             // 
+            // uxNumericUpDownRatingTwo
+            // 
+            this.uxNumericUpDownRatingTwo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownRatingTwo.DecimalPlaces = 1;
+            this.uxNumericUpDownRatingTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.uxNumericUpDownRatingTwo.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.uxNumericUpDownRatingTwo.Location = new System.Drawing.Point(501, 61);
+            this.uxNumericUpDownRatingTwo.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.uxNumericUpDownRatingTwo.Name = "uxNumericUpDownRatingTwo";
+            this.uxNumericUpDownRatingTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownRatingTwo.TabIndex = 25;
+            // 
+            // uxNumericUpDownRatingOperator
+            // 
+            this.uxNumericUpDownRatingOperator.Location = new System.Drawing.Point(443, 64);
+            this.uxNumericUpDownRatingOperator.Name = "uxNumericUpDownRatingOperator";
+            this.uxNumericUpDownRatingOperator.Size = new System.Drawing.Size(52, 23);
+            this.uxNumericUpDownRatingOperator.TabIndex = 26;
+            this.uxNumericUpDownRatingOperator.Text = "=";
+            this.uxNumericUpDownRatingOperator.UseVisualStyleBackColor = true;
+            this.uxNumericUpDownRatingOperator.Click += new System.EventHandler(this.uxNumericUpDownRatingOperator_Click);
+            // 
+            // uxNumericUpDownYearTwo
+            // 
+            this.uxNumericUpDownYearTwo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownYearTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.uxNumericUpDownYearTwo.Location = new System.Drawing.Point(501, 104);
+            this.uxNumericUpDownYearTwo.Maximum = new decimal(new int[] {
+            2019,
+            0,
+            0,
+            0});
+            this.uxNumericUpDownYearTwo.Minimum = new decimal(new int[] {
+            1889,
+            0,
+            0,
+            0});
+            this.uxNumericUpDownYearTwo.Name = "uxNumericUpDownYearTwo";
+            this.uxNumericUpDownYearTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownYearTwo.TabIndex = 27;
+            this.uxNumericUpDownYearTwo.Value = new decimal(new int[] {
+            2018,
+            0,
+            0,
+            0});
+            // 
+            // uxNumericUpDownYearOperator
+            // 
+            this.uxNumericUpDownYearOperator.Location = new System.Drawing.Point(442, 107);
+            this.uxNumericUpDownYearOperator.Name = "uxNumericUpDownYearOperator";
+            this.uxNumericUpDownYearOperator.Size = new System.Drawing.Size(52, 23);
+            this.uxNumericUpDownYearOperator.TabIndex = 28;
+            this.uxNumericUpDownYearOperator.Text = "=";
+            this.uxNumericUpDownYearOperator.UseVisualStyleBackColor = true;
+            this.uxNumericUpDownYearOperator.Click += new System.EventHandler(this.uxNumericUpDownYearOperator_Click);
+            // 
+            // uxNumericUpDownDurationOperator
+            // 
+            this.uxNumericUpDownDurationOperator.Location = new System.Drawing.Point(442, 151);
+            this.uxNumericUpDownDurationOperator.Name = "uxNumericUpDownDurationOperator";
+            this.uxNumericUpDownDurationOperator.Size = new System.Drawing.Size(52, 23);
+            this.uxNumericUpDownDurationOperator.TabIndex = 29;
+            this.uxNumericUpDownDurationOperator.Text = "=";
+            this.uxNumericUpDownDurationOperator.UseVisualStyleBackColor = true;
+            this.uxNumericUpDownDurationOperator.Click += new System.EventHandler(this.uxNumericUpDownDurationOperator_Click);
+            // 
+            // uxNumericUpDownDurationTwo
+            // 
+            this.uxNumericUpDownDurationTwo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxNumericUpDownDurationTwo.DecimalPlaces = 2;
+            this.uxNumericUpDownDurationTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.uxNumericUpDownDurationTwo.Location = new System.Drawing.Point(500, 148);
+            this.uxNumericUpDownDurationTwo.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.uxNumericUpDownDurationTwo.Name = "uxNumericUpDownDurationTwo";
+            this.uxNumericUpDownDurationTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownDurationTwo.TabIndex = 30;
+            this.uxNumericUpDownDurationTwo.Value = new decimal(new int[] {
+            140,
+            0,
+            0,
+            131072});
+            // 
             // BrowseMovieWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.uxNumericUpDownDurationTwo);
+            this.Controls.Add(this.uxNumericUpDownDurationOperator);
+            this.Controls.Add(this.uxNumericUpDownYearOperator);
+            this.Controls.Add(this.uxNumericUpDownYearTwo);
+            this.Controls.Add(this.uxNumericUpDownRatingOperator);
+            this.Controls.Add(this.uxNumericUpDownRatingTwo);
             this.Controls.Add(this.uxDataGridViewMovies);
             this.Controls.Add(this.uxNumericUpDownRating);
             this.Controls.Add(this.uxNumericUpDownDuration);
@@ -329,6 +444,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridViewMovies)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRatingTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownYearTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDurationTwo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +471,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
+        private System.Windows.Forms.NumericUpDown uxNumericUpDownRatingTwo;
+        private System.Windows.Forms.Button uxNumericUpDownRatingOperator;
+        private System.Windows.Forms.NumericUpDown uxNumericUpDownYearTwo;
+        private System.Windows.Forms.Button uxNumericUpDownYearOperator;
+        private System.Windows.Forms.Button uxNumericUpDownDurationOperator;
+        private System.Windows.Forms.NumericUpDown uxNumericUpDownDurationTwo;
     }
 }
