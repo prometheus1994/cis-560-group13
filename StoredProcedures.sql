@@ -518,25 +518,251 @@ exec allFilters2
 --*********************************************************************************************************
 
 
+ --**************************************************************************************************
+    
 drop procedure if exists allFilters2
 go
 create procedure allfilters2
+@genreId nvarchar(50)='%',
 @durationG int=null,
 @durationL int=null,
 @doperatorG nchar(1)=null,
-@doperatorL nchar(1)=null
+@doperatorL nchar(1)=null,
+@ratingG float=null,
+@roperatorG nchar(1)=null,
+@ratingL float=null,
+@roperatorL nchar(1)=null,
+@yearG int=null,
+@yoperatorG nchar(1)=null,
+@yearL int=null,
+@yoperatorL nchar(1)=null,
+@movietitle nvarchar(255)='%'
 as
- IF (@durationG IS NOT NULL AND @doperatorG IS not NULL and @durationL IS NULL AND @doperatorL IS null )
-      select *
-	  from group13proj.Movie M where M.Duration>=@durationG
-  ELSE IF (@durationL IS NOT NULL AND @doperatorL IS not NULL and @durationG IS NULL AND @doperatorG IS null)
-        select*
-		from group13proj.Movie M where M.Duration<=@durationL
-  else if (@durationL IS NOT NULL AND @doperatorL IS not NULL and @durationG IS not NULL AND @doperatorG IS not null)
-  select * from group13proj.Movie M where M.Duration>=@durationG 
-  intersect 
-  select * from group13proj.Movie M where M.Duration<=@durationL
-
-exec allFilters2
+select *
+from group13proj.Movie M 
+where M.GenreID like '%' + ', '+@genreId+','+'%' and M.MovieTitle like '%'+@movietitle+'%'
+intersect
+select *
+from group13proj.Movie M
+where (@yoperatorG ='>' and M.ReleaseYear>@yearG)or(@yoperatorG=null and @yearG=null)
+intersect
+select *
+from group13proj.Movie M
+where  ( @yoperatorL='<' and M.ReleaseYear<@yearL) or(@yoperatorL=null and @yearL=null)
+intersect
+select *
+from group13proj.Movie M
+where  @roperatorG ='>' and M.Rating>@ratingG or (@roperatorG=null and @ratingG=null)
+intersect
+select *
+from group13proj.Movie M
+where @roperatorL='<' and M.Rating<@ratingL or(@roperatorL=null and @ratingL=null)
+intersect
+select *
+from group13proj.Movie M
+where  @doperatorG ='>' and M.Duration>@durationG or(@doperatorG=null and @durationG=null)
+intersect
+select *
+from group13proj.Movie M
+where @doperatorL='<' and M.Duration<@durationL or(@doperatorL=null and @durationL=null)
+go
+exec allFilters2 
+@genreId='2',
+@durationG =1,
 @durationL=200,
-@doperatorL='<'
+@doperatorG ='>',
+@doperatorL='<',
+@ratingG = 1,
+@ratingL = 10,
+@roperatorG ='>',
+@roperatorL ='<',
+@yearG =1990,
+@yoperatorG ='>'
+
+
+--*********************************************************************************************************
+drop procedure if exists durationFilter
+go
+create procedure durationFilter
+@durationL int =null,
+@durationG int = null,
+@doperatorL nchar(1)=null,
+@doperatorG nchar(1)=null
+as
+if (@durationL is not null and @durationG is not null and @doperatorG is not null and @doperatorL is not null)
+select *
+from group13proj.Movie M where M.Duration>=@durationG
+intersect
+select * from group13proj.Movie M where M.Duration<=@durationL
+else if (@durationL is not null and @durationG is null and @doperatorG is null and @doperatorL is not null)
+select *
+from group13proj.Movie M where M.Duration<=@durationL
+else if(@durationL is null and @durationG is not null and @doperatorG is not null and @doperatorL is null)
+select * from group13proj.Movie M where M.Duration>=@durationG
+go
+exec durationFilter @durationL=200, @durationG=120, @doperatorL='<', @doperatorG='>'
+exec durationFilter @durationG=120,  @doperatorG='>'
+exec durationFilter @durationL=200, @doperatorL='<'
+drop procedure if exists ratingFilter
+go
+create procedure ratingFilter
+@ratingL int =null,
+@ratingG int = null,
+@roperatorL nchar(1)=null,
+@roperatorG nchar(1)=null
+as
+if (@ratingL is not null and @ratingG is not null and @roperatorG is not null and @roperatorL is not null)
+select *
+from group13proj.Movie M where M.rating>=@ratingG
+intersect
+select * from group13proj.Movie M where M.rating<=@ratingL
+else if (@ratingL is not null and @ratingG is null and @roperatorG is null and @roperatorL is not null)
+select *
+from group13proj.Movie M where M.rating<=@ratingL
+else if(@ratingL is null and @ratingG is not null and @roperatorG is not null and @roperatorL is null)
+select * from group13proj.Movie M where M.rating>=@ratingG
+go
+exec ratingFilter @ratingL=8, @ratingG=4, @roperatorL='<', @roperatorG='>'
+exec ratingFilter @ratingG=4,  @roperatorG='>'
+exec ratingFilter @ratingL=6, @roperatorL='<'
+
+drop procedure if exists yearFilter
+go
+create procedure yearFilter
+@yearL int =null,
+@yearG int = null,
+@yoperatorL nchar(1)=null,
+@yoperatorG nchar(1)=null
+as
+if (@yearL is not null and @yearG is not null and @yoperatorG is not null and @yoperatorL is not null)
+select *
+from group13proj.Movie M where M.ReleaseYear>=@yearG
+intersect
+select * from group13proj.Movie M where M.ReleaseYear<=@yearL
+else if (@yearL is not null and @yearG is null and @yoperatorG is null and @yoperatorL is not null)
+select *
+from group13proj.Movie M where M.ReleaseYear<=@yearL
+else if(@yearL is null and @yearG is not null and @yoperatorG is not null and @yoperatorL is null)
+select * from group13proj.Movie M where M.ReleaseYear>=@yearG
+go
+exec yearFilter @yearL=2008, @yearG=2003, @yoperatorL='<', @yoperatorG='>'
+exec yearFilter @yearG=2000,  @yoperatorG='>'
+exec yearFilter @yearL=2008, @yoperatorL='<'
+
+drop procedure if exists nameFilter
+go
+create procedure nameFilter
+@moviename nvarchar(255)
+as
+select * 
+from group13proj.Movie M where M.MovieTitle like '%'+@moviename+'%'
+go
+exec nameFilter 'vat'
+
+drop procedure if exists GenresFilter
+go
+create procedure GenresFilter
+@id nvarchar(100)
+as
+select *
+from group13proj.Movie M
+where M.GenreID like '%'+', '+@id+','+'%' or M.GenreID like '%'+ ', '+ @id or M.GenreID like @id+'%'
+
+exec GenresFilter '2'
+
+drop table if exists #yTable
+create table #yTable(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null,
+	unique(MovieTitle, ReleaseYear)
+);
+drop table if exists #rTable
+create table #rTable(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null,
+	unique(MovieTitle, ReleaseYear)
+);
+drop table if exists #dTable
+create table #dTable(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null,
+	unique(MovieTitle, ReleaseYear)
+);
+/*
+drop table if exists #gTable
+create table #gTable(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null,
+	unique(MovieTitle, ReleaseYear)
+);
+*/
+drop table if exists #tTable
+create table #tTable(
+	MovieID int not null identity(1,1) primary key,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null,
+	unique(MovieTitle, ReleaseYear)
+);
+
+drop procedure if exists allFilters2
+go
+create procedure allfilters2
+@dG int=null,
+@dL int=null,
+@doG nchar(1)=null,
+@doL nchar(1)=null,
+@rG int=null,
+@rL int=null,
+@roG nchar(1)=null,
+@roL nchar(1)=null,
+@yG int=null,
+@yL int=null,
+@yoG nchar(1)=null,
+@yoL nchar(1)=null,
+@name nvarchar(255)='%'
+--,@genreId nvarchar(100)='%'
+as
+
+
+
+insert into #yTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+exec yearFilter @yearL=@yL, @yearG=@yG, @yoperatorG=yoG, @yoperatorL=yoL;
+insert into #rTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+exec ratingFilter @ratingL=@rL, @ratingG=@rG, @roperatorG=roG, @roperatorL=roL;
+insert into #dTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+exec durationFilter @durationL=@dL, @durationG=@dG, @doperatorL=dol, @doperatorG=doG;
+insert into #tTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+exec nameFilter @moviename=@name;
+--insert into #gTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+--exec GenresFilter @id=@genreId
+select * from #yTable
+intersect
+select* from #dTable
+intersect
+select* from #rTable
+intersect
+select* from #tTable
+--intersect
+--select * from #gTable
+go
+exec allfilters2  @dL=180, @dol='<',  @rL=6,  @roL='<', @yL=2005,  @yoL='<', @name='a'
+select* from group13proj.Movie M where M.Rating<6
