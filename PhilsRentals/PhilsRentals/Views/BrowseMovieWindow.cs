@@ -136,7 +136,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxNumericUpDownRatingOperator_Click(object sender, EventArgs e)
         {
-            string operate = SetOperatorValue(uxNumericUpDownRatingOperator.Text[0]);
+            string operate = SetOperatorValue(uxNumericUpDownRatingOperator.Text);
             uxNumericUpDownRatingOperator.Text = operate;
         }
 
@@ -147,7 +147,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxNumericUpDownYearOperator_Click(object sender, EventArgs e)
         {
-            string operate = SetOperatorValue(uxNumericUpDownYearOperator.Text[0]);
+            string operate = SetOperatorValue(uxNumericUpDownYearOperator.Text);
             uxNumericUpDownYearOperator.Text = operate;
         }
 
@@ -158,7 +158,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxNumericUpDownDurationOperator_Click(object sender, EventArgs e)
         {
-            string operate = SetOperatorValue(uxNumericUpDownDurationOperator.Text[0]);
+            string operate = SetOperatorValue(uxNumericUpDownDurationOperator.Text);
             uxNumericUpDownDurationOperator.Text = operate;
 
             if (operate.Equals("="))
@@ -172,7 +172,7 @@ namespace PhilsRentals.Views
         /// </summary>
         /// <param name="current_operator"></param>
         /// <returns></returns>
-        private string SetOperatorValue(char current_operator)
+        private string SetOperatorValue(string current_operator)
         {
             if (current_operator.Equals("="))
             {

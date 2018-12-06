@@ -341,11 +341,6 @@
             0,
             0,
             0});
-            this.uxNumericUpDownRatingTwo.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.uxNumericUpDownRatingTwo.Name = "uxNumericUpDownRatingTwo";
             this.uxNumericUpDownRatingTwo.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownRatingTwo.TabIndex = 25;
@@ -421,7 +416,7 @@
             0,
             0});
             this.uxNumericUpDownDurationTwo.Minimum = new decimal(new int[] {
-            141,
+            140,
             0,
             0,
             131072});
