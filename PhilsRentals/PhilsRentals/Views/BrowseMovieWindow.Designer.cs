@@ -189,6 +189,11 @@
             0,
             0,
             0});
+            this.uxNumericUpDownDuration.Minimum = new decimal(new int[] {
+            140,
+            0,
+            0,
+            131072});
             this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
             this.uxNumericUpDownDuration.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownDuration.TabIndex = 22;
@@ -336,9 +341,19 @@
             0,
             0,
             0});
+            this.uxNumericUpDownRatingTwo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.uxNumericUpDownRatingTwo.Name = "uxNumericUpDownRatingTwo";
             this.uxNumericUpDownRatingTwo.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownRatingTwo.TabIndex = 25;
+            this.uxNumericUpDownRatingTwo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             // 
             // uxNumericUpDownRatingOperator
             // 
@@ -405,11 +420,16 @@
             0,
             0,
             0});
+            this.uxNumericUpDownDurationTwo.Minimum = new decimal(new int[] {
+            141,
+            0,
+            0,
+            131072});
             this.uxNumericUpDownDurationTwo.Name = "uxNumericUpDownDurationTwo";
             this.uxNumericUpDownDurationTwo.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownDurationTwo.TabIndex = 30;
             this.uxNumericUpDownDurationTwo.Value = new decimal(new int[] {
-            140,
+            141,
             0,
             0,
             131072});
