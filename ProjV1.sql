@@ -45,7 +45,6 @@ insert group13Proj.Movie(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
 select MovieTitle, CAST(ReleaseYear AS INT), Duration, Rating, Genre_ID_ForMovie
 from dbo.MovieDatabase
 
-select* from group13proj.Movie
 
 create table group13proj.Inventory
 (
@@ -75,12 +74,10 @@ create table group13proj.Rental
 (
 	RentalID int not null identity(1,1) primary key,
 	InventoryID int not null foreign key references group13proj.Inventory(InventoryID),
-	RentalDate dateTime not null default getdate()-5 ,
-	DueDate dateTime not null default ( getdate()-1),
+	RentalDate dateTime not null default getdate() ,
+	DueDate dateTime not null default ( getdate()+5),
 	AccountID int not null foreign key references group13proj.Account(AccountID),
-)
-	
-select* from group13proj.Rental
+);
 --inserting multiple copies
 drop procedure if exists createDuplicates
 go
@@ -96,12 +93,5 @@ where M.MovieID=@movieIndex
 set @movieIndex= @movieIndex+6
 end;
 go
-select * from group13proj.Inventory I
+
 exec createDuplicates 
-select * from group13proj.Inventory I where I.MovieID=6
---idk what interesting cases would be,
---maybe we can show what happens if 2 accounts have the same phone or email
---Or if the due date is before the rentaldate
---or as discussed before, a user tries to rent a movie before returning a certain number
---of those already in his posession
-select * from group13proj.Inventory
