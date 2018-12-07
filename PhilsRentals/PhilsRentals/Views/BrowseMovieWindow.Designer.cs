@@ -144,6 +144,7 @@
             this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 76);
             this.uxCheckedListBoxMovieGenre.TabIndex = 17;
             this.uxCheckedListBoxMovieGenre.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.uxCheckedListBoxMovieGenre_ItemCheck);
+            this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxCheckedListBoxMovieGenre_SelectedIndexChanged);
             // 
             // uxLabelMovieGenre
             // 
@@ -164,7 +165,7 @@
             this.uxNumericUpDownRating.DecimalPlaces = 1;
             this.uxNumericUpDownRating.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownRating.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             65536});
@@ -177,15 +178,15 @@
             this.uxNumericUpDownRating.Name = "uxNumericUpDownRating";
             this.uxNumericUpDownRating.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownRating.TabIndex = 23;
+            this.uxNumericUpDownRating.ValueChanged += new System.EventHandler(this.uxNumericUpDownRating_ValueChanged);
             // 
             // uxNumericUpDownDuration
             // 
             this.uxNumericUpDownDuration.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxNumericUpDownDuration.DecimalPlaces = 2;
             this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownDuration.Location = new System.Drawing.Point(368, 148);
             this.uxNumericUpDownDuration.Maximum = new decimal(new int[] {
-            5000,
+            1440,
             0,
             0,
             0});
@@ -193,7 +194,7 @@
             140,
             0,
             0,
-            131072});
+            0});
             this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
             this.uxNumericUpDownDuration.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownDuration.TabIndex = 22;
@@ -201,7 +202,8 @@
             140,
             0,
             0,
-            131072});
+            0});
+            this.uxNumericUpDownDuration.ValueChanged += new System.EventHandler(this.uxNumericUpDownDuration_ValueChanged);
             // 
             // uxNumericUpDownYear
             // 
@@ -226,6 +228,7 @@
             0,
             0,
             0});
+            this.uxNumericUpDownYear.ValueChanged += new System.EventHandler(this.uxNumericUpDownYear_ValueChanged);
             // 
             // uxLabelStarRating
             // 
@@ -331,7 +334,7 @@
             this.uxNumericUpDownRatingTwo.DecimalPlaces = 1;
             this.uxNumericUpDownRatingTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownRatingTwo.Increment = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
             65536});
@@ -356,7 +359,7 @@
             this.uxNumericUpDownRatingOperator.Name = "uxNumericUpDownRatingOperator";
             this.uxNumericUpDownRatingOperator.Size = new System.Drawing.Size(52, 23);
             this.uxNumericUpDownRatingOperator.TabIndex = 26;
-            this.uxNumericUpDownRatingOperator.Text = "=";
+            this.uxNumericUpDownRatingOperator.Text = "<";
             this.uxNumericUpDownRatingOperator.UseVisualStyleBackColor = true;
             this.uxNumericUpDownRatingOperator.Click += new System.EventHandler(this.uxNumericUpDownRatingOperator_Click);
             // 
@@ -371,7 +374,7 @@
             0,
             0});
             this.uxNumericUpDownYearTwo.Minimum = new decimal(new int[] {
-            1889,
+            1888,
             0,
             0,
             0});
@@ -390,7 +393,7 @@
             this.uxNumericUpDownYearOperator.Name = "uxNumericUpDownYearOperator";
             this.uxNumericUpDownYearOperator.Size = new System.Drawing.Size(52, 23);
             this.uxNumericUpDownYearOperator.TabIndex = 28;
-            this.uxNumericUpDownYearOperator.Text = "=";
+            this.uxNumericUpDownYearOperator.Text = "<";
             this.uxNumericUpDownYearOperator.UseVisualStyleBackColor = true;
             this.uxNumericUpDownYearOperator.Click += new System.EventHandler(this.uxNumericUpDownYearOperator_Click);
             // 
@@ -400,18 +403,17 @@
             this.uxNumericUpDownDurationOperator.Name = "uxNumericUpDownDurationOperator";
             this.uxNumericUpDownDurationOperator.Size = new System.Drawing.Size(52, 23);
             this.uxNumericUpDownDurationOperator.TabIndex = 29;
-            this.uxNumericUpDownDurationOperator.Text = "=";
+            this.uxNumericUpDownDurationOperator.Text = "<";
             this.uxNumericUpDownDurationOperator.UseVisualStyleBackColor = true;
             this.uxNumericUpDownDurationOperator.Click += new System.EventHandler(this.uxNumericUpDownDurationOperator_Click);
             // 
             // uxNumericUpDownDurationTwo
             // 
             this.uxNumericUpDownDurationTwo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxNumericUpDownDurationTwo.DecimalPlaces = 2;
             this.uxNumericUpDownDurationTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownDurationTwo.Location = new System.Drawing.Point(500, 148);
             this.uxNumericUpDownDurationTwo.Maximum = new decimal(new int[] {
-            5000,
+            1440,
             0,
             0,
             0});
@@ -419,15 +421,15 @@
             140,
             0,
             0,
-            131072});
+            0});
             this.uxNumericUpDownDurationTwo.Name = "uxNumericUpDownDurationTwo";
             this.uxNumericUpDownDurationTwo.Size = new System.Drawing.Size(68, 29);
             this.uxNumericUpDownDurationTwo.TabIndex = 30;
             this.uxNumericUpDownDurationTwo.Value = new decimal(new int[] {
-            141,
+            140,
             0,
             0,
-            131072});
+            0});
             // 
             // BrowseMovieWindow
             // 
