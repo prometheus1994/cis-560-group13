@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uxLabelMovieTitle = new System.Windows.Forms.Label();
-            this.uxTextBoxMovieTitle = new System.Windows.Forms.TextBox();
             this.uxLabelTitle = new System.Windows.Forms.Label();
             this.uxButtonGetMovie = new System.Windows.Forms.Button();
             this.uxCheckedListBoxMovieGenre = new System.Windows.Forms.CheckedListBox();
@@ -61,28 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownDurationTwo)).BeginInit();
             this.SuspendLayout();
             // 
-            // uxLabelMovieTitle
-            // 
-            this.uxLabelMovieTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxLabelMovieTitle.AutoSize = true;
-            this.uxLabelMovieTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.uxLabelMovieTitle.ForeColor = System.Drawing.Color.Black;
-            this.uxLabelMovieTitle.Location = new System.Drawing.Point(13, 63);
-            this.uxLabelMovieTitle.Name = "uxLabelMovieTitle";
-            this.uxLabelMovieTitle.Size = new System.Drawing.Size(48, 21);
-            this.uxLabelMovieTitle.TabIndex = 1;
-            this.uxLabelMovieTitle.Text = "Title:";
-            // 
-            // uxTextBoxMovieTitle
-            // 
-            this.uxTextBoxMovieTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.uxTextBoxMovieTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxTextBoxMovieTitle.Location = new System.Drawing.Point(97, 60);
-            this.uxTextBoxMovieTitle.Name = "uxTextBoxMovieTitle";
-            this.uxTextBoxMovieTitle.Size = new System.Drawing.Size(154, 29);
-            this.uxTextBoxMovieTitle.TabIndex = 2;
-            this.uxTextBoxMovieTitle.TextChanged += new System.EventHandler(this.uxTextBoxTextChanged);
-            // 
             // uxLabelTitle
             // 
             this.uxLabelTitle.BackColor = System.Drawing.Color.Purple;
@@ -102,7 +78,7 @@
             this.uxButtonGetMovie.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.uxButtonGetMovie.Enabled = false;
             this.uxButtonGetMovie.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.uxButtonGetMovie.Location = new System.Drawing.Point(17, 197);
+            this.uxButtonGetMovie.Location = new System.Drawing.Point(17, 207);
             this.uxButtonGetMovie.Name = "uxButtonGetMovie";
             this.uxButtonGetMovie.Size = new System.Drawing.Size(154, 31);
             this.uxButtonGetMovie.TabIndex = 13;
@@ -138,10 +114,10 @@
             "Musical",
             "Thriller",
             "Western"});
-            this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(97, 106);
+            this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(77, 61);
             this.uxCheckedListBoxMovieGenre.Name = "uxCheckedListBoxMovieGenre";
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
-            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(186, 76);
+            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(205, 124);
             this.uxCheckedListBoxMovieGenre.TabIndex = 17;
             this.uxCheckedListBoxMovieGenre.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.uxCheckedListBoxMovieGenre_ItemCheck);
             this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxCheckedListBoxMovieGenre_SelectedIndexChanged);
@@ -153,7 +129,7 @@
             this.uxLabelMovieGenre.BackColor = System.Drawing.Color.White;
             this.uxLabelMovieGenre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.uxLabelMovieGenre.ForeColor = System.Drawing.Color.Black;
-            this.uxLabelMovieGenre.Location = new System.Drawing.Point(13, 106);
+            this.uxLabelMovieGenre.Location = new System.Drawing.Point(12, 61);
             this.uxLabelMovieGenre.Name = "uxLabelMovieGenre";
             this.uxLabelMovieGenre.Size = new System.Drawing.Size(59, 21);
             this.uxLabelMovieGenre.TabIndex = 16;
@@ -453,8 +429,6 @@
             this.Controls.Add(this.uxLabelMovieGenre);
             this.Controls.Add(this.uxButtonGetMovie);
             this.Controls.Add(this.uxLabelTitle);
-            this.Controls.Add(this.uxTextBoxMovieTitle);
-            this.Controls.Add(this.uxLabelMovieTitle);
             this.Name = "BrowseMovieWindow";
             this.Size = new System.Drawing.Size(584, 561);
             ((System.ComponentModel.ISupportInitialize)(this.uxNumericUpDownRating)).EndInit();
@@ -470,8 +444,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label uxLabelMovieTitle;
-        private System.Windows.Forms.TextBox uxTextBoxMovieTitle;
         private System.Windows.Forms.Label uxLabelTitle;
         private System.Windows.Forms.Button uxButtonGetMovie;
         private System.Windows.Forms.CheckedListBox uxCheckedListBoxMovieGenre;

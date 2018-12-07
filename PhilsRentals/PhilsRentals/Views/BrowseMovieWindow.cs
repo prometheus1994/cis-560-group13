@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PhilsRentals.Views
 {
-    public enum OperatorValue 
+    public enum OperatorValue
     {
         Equals = '=',
         LessThan = '<'
@@ -22,47 +22,66 @@ namespace PhilsRentals.Views
         /// Handle to the MainWindowController.
         /// </summary>
         IMainWindowController _mwc;
+
+        /// <summary>
+        /// The movie genre
+        /// </summary>
+        private string _genre = "";
+
+        /// <summary>
+        /// The (lower) rating of th0e movie
+        /// </summary>
+        private decimal _rating;
         
         /// <summary>
-        /// The title of the movie if they know it
+        /// The (higher) rating of the movie 
         /// </summary>
-        private string _title = String.Empty;
+        private decimal _ratingTwo;
 
         /// <summary>
-        /// The genre from the checked list box
+        /// The (lower) year the movie came out
         /// </summary>
-        private List<string> _genres = new List<string>();
+        private decimal _year;
 
         /// <summary>
-        /// The compiled genres
+        /// The (higher) value of the year
         /// </summary>
-        private string _compiledGenres = String.Empty;
-
-        /// <summary>
-        /// The rating of the movie 
-        /// </summary>
-        private double _rating = 0;
-
-        /// <summary>
-        /// The year the movie came out
-        /// </summary>
-        private int _year = 0;
+        private decimal _yearTwo;
 
         /// <summary>
         /// The duration/length of the movie in minutes
         /// </summary>
-        private double _length = 0;
+        private decimal _length;
 
+        /// <summary>
+        /// The (higher) duration/length of the movie in minutes
+        /// </summary>
+        private decimal _lengthTwo;
+
+        /// <summary>
+        /// The operator for rating
+        /// </summary>
+        private string _ratingOperator;
+
+        /// <summary>
+        /// The operator for year
+        /// </summary>
+        private string _yearOperator;
+
+        /// <summary>
+        /// The operator for duration/length
+        /// </summary>
+        private string _lengthOperator;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="mwc">Delegate to handle operations</param>
         public BrowseMovieWindow(IMainWindowController mwc)
         {
             InitializeComponent();
             _mwc = mwc;
             uxButtonGetMovie.Enabled = false;
-        }
-
-        private void uxTextBoxTextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         /// <summary>
@@ -72,18 +91,16 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonGetMovie_Click(object sender, EventArgs e)
         {
-            // Need to call functions/stored procedures to filter movies
-            // by optional parameters.
-            _title = uxTextBoxMovieTitle.Text;
-            foreach(var item in uxCheckedListBoxMovieGenre.CheckedItems)
-            {
-                _genres.Add(item.ToString());
-            }
-            _rating = Convert.ToInt32(uxNumericUpDownRating.Value);
-            _year = Convert.ToInt32(uxNumericUpDownYear.Value);
-            _length = Convert.ToInt32(uxNumericUpDownDuration.Value);
-            
-            FormatData();
+            _genre = uxCheckedListBoxMovieGenre.SelectedItem.ToString();
+            _rating = uxNumericUpDownRating.Value;
+            _ratingTwo = uxNumericUpDownRatingTwo.Value;
+            _year = uxNumericUpDownYear.Value;
+            _yearTwo = uxNumericUpDownYearTwo.Value;
+            _length = uxNumericUpDownDuration.Value;
+            _lengthTwo = uxNumericUpDownDurationTwo.Value;
+            _ratingOperator = uxNumericUpDownRatingOperator.Text;
+            _yearOperator = uxNumericUpDownYearOperator.Text;
+            _lengthOperator = uxNumericUpDownDurationOperator.Text;
         }
 
         /// <summary>
@@ -102,6 +119,25 @@ namespace PhilsRentals.Views
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxCheckedListBoxMovieGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (uxCheckedListBoxMovieGenre.CheckedItems.Count > 0)
+            {
+                uxButtonGetMovie.Enabled = true;
+            }
+            // need to add more cases here 
+            else
+            {
+                uxButtonGetMovie.Enabled = false;
+            }
+        }
+
+        #region OperatorLogic
         /// <summary>
         /// Sets the value of the "two" numeric updowns.
         /// </summary>
@@ -136,6 +172,7 @@ namespace PhilsRentals.Views
                 return "=";
             }
         }
+        #endregion
 
         #region Rating
         /// <summary>
@@ -226,50 +263,5 @@ namespace PhilsRentals.Views
 
         #endregion
 
-        private void uxCheckedListBoxMovieGenre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (uxCheckedListBoxMovieGenre.CheckedItems.Count > 0)
-            {
-                uxButtonGetMovie.Enabled = true;
-            }
-            // need to add more cases here 
-            else
-            {
-                uxButtonGetMovie.Enabled = false;
-            }
-        }
-
-        private bool GetMovies()
-        {
-            return false;
-        }
-
-        private void FormatData()
-        {
-            if (String.IsNullOrEmpty(_title))
-            {
-                _title = null;
-            }
-            if (_genres.Count == 0)
-            {
-                _genres = null;
-            }
-            if (_year < 1888)
-            {
-                _year = 0;// movies weren't made before 1888
-            }
-            if (_length / 60 < 100)
-            {
-                _length = 0;//the shortest movie in the world is 100 seconds, _length is in minutes
-            }
-
-            // joins all strings from _genres into a single, compiled string seperated by commas
-            _compiledGenres = String.Join(",", _genres);
-
-            // pass the values via GetMovies()?
-            _mwc.GetMovies(_title, _compiledGenres, _year, '0', Convert.ToInt32(_length), '0', (float)_rating);
-
-        }
-
-    }
+    }// end class
 }
