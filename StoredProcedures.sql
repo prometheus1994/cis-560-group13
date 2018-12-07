@@ -532,13 +532,16 @@ exec nameFilter 'vat'
 drop procedure if exists GenresFilter
 go
 create procedure GenresFilter
-@id nvarchar(100)
+@id nvarchar(100)=null
 as
+if(@id is not null )
 select *
 from group13proj.Movie M
-where M.GenreID like '%'+', '+@id+','+'%' or M.GenreID like '%'+ ', '+ @id or M.GenreID like @id+'%'
+where M.GenreID like '%, '+@id+',%' or M.GenreID like '%, '+ @id or M.GenreID like @id+',%'
+go
+exec GenresFilter '1'
 
-exec GenresFilter '2'
+
 
 
 
@@ -557,9 +560,10 @@ create procedure allfilters2
 @yL int=null,
 @yoG nchar(1)=null,
 @yoL nchar(1)=null,
-@name nvarchar(255)='%'
---,@genreId nvarchar(100)='%'
+--@name nvarchar(255)='%'
+@genreId nvarchar(100)=null
 as
+
 
 drop table if exists #yTable
 create table #yTable(
@@ -589,16 +593,6 @@ create table #dTable(
 	GenreID nvarchar(100)  null
 );
 /*
-drop table if exists #gTable
-create table #gTable(
-	MovieID int not null identity(1,1) ,
-	MovieTitle NVARCHAR(255) not null,
-	ReleaseYear int not null,
-	Duration int null,
-	Rating float,
-	GenreID nvarchar(100)  null
-);
-*/
 drop table if exists #tTable
 create table #tTable(
 	MovieID int not null identity(1,1) ,
@@ -608,6 +602,17 @@ create table #tTable(
 	Rating float,
 	GenreID nvarchar(100)  null
 );
+*/
+drop table if exists #gTable
+create table #gTable(
+	MovieID int not null identity(1,1) ,
+	MovieTitle NVARCHAR(255) not null,
+	ReleaseYear int not null,
+	Duration int null,
+	Rating float,
+	GenreID nvarchar(100)  null
+);
+
 
 if(@yG is null and @yoG is null and @yL is not null and @yoL is not null)
 insert into #yTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
@@ -639,19 +644,21 @@ else if (@dG is not null and @doG is not null and @dL is  not null and @doL is n
 insert into #dTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
 exec durationFilter @durationG=@dG, @doperatorG=doG, @durationL=@dL, @doperatorL=doL;
 
-insert into #tTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-exec nameFilter @moviename=@name;
---insert into #gTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
---exec GenresFilter @id=@genreId
+--insert into #tTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+--exec nameFilter @moviename=@name;
+if(@genreId is not null)
+insert into #gTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+exec GenresFilter @id=@genreId
+else if (@genreId is null)
+insert into #gTable(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
+select  M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, M.GenreID from group13proj.Movie M;
+
 select * from #yTable
 intersect
 select* from #dTable
 intersect
 select* from #rTable
 intersect
-select* from #tTable
---intersect
---select * from #gTable
+select * from #gTable
 go
-exec allfilters2  @dL=180, @dol='<',  @rL=6,  @roL='<', @yL=2005,  @yoL='<'
-    
+exec allfilters2  @dL=180, @dol='<',  @rL=6,  @roL='<', @yL=2005,  @yoL='<', @genreId='1'
