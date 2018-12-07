@@ -58,7 +58,7 @@ namespace PhilsRentals
         /// <param name="yearOperator">Operator for year; may only be the less than symbol or equals</param>
         /// <param name="lengthOperator">Operator for length/duration; may only be the less than symbol or equals</param>
         /// <returns></returns>
-        List<string> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator);
+        List<Movie> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator);
 
         /// <summary>
         /// Create an account in the database.

@@ -117,7 +117,7 @@
             this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(77, 61);
             this.uxCheckedListBoxMovieGenre.Name = "uxCheckedListBoxMovieGenre";
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
-            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(205, 124);
+            this.uxCheckedListBoxMovieGenre.Size = new System.Drawing.Size(205, 120);
             this.uxCheckedListBoxMovieGenre.TabIndex = 17;
             this.uxCheckedListBoxMovieGenre.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.uxCheckedListBoxMovieGenre_ItemCheck);
             this.uxCheckedListBoxMovieGenre.SelectedIndexChanged += new System.EventHandler(this.uxCheckedListBoxMovieGenre_SelectedIndexChanged);
@@ -131,7 +131,7 @@
             this.uxLabelMovieGenre.ForeColor = System.Drawing.Color.Black;
             this.uxLabelMovieGenre.Location = new System.Drawing.Point(12, 61);
             this.uxLabelMovieGenre.Name = "uxLabelMovieGenre";
-            this.uxLabelMovieGenre.Size = new System.Drawing.Size(59, 21);
+            this.uxLabelMovieGenre.Size = new System.Drawing.Size(73, 28);
             this.uxLabelMovieGenre.TabIndex = 16;
             this.uxLabelMovieGenre.Text = "Genre:";
             // 
@@ -152,7 +152,7 @@
             0,
             0});
             this.uxNumericUpDownRating.Name = "uxNumericUpDownRating";
-            this.uxNumericUpDownRating.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownRating.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownRating.TabIndex = 23;
             this.uxNumericUpDownRating.ValueChanged += new System.EventHandler(this.uxNumericUpDownRating_ValueChanged);
             // 
@@ -162,20 +162,20 @@
             this.uxNumericUpDownDuration.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownDuration.Location = new System.Drawing.Point(368, 148);
             this.uxNumericUpDownDuration.Maximum = new decimal(new int[] {
-            1440,
+            280,
             0,
             0,
             0});
             this.uxNumericUpDownDuration.Minimum = new decimal(new int[] {
-            140,
+            73,
             0,
             0,
             0});
             this.uxNumericUpDownDuration.Name = "uxNumericUpDownDuration";
-            this.uxNumericUpDownDuration.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownDuration.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownDuration.TabIndex = 22;
             this.uxNumericUpDownDuration.Value = new decimal(new int[] {
-            140,
+            73,
             0,
             0,
             0});
@@ -197,7 +197,7 @@
             0,
             0});
             this.uxNumericUpDownYear.Name = "uxNumericUpDownYear";
-            this.uxNumericUpDownYear.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownYear.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownYear.TabIndex = 21;
             this.uxNumericUpDownYear.Value = new decimal(new int[] {
             1888,
@@ -215,7 +215,7 @@
             this.uxLabelStarRating.ForeColor = System.Drawing.Color.Black;
             this.uxLabelStarRating.Location = new System.Drawing.Point(298, 63);
             this.uxLabelStarRating.Name = "uxLabelStarRating";
-            this.uxLabelStarRating.Size = new System.Drawing.Size(64, 21);
+            this.uxLabelStarRating.Size = new System.Drawing.Size(79, 28);
             this.uxLabelStarRating.TabIndex = 20;
             this.uxLabelStarRating.Text = "Rating:";
             // 
@@ -228,7 +228,7 @@
             this.uxLabelDuration.ForeColor = System.Drawing.Color.Black;
             this.uxLabelDuration.Location = new System.Drawing.Point(298, 150);
             this.uxLabelDuration.Name = "uxLabelDuration";
-            this.uxLabelDuration.Size = new System.Drawing.Size(67, 21);
+            this.uxLabelDuration.Size = new System.Drawing.Size(82, 28);
             this.uxLabelDuration.TabIndex = 19;
             this.uxLabelDuration.Text = "Length:";
             // 
@@ -241,7 +241,7 @@
             this.uxLabelReleaseDate.ForeColor = System.Drawing.Color.Black;
             this.uxLabelReleaseDate.Location = new System.Drawing.Point(298, 106);
             this.uxLabelReleaseDate.Name = "uxLabelReleaseDate";
-            this.uxLabelReleaseDate.Size = new System.Drawing.Size(48, 21);
+            this.uxLabelReleaseDate.Size = new System.Drawing.Size(58, 28);
             this.uxLabelReleaseDate.TabIndex = 18;
             this.uxLabelReleaseDate.Text = "Year:";
             // 
@@ -321,10 +321,10 @@
             0,
             0});
             this.uxNumericUpDownRatingTwo.Name = "uxNumericUpDownRatingTwo";
-            this.uxNumericUpDownRatingTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownRatingTwo.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownRatingTwo.TabIndex = 25;
             this.uxNumericUpDownRatingTwo.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             65536});
@@ -355,7 +355,7 @@
             0,
             0});
             this.uxNumericUpDownYearTwo.Name = "uxNumericUpDownYearTwo";
-            this.uxNumericUpDownYearTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownYearTwo.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownYearTwo.TabIndex = 27;
             this.uxNumericUpDownYearTwo.Value = new decimal(new int[] {
             2018,
@@ -389,20 +389,20 @@
             this.uxNumericUpDownDurationTwo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxNumericUpDownDurationTwo.Location = new System.Drawing.Point(500, 148);
             this.uxNumericUpDownDurationTwo.Maximum = new decimal(new int[] {
-            1440,
+            280,
             0,
             0,
             0});
             this.uxNumericUpDownDurationTwo.Minimum = new decimal(new int[] {
-            140,
+            73,
             0,
             0,
             0});
             this.uxNumericUpDownDurationTwo.Name = "uxNumericUpDownDurationTwo";
-            this.uxNumericUpDownDurationTwo.Size = new System.Drawing.Size(68, 29);
+            this.uxNumericUpDownDurationTwo.Size = new System.Drawing.Size(68, 34);
             this.uxNumericUpDownDurationTwo.TabIndex = 30;
             this.uxNumericUpDownDurationTwo.Value = new decimal(new int[] {
-            140,
+            280,
             0,
             0,
             0});

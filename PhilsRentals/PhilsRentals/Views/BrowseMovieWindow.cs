@@ -91,6 +91,7 @@ namespace PhilsRentals.Views
         /// <param name="e"></param>
         private void uxButtonGetMovie_Click(object sender, EventArgs e)
         {
+            List<Movie> movies = new List<Movie>();
             _genre = uxCheckedListBoxMovieGenre.SelectedItem.ToString();
             _rating = uxNumericUpDownRating.Value;
             _ratingTwo = uxNumericUpDownRatingTwo.Value;
@@ -102,8 +103,13 @@ namespace PhilsRentals.Views
             _yearOperator = uxNumericUpDownYearOperator.Text;
             _lengthOperator = uxNumericUpDownDurationOperator.Text;
             // send the fields to the database to get the movies where the conditions are met.
-            _mwc.GetMovies(_genre, _rating, _ratingTwo, _year, _yearTwo, _length, _lengthTwo, _ratingOperator, _yearOperator, _lengthOperator);
-
+            movies = _mwc.GetMovies(_genre, _rating, _ratingTwo, _year, _yearTwo, _length, _lengthTwo, _ratingOperator, _yearOperator, _lengthOperator);
+            uxDataGridViewMovies.Rows.Clear();
+            foreach (Movie movie in movies)
+            {
+                uxDataGridViewMovies.Rows.Add(movie.Title, movie.rating, movie.genre, movie.releaseYear, movie.length);
+            }
+            uxDataGridViewMovies.ClearSelection();
         }
 
         /// <summary>

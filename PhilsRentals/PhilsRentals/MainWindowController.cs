@@ -507,8 +507,13 @@ namespace PhilsRentals
         /// <param name="yearOperator">the year operator; can only be less than or equals</param>
         /// <param name="lengthOperator">the length operator; can only be less than or equals</param>
         /// <returns></returns>
-        public List<string> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator)
+        public List<Movie> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator)
         {
+            string tempR;
+            int tempY;
+            string tempG;
+            int tempL;
+            
             List<Movie> movies = new List<Movie>();
             try
             {
@@ -540,7 +545,11 @@ namespace PhilsRentals
                     {
                         while (reader.Read())
                         {
-                            movies.Add(new Movie(reader.GetString(reader.GetOrdinal("MovieTitle")), 0));
+                            tempL = reader.GetInt32(reader.GetOrdinal("Duration"));
+                            tempG = reader.GetString(reader.GetOrdinal("GenreID"));
+                            tempR = reader.GetDouble(reader.GetOrdinal("Rating")).ToString();
+                            tempY = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                            movies.Add(new Movie(reader.GetString(reader.GetOrdinal("MovieTitle")), tempR, tempG, tempL, tempY));
                         }
                     }
                 }
@@ -549,7 +558,7 @@ namespace PhilsRentals
                 MessageBox.Show("Browse Movies has failed\nPlease try again");
                 return null;
             }
-            return null;
+            return movies;
         }
     }
     /// <summary>
@@ -560,6 +569,10 @@ namespace PhilsRentals
         public string Title { get; set; }
         public int Count { get; set; }
         public string DueDate { get; set; }
+        public string rating { get; set; }
+        public string genre { get; set; }
+        public int length { get; set; }
+        public int releaseYear { get; set; }
         public Movie(string t, int c)
         {
             Title = t;
@@ -569,6 +582,14 @@ namespace PhilsRentals
         {
             Title = t;
             DueDate = dd;
+        }
+        public Movie(string t, string r, string g, int l, int ry)
+        {
+            Title = t;
+            rating = r;
+            genre = g;
+            length = l;
+            releaseYear = ry;
         }
     }
 
