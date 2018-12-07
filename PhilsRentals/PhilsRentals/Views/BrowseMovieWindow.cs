@@ -101,6 +101,9 @@ namespace PhilsRentals.Views
             _ratingOperator = uxNumericUpDownRatingOperator.Text;
             _yearOperator = uxNumericUpDownYearOperator.Text;
             _lengthOperator = uxNumericUpDownDurationOperator.Text;
+            // send the fields to the database to get the movies where the conditions are met.
+            _mwc.GetMovies(_genre, _rating, _ratingTwo, _year, _yearTwo, _length, _lengthTwo, _ratingOperator, _yearOperator, _lengthOperator);
+
         }
 
         /// <summary>
