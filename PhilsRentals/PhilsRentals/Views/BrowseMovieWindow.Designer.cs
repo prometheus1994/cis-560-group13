@@ -317,7 +317,7 @@
             65536});
             this.uxNumericUpDownRatingTwo.Location = new System.Drawing.Point(501, 61);
             this.uxNumericUpDownRatingTwo.Maximum = new decimal(new int[] {
-            10,
+            11,
             0,
             0,
             0});
