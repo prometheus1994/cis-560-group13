@@ -1,4 +1,4 @@
-﻿using PhilsRentals.Views;
+using PhilsRentals.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,15 +45,20 @@ namespace PhilsRentals
         bool AddMovie(string title, string genres, int releaseYear, int duration, double rating);
 
         /// <summary>
-        /// Gets movies that match the provided filters
+        /// Gets the movies based on the filter parameters
         /// </summary>
-        /// <param name="title">Title of the movie</param>
-        /// <param name="genres">Genres of the movie</param>
-        /// <param name="releaseYear">Release year of the movie</param>
-        /// <param name="duration">Duration of the movie</param>
-        /// <param name="rating">Rating of the movie</param>
-        /// <returns>Movies that matched the filters</returns>
-        List<string> GetMovies(string title, string genres, int releaseYear, char operationDuration, int duration, char operationRating, float rating);
+        /// <param name="genre">Movie genre</param>
+        /// <param name="ratingOne">Movie rating</param>
+        /// <param name="ratingTwo">Movie rating if user selects a range</param>
+        /// <param name="yearOne">Movie year of production; min 1888</param>
+        /// <param name="yearTwo">Upper limit for year of production; max 2018</param>
+        /// <param name="lengthOne">Lower limit for duration in minutes; min is 1 minute and 40 seconds</param>
+        /// <param name="lengthTwo">Upper limit for duration in minutes; max is 1440 minutes</param>
+        /// <param name="ratingOperator">Operator for rating; may only be the less than symbol or equals</param>
+        /// <param name="yearOperator">Operator for year; may only be the less than symbol or equals</param>
+        /// <param name="lengthOperator">Operator for length/duration; may only be the less than symbol or equals</param>
+        /// <returns></returns>
+        List<string> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator);
 
         /// <summary>
         /// Create an account in the database.
