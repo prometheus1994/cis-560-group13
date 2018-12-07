@@ -1,4 +1,4 @@
-﻿using PhilsRentals.Views;
+using PhilsRentals.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace PhilsRentals
 {
@@ -139,20 +140,6 @@ namespace PhilsRentals
                 return false;
             }
             return true;
-        }
-
-        /// <summary>
-        /// Gets movies that match the provided filters
-        /// </summary>
-        /// <param name="title">Title of the movie</param>
-        /// <param name="genres">Genres of the movie</param>
-        /// <param name="releaseYear">Release year of the movie</param>
-        /// <param name="duration">Duration of the movie</param>
-        /// <param name="rating">Rating of the movie</param>
-        /// <returns>Movies that matched the filters</returns>
-        public List<string> GetMovies(string title, string genres, int releaseYear, char operationDuration, int duration, char operationRating, float rating)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -505,6 +492,65 @@ namespace PhilsRentals
                 }
                 return true;
             }
+
+        /// <summary>
+        /// Returns the movies which meet the given parameters from BrowseMovieWindow
+        /// </summary>
+        /// <param name="genre">genre of the movie</param>
+        /// <param name="ratingOne">the lower bound of the rating;</param>
+        /// <param name="ratingTwo">the upper bound of the rating</param>
+        /// <param name="yearOne">the lower bound of the year</param>
+        /// <param name="yearTwo">the upper bound of the year</param>
+        /// <param name="lengthOne">the lower bound of the duration/length</param>
+        /// <param name="lengthTwo">the upper bound of the duration/length</param>
+        /// <param name="ratingOperator">the rating operator; can only be less than or equals</param>
+        /// <param name="yearOperator">the year operator; can only be less than or equals</param>
+        /// <param name="lengthOperator">the length operator; can only be less than or equals</param>
+        /// <returns></returns>
+        public List<string> GetMovies(string genre, decimal ratingOne, decimal ratingTwo, decimal yearOne, decimal yearTwo, decimal lengthOne, decimal lengthTwo, string ratingOperator, string yearOperator, string lengthOperator)
+        {
+            List<Movie> movies = new List<Movie>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = _connection;
+
+                    SqlCommand cmd = new SqlCommand("allFilters2", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("dG", lengthOne);
+                    cmd.Parameters.AddWithValue("dL", lengthTwo);
+                    cmd.Parameters.AddWithValue("doG", '>');
+                    cmd.Parameters.AddWithValue("doL", lengthOperator);
+
+                    cmd.Parameters.AddWithValue("rG", ratingOne);
+                    cmd.Parameters.AddWithValue("rL", ratingTwo);
+                    cmd.Parameters.AddWithValue("roG", '>');
+                    cmd.Parameters.AddWithValue("roL", ratingOperator);
+
+                    cmd.Parameters.AddWithValue("yG", yearOne);
+                    cmd.Parameters.AddWithValue("yL", yearTwo);
+                    cmd.Parameters.AddWithValue("yoG", '>');
+                    cmd.Parameters.AddWithValue("yoL", yearOperator);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            movies.Add(new Movie(reader.GetString(reader.GetOrdinal("MovieTitle")), 0));
+                        }
+                    }
+                }
+            } catch (Exception e)
+            {
+                MessageBox.Show("Browse Movies has failed\nPlease try again");
+                return null;
+            }
+            return null;
+        }
     }
     /// <summary>
     /// This is a class used for displaying information about the movies into the gui
