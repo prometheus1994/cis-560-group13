@@ -44,13 +44,22 @@ namespace PhilsRentals.Views
             }
             else
             {
-                if (_mwc.DeleteAccount(email))
+
+                List<Movie> movies = (_mwc.GetRentedMovies(email));
+                if (movies.Count == 0)
                 {
-                    MessageBox.Show("Account Deleted Successfully.", "Success");
+                    if (_mwc.DeleteAccount(email))
+                    {
+                        MessageBox.Show("Account Deleted Successfully.", "Success");
+                    }
+                    else
+                    {
+                        MessageBox.Show("There was an error deleting the account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("There was an error deleting the account.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You cannot delete an account that has rented movies.");
                 }
             }
 

@@ -89,31 +89,32 @@
             // uxCheckedListBoxMovieGenre
             // 
             this.uxCheckedListBoxMovieGenre.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.uxCheckedListBoxMovieGenre.BackColor = System.Drawing.Color.White;
             this.uxCheckedListBoxMovieGenre.CheckOnClick = true;
             this.uxCheckedListBoxMovieGenre.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.uxCheckedListBoxMovieGenre.FormattingEnabled = true;
             this.uxCheckedListBoxMovieGenre.Items.AddRange(new object[] {
-            "Mystery",
-            "Drama",
-            "History",
-            "Sport",
-            "Sci-Fi",
-            "Family",
-            "Horror",
-            "Biography",
-            "Crime",
-            "Romance",
-            "Fantasy",
-            "Animation",
-            "War",
-            "Adventure",
-            "Action",
-            "Music",
-            "Comedy",
-            "Documentary",
-            "Musical",
-            "Thriller",
-            "Western"});
+            "Mystery (1)",
+            "Drama (2)",
+            "History (3)",
+            "Sport (4)",
+            "Sci-Fi (5)",
+            "Family (6)",
+            "Horror (7)",
+            "Biography (8)",
+            "Crime (9)",
+            "Romance (10)",
+            "Fantasy (11)",
+            "Animation (12)",
+            "War (13)",
+            "Adventure (14)",
+            "Action (15)",
+            "Music (16)",
+            "Comedy (17)",
+            "Documentary (18)",
+            "Musical (19)",
+            "Thriller (20)",
+            "Western (21)"});
             this.uxCheckedListBoxMovieGenre.Location = new System.Drawing.Point(77, 61);
             this.uxCheckedListBoxMovieGenre.Name = "uxCheckedListBoxMovieGenre";
             this.uxCheckedListBoxMovieGenre.ScrollAlwaysVisible = true;
