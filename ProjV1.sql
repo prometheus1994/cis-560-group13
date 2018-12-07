@@ -1,5 +1,9 @@
 
 
+drop table if exists group13proj.rtable
+drop table if exists group13proj.gtable
+drop table if exists group13proj.ytable
+drop table if exists group13proj.dtable
 drop table if exists group13proj.Rental
 drop table if exists group13proj.Account
 drop table if exists group13proj.Inventory
