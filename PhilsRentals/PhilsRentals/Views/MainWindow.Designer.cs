@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.uxPanelCreateAccount = new System.Windows.Forms.Panel();
             this.uxButtonCreateAccount = new System.Windows.Forms.Button();
             this.uxPanelMenu = new System.Windows.Forms.Panel();
+            this.uxPanelReturnMovie = new System.Windows.Forms.Panel();
+            this.uxButtonReturnMovie = new System.Windows.Forms.Button();
             this.uxPanelSelectAccount = new System.Windows.Forms.Panel();
             this.uxButtonSelectAccount = new System.Windows.Forms.Button();
             this.uxPanelBrowseMovie = new System.Windows.Forms.Panel();
@@ -45,9 +48,9 @@
             this.uxPanelRentMovie = new System.Windows.Forms.Panel();
             this.uxButtonRentMovie = new System.Windows.Forms.Button();
             this.uxPanelMain = new System.Windows.Forms.Panel();
-            this.uxPanelReturnMovie = new System.Windows.Forms.Panel();
-            this.uxButtonReturnMovie = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.uxPanelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // uxPanelCreateAccount
@@ -76,6 +79,7 @@
             // uxPanelMenu
             // 
             this.uxPanelMenu.BackColor = System.Drawing.Color.Purple;
+            this.uxPanelMenu.Controls.Add(this.pictureBox1);
             this.uxPanelMenu.Controls.Add(this.uxPanelReturnMovie);
             this.uxPanelMenu.Controls.Add(this.uxButtonReturnMovie);
             this.uxPanelMenu.Controls.Add(this.uxPanelSelectAccount);
@@ -97,8 +101,32 @@
             this.uxPanelMenu.ForeColor = System.Drawing.Color.Orange;
             this.uxPanelMenu.Location = new System.Drawing.Point(0, 0);
             this.uxPanelMenu.Name = "uxPanelMenu";
-            this.uxPanelMenu.Size = new System.Drawing.Size(200, 561);
+            this.uxPanelMenu.Size = new System.Drawing.Size(200, 553);
             this.uxPanelMenu.TabIndex = 5;
+            // 
+            // uxPanelReturnMovie
+            // 
+            this.uxPanelReturnMovie.BackColor = System.Drawing.Color.Silver;
+            this.uxPanelReturnMovie.ForeColor = System.Drawing.Color.White;
+            this.uxPanelReturnMovie.Location = new System.Drawing.Point(0, 145);
+            this.uxPanelReturnMovie.Name = "uxPanelReturnMovie";
+            this.uxPanelReturnMovie.Size = new System.Drawing.Size(5, 35);
+            this.uxPanelReturnMovie.TabIndex = 18;
+            // 
+            // uxButtonReturnMovie
+            // 
+            this.uxButtonReturnMovie.Enabled = false;
+            this.uxButtonReturnMovie.FlatAppearance.BorderSize = 0;
+            this.uxButtonReturnMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxButtonReturnMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxButtonReturnMovie.ForeColor = System.Drawing.Color.White;
+            this.uxButtonReturnMovie.Location = new System.Drawing.Point(0, 145);
+            this.uxButtonReturnMovie.Name = "uxButtonReturnMovie";
+            this.uxButtonReturnMovie.Size = new System.Drawing.Size(200, 35);
+            this.uxButtonReturnMovie.TabIndex = 17;
+            this.uxButtonReturnMovie.Text = "Return Movies";
+            this.uxButtonReturnMovie.UseVisualStyleBackColor = true;
+            this.uxButtonReturnMovie.Click += new System.EventHandler(this.uxMenuHandler);
             // 
             // uxPanelSelectAccount
             // 
@@ -154,7 +182,7 @@
             this.uxLabelTitle.ForeColor = System.Drawing.Color.White;
             this.uxLabelTitle.Location = new System.Drawing.Point(12, 21);
             this.uxLabelTitle.Name = "uxLabelTitle";
-            this.uxLabelTitle.Size = new System.Drawing.Size(179, 37);
+            this.uxLabelTitle.Size = new System.Drawing.Size(221, 46);
             this.uxLabelTitle.TabIndex = 12;
             this.uxLabelTitle.Text = "Phils Rentals";
             // 
@@ -257,39 +285,24 @@
             this.uxPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uxPanelMain.Location = new System.Drawing.Point(200, 0);
             this.uxPanelMain.Name = "uxPanelMain";
-            this.uxPanelMain.Size = new System.Drawing.Size(584, 561);
+            this.uxPanelMain.Size = new System.Drawing.Size(582, 553);
             this.uxPanelMain.TabIndex = 6;
             // 
-            // uxPanelReturnMovie
+            // pictureBox1
             // 
-            this.uxPanelReturnMovie.BackColor = System.Drawing.Color.Silver;
-            this.uxPanelReturnMovie.ForeColor = System.Drawing.Color.White;
-            this.uxPanelReturnMovie.Location = new System.Drawing.Point(0, 145);
-            this.uxPanelReturnMovie.Name = "uxPanelReturnMovie";
-            this.uxPanelReturnMovie.Size = new System.Drawing.Size(5, 35);
-            this.uxPanelReturnMovie.TabIndex = 18;
-            // 
-            // uxButtonReturnMovie
-            // 
-            this.uxButtonReturnMovie.Enabled = false;
-            this.uxButtonReturnMovie.FlatAppearance.BorderSize = 0;
-            this.uxButtonReturnMovie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxButtonReturnMovie.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxButtonReturnMovie.ForeColor = System.Drawing.Color.White;
-            this.uxButtonReturnMovie.Location = new System.Drawing.Point(0, 145);
-            this.uxButtonReturnMovie.Name = "uxButtonReturnMovie";
-            this.uxButtonReturnMovie.Size = new System.Drawing.Size(200, 35);
-            this.uxButtonReturnMovie.TabIndex = 17;
-            this.uxButtonReturnMovie.Text = "Return Movies";
-            this.uxButtonReturnMovie.UseVisualStyleBackColor = true;
-            this.uxButtonReturnMovie.Click += new System.EventHandler(this.uxMenuHandler);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 361);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(185, 189);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(782, 553);
             this.Controls.Add(this.uxPanelMain);
             this.Controls.Add(this.uxPanelMenu);
             this.MaximizeBox = false;
@@ -299,6 +312,7 @@
             this.Text = "Phils Rentals";
             this.uxPanelMenu.ResumeLayout(false);
             this.uxPanelMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -323,6 +337,7 @@
         private System.Windows.Forms.Button uxButtonSelectAccount;
         private System.Windows.Forms.Panel uxPanelReturnMovie;
         private System.Windows.Forms.Button uxButtonReturnMovie;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

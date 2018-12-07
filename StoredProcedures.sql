@@ -71,6 +71,7 @@ Delete A
 from group13proj.Account A
 where A.Email = @Email and A.AccountID not in(select R.AccountID from group13proj.Rental R )
 go
+
 --example execution
 select * from group13proj.Rental 
 select * from group13proj.Account where Email='john@idk.com'
@@ -132,6 +133,8 @@ from group13proj.Rental R
 	inner join group13proj.Movie m on m.MovieID = i.MovieID
 where R.AccountID=A.AccountID
 go
+exec acctRentals 'uncle@yahoo.com'
+ go
 
 
 drop procedure if exists movieName2id
@@ -145,7 +148,6 @@ go
 
 
 -- in process
-
 
 go
 
@@ -412,9 +414,9 @@ as
 select *
 from group13proj.Movie M
 where M.GenreID like '%'+', '+@id+','+'%' or M.GenreID like '%'+ ', '+ @id or M.GenreID like @id+'%'
-
+go
 exec filterGenres '2'
-
+go
 
 --combined filers
 
@@ -540,8 +542,8 @@ from group13proj.Movie M
 where M.GenreID like '%, '+@id+',%' or M.GenreID like '%, '+ @id or M.GenreID like @id+',%'
     
 go
-exec GenresFilter '1'
-
+exec GenresFilter '2'
+go
 
 
 
@@ -659,7 +661,7 @@ select M.MovieTitle, M.ReleaseYear,M.Duration, M.Rating, M.GenreID from group13p
 --exec nameFilter @moviename=@name;
 if(@genreId is not null)
 insert into #gTable(MovieID, MovieTitle, ReleaseYear, Duration, Rating, GenreID)
-exec GenresFilter @id=@genreId
+exec GenresFilter @genreId
 else if (@genreId is null)
 insert into #gTable(MovieTitle, ReleaseYear, Duration, Rating, GenreID)
 select  M.MovieTitle, M.ReleaseYear, M.Duration, M.Rating, M.GenreID from group13proj.Movie M;
@@ -675,3 +677,19 @@ go
 exec allfilters2  @dL=180, @dol='<',  @dG=100,  @doG='>'
 
 exec allfilters2  @dL=180, @dol='<',  @rL=6,  @roL='<', @yL=2005,  @yoL='<', @genreId='1'
+go
+
+drop procedure if exists OverdueRentals
+go 
+create procedure OverDueRentals
+as
+select a.Email, m.MovieTitle, r.DueDate
+from group13proj.Rental r
+inner join group13proj.Account a on r.AccountID = a.AccountID
+inner join group13proj.Inventory i on r.InventoryID = i.InventoryID
+inner join group13proj.Movie m on m.MovieID = i.MovieID
+where  r.DueDate <= getDate()
+go
+exec OverDueRentals
+select * 
+from group13proj.Rental

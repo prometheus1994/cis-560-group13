@@ -93,6 +93,7 @@ namespace PhilsRentals.Views
         {
             List<Movie> movies = new List<Movie>();
             _genre = uxCheckedListBoxMovieGenre.SelectedItem.ToString();
+            _genre = _genre.Substring(_genre.IndexOf("(") +1, _genre.IndexOf(")")-_genre.IndexOf("(") -1);
             _rating = uxNumericUpDownRating.Value;
             _ratingTwo = uxNumericUpDownRatingTwo.Value;
             _year = uxNumericUpDownYear.Value;

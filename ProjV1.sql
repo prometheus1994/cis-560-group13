@@ -75,8 +75,8 @@ create table group13proj.Rental
 (
 	RentalID int not null identity(1,1) primary key,
 	InventoryID int not null foreign key references group13proj.Inventory(InventoryID),
-	RentalDate dateTime not null default getdate() ,
-	DueDate dateTime not null default ( getdate()+5),
+	RentalDate dateTime not null default getdate()-5 ,
+	DueDate dateTime not null default ( getdate()-1),
 	AccountID int not null foreign key references group13proj.Account(AccountID),
 )
 	

@@ -537,6 +537,7 @@ namespace PhilsRentals
                     cmd.Parameters.AddWithValue("yL", yearTwo);
                     cmd.Parameters.AddWithValue("yoG", '>');
                     cmd.Parameters.AddWithValue("yoL", yearOperator);
+                    cmd.Parameters.AddWithValue("genreId", genre);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
