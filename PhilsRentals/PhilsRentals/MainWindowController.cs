@@ -380,7 +380,11 @@ namespace PhilsRentals
 
             
         }
-
+        /// <summary>
+        /// Checks to make sure the account exists in the database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public bool checkSelectedAccount(string email)
         {
             using (SqlConnection conn = new SqlConnection())

@@ -116,7 +116,11 @@ namespace PhilsRentals
         /// <param name="email">Email of the account</param>
         /// <param name="movieTitle">Title of the movie returned</param>
         bool ReturnMovie(string email, string movieTitle);
-
+        /// <summary>
+        /// Checks to make sure the account exists in the database
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         bool checkSelectedAccount(string email);
     }
 }

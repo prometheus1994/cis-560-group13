@@ -29,6 +29,7 @@ namespace PhilsRentals.Views
             _GetSelectedAccount = GetSelectedAccount;
         }
 
+        //Resets the current values in the grid view box and repopuplates them
         public void InitWindow()
         {
             uxDataGridViewMovies.Rows.Clear();
