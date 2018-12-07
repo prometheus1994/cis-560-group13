@@ -87,7 +87,7 @@ go
 create procedure createDuplicates
 as
 declare @movieIndex int = 0;
-while @movieIndex<=967
+while @movieIndex<=931
 begin
 insert group13proj.Inventory(MovieID, Rented)
 select M.MovieID, 0
