@@ -1,6 +1,9 @@
 # cis-560-group13
 This repo is for Group 13's CIS 560/Databases Project.
 
+***Do Not Copy:*** **This is solely for keeping record of my work & presentation of prior experience. If used for personal use, please reference. If used for academic purposes, verify with the primary instructor before use & reference if applicable.**  
+
+
 ## Summary
   This program will simulate a movie rental business interface. Our program will help employees track employee rentals. 
 It's primary design aspects will include the following: 
